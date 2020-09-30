@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5EB0706F252512E3009AB694 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB0706E252512E3009AB694 /* SQLite */; };
 		7601200C2522647200497CD4 /* CaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601200B2522647200497CD4 /* CaseData.swift */; };
 		760120112523997E00497CD4 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760120102523997E00497CD4 /* CategoryView.swift */; };
 		76012016252399DC00497CD4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76012015252399DC00497CD4 /* Category.swift */; };
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EB0706F252512E3009AB694 /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +112,9 @@
 			dependencies = (
 			);
 			name = LungLearner;
+			packageProductDependencies = (
+				5EB0706E252512E3009AB694 /* SQLite */,
+			);
 			productName = LungLearner;
 			productReference = 760B536A2522555F000B129B /* LungLearner.app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +142,9 @@
 				Base,
 			);
 			mainGroup = 760B53612522555F000B129B;
+			packageReferences = (
+				5EB0706D252512E3009AB694 /* XCRemoteSwiftPackageReference "SQLite" */,
+			);
 			productRefGroup = 760B536B2522555F000B129B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -356,6 +364,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5EB0706D252512E3009AB694 /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5EB0706E252512E3009AB694 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5EB0706D252512E3009AB694 /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 760B53622522555F000B129B /* Project object */;
 }
