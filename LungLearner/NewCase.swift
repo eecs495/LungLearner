@@ -14,13 +14,15 @@ struct NewCase: View {
         VStack {
             TabView(selection: $currentCategory) {
                 ForEach(0 ..< testCategories.count) { index in
-                    CategoryView(category: testCategories[index])
-                        .tag(index)
-                        .padding()
+                    VStack {
+                        CategoryView(category: testCategories[index])
+                            .tag(index)
+                        Diagnose()
+                    }
                 }
             }
             .tabViewStyle(PageTabViewStyle())
-            
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))
             HStack {
                 Spacer()
                 Button(action: {
@@ -30,9 +32,8 @@ struct NewCase: View {
                 }) {
                     Image(systemName: "arrow.right")
                         .font(.largeTitle)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.black)
                         .padding()
-                        .background(Circle().fill(Color.primary))
                 }
             }
             .padding()
