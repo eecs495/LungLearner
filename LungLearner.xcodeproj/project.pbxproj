@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */; };
 		4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */; };
+		5E367BE9252BA3230064B989 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E367BE8252BA3230064B989 /* UserData.swift */; };
 		5EB0706F252512E3009AB694 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB0706E252512E3009AB694 /* SQLite */; };
 		7601200C2522647200497CD4 /* CaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601200B2522647200497CD4 /* CaseData.swift */; };
 		760120112523997E00497CD4 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760120102523997E00497CD4 /* CategoryView.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incorr.swift; sourceTree = "<group>"; };
 		4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagProcess.swift; sourceTree = "<group>"; };
+		5E367BE8252BA3230064B989 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		7601200B2522647200497CD4 /* CaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseData.swift; sourceTree = "<group>"; };
 		760120102523997E00497CD4 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		76012015252399DC00497CD4 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				760B537625225566000B129B /* Info.plist */,
 				760B537325225566000B129B /* Preview Content */,
 				7601200B2522647200497CD4 /* CaseData.swift */,
+				5E367BE8252BA3230064B989 /* UserData.swift */,
 			);
 			path = LungLearner;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E367BE9252BA3230064B989 /* UserData.swift in Sources */,
 				C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */,
 				C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */,
 				4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */,
