@@ -7,11 +7,51 @@
 
 import SwiftUI
 
-struct Incorr: View {
+struct DiagnoseRow: View {
+    var process: Process
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image(systemName: process.symbolName)
+            Text(process.certainty + " after " + process.name)
+        }
     }
 }
+struct Incorr: View {
+    var drewClass = DiagnosticProcess(cause: "being too cool", myProcess: processes)
+    
+    var body: some View {
+        VStack {
+            VStack {
+                Text("Correct!")
+                Text("Cause of Respiratory Failure: ")
+                Text(drewClass.cause)
+            }
+            VStack(alignment: .leading) {
+                Text("Your diagnostic process: ")
+                    .padding(4)
+                VStack(alignment: .leading) {
+                    ForEach(drewClass.myProcess) { process in
+                        VStack {
+                            DiagnoseRow(process: process)
+                        }
+                        .padding(.top, 5)
+                    }
+                }
+                .border(Color.black, width: 1)
+                
+            }
+        }
+        
+        
+    }
+}
+
+//struct DiagnoseRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DiagnoseRow(process: processes[2[])
+//    }
+//}
 
 struct Incorr_Previews: PreviewProvider {
     static var previews: some View {
