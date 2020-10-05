@@ -3,3 +3,4 @@
 
 # Ignoring xcode specific files
 LungLearner.xcodeproj/*
+!LungLearner.xcodeproj/project.pbxproj
