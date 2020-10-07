@@ -21,6 +21,8 @@
 		76F22C69252424C800FB864F /* Diagnose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C68252424C700FB864F /* Diagnose.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
 		76F22C6F2526B1E500FB864F /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6E2526B1E500FB864F /* Steps.swift */; };
+		8C08F10D252D343500D54603 /* CaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F10C252D343500D54603 /* CaseDatabaseManager.swift */; };
+		8C08F114252D51B700D54603 /* CaseDb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C08F113252D51B700D54603 /* CaseDb.sqlite3 */; };
 		C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9327387252ABDB9003C2641 /* MainMenu.swift */; };
 		C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9327388252ABDB9003C2641 /* HomeItem.swift */; };
 /* End PBXBuildFile section */
@@ -41,6 +43,8 @@
 		76F22C68252424C700FB864F /* Diagnose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnose.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		76F22C6E2526B1E500FB864F /* Steps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
+		8C08F10C252D343500D54603 /* CaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDatabaseManager.swift; sourceTree = "<group>"; };
+		8C08F113252D51B700D54603 /* CaseDb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaseDb.sqlite3; sourceTree = "<group>"; };
 		C9327387252ABDB9003C2641 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenu.swift; path = LungLearner/MainMenu.swift; sourceTree = "<group>"; };
 		C9327388252ABDB9003C2641 /* HomeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeItem.swift; path = LungLearner/HomeItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +103,8 @@
 		760B536C2522555F000B129B /* LungLearner */ = {
 			isa = PBXGroup;
 			children = (
+				8C08F116252D545900D54603 /* Database */,
+				8C08F10B252D341600D54603 /* Controllers */,
 				76012014252399BE00497CD4 /* Models */,
 				7601200E2523995800497CD4 /* Views */,
 				760B536F2522555F000B129B /* NewCase.swift */,
@@ -106,7 +112,6 @@
 				760B537125225566000B129B /* Assets.xcassets */,
 				760B537625225566000B129B /* Info.plist */,
 				760B537325225566000B129B /* Preview Content */,
-				7601200B2522647200497CD4 /* CaseData.swift */,
 				5E367BE8252BA3230064B989 /* UserData.swift */,
 			);
 			path = LungLearner;
@@ -118,6 +123,23 @@
 				760B537425225566000B129B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8C08F10B252D341600D54603 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7601200B2522647200497CD4 /* CaseData.swift */,
+				8C08F10C252D343500D54603 /* CaseDatabaseManager.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8C08F116252D545900D54603 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				8C08F113252D51B700D54603 /* CaseDb.sqlite3 */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				760B537525225566000B129B /* Preview Assets.xcassets in Resources */,
+				8C08F114252D51B700D54603 /* CaseDb.sqlite3 in Resources */,
 				760B537225225566000B129B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +223,7 @@
 				C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */,
 				4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */,
 				760B53702522555F000B129B /* NewCase.swift in Sources */,
+				8C08F10D252D343500D54603 /* CaseDatabaseManager.swift in Sources */,
 				76F22C69252424C800FB864F /* Diagnose.swift in Sources */,
 				76012016252399DC00497CD4 /* Category.swift in Sources */,
 				760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */,

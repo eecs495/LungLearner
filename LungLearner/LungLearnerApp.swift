@@ -10,6 +10,9 @@ import SwiftUI
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         prepareUserDatabase()
+        // Currently here to test printing all the cases
+        let caseDbManager = CaseDatabaseManager()
+        caseDbManager.getAllCases()
         return true
     }
 }
