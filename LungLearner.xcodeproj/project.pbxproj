@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */; };
 		4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */; };
-		5E367BE9252BA3230064B989 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E367BE8252BA3230064B989 /* UserData.swift */; };
 		5EB0706F252512E3009AB694 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB0706E252512E3009AB694 /* SQLite */; };
-		7601200C2522647200497CD4 /* CaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601200B2522647200497CD4 /* CaseData.swift */; };
 		760120112523997E00497CD4 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760120102523997E00497CD4 /* CategoryView.swift */; };
 		76012016252399DC00497CD4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76012015252399DC00497CD4 /* Category.swift */; };
 		760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B536D2522555F000B129B /* LungLearnerApp.swift */; };
@@ -21,8 +19,10 @@
 		76F22C69252424C800FB864F /* Diagnose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C68252424C700FB864F /* Diagnose.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
 		76F22C6F2526B1E500FB864F /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6E2526B1E500FB864F /* Steps.swift */; };
-		8C08F10D252D343500D54603 /* CaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C08F10C252D343500D54603 /* CaseDatabaseManager.swift */; };
 		8C08F114252D51B700D54603 /* CaseDb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C08F113252D51B700D54603 /* CaseDb.sqlite3 */; };
+		8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F24252DF5CD00A0C16E /* UserData.swift */; };
+		8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */; };
+		8CBB8F29252DF5CD00A0C16E /* CaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F26252DF5CD00A0C16E /* CaseData.swift */; };
 		C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9327387252ABDB9003C2641 /* MainMenu.swift */; };
 		C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9327388252ABDB9003C2641 /* HomeItem.swift */; };
 /* End PBXBuildFile section */
@@ -30,8 +30,6 @@
 /* Begin PBXFileReference section */
 		4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incorr.swift; sourceTree = "<group>"; };
 		4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagProcess.swift; sourceTree = "<group>"; };
-		5E367BE8252BA3230064B989 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		7601200B2522647200497CD4 /* CaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseData.swift; sourceTree = "<group>"; };
 		760120102523997E00497CD4 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		76012015252399DC00497CD4 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		760B536A2522555F000B129B /* LungLearner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LungLearner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,8 +41,10 @@
 		76F22C68252424C700FB864F /* Diagnose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnose.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		76F22C6E2526B1E500FB864F /* Steps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
-		8C08F10C252D343500D54603 /* CaseDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDatabaseManager.swift; sourceTree = "<group>"; };
 		8C08F113252D51B700D54603 /* CaseDb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaseDb.sqlite3; sourceTree = "<group>"; };
+		8CBB8F24252DF5CD00A0C16E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseDatabaseManager.swift; sourceTree = "<group>"; };
+		8CBB8F26252DF5CD00A0C16E /* CaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseData.swift; sourceTree = "<group>"; };
 		C9327387252ABDB9003C2641 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenu.swift; path = LungLearner/MainMenu.swift; sourceTree = "<group>"; };
 		C9327388252ABDB9003C2641 /* HomeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeItem.swift; path = LungLearner/HomeItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,8 +103,8 @@
 		760B536C2522555F000B129B /* LungLearner */ = {
 			isa = PBXGroup;
 			children = (
+				8CBB8F23252DF5CD00A0C16E /* Backend */,
 				8C08F116252D545900D54603 /* Database */,
-				8C08F10B252D341600D54603 /* Controllers */,
 				76012014252399BE00497CD4 /* Models */,
 				7601200E2523995800497CD4 /* Views */,
 				760B536F2522555F000B129B /* NewCase.swift */,
@@ -112,7 +112,6 @@
 				760B537125225566000B129B /* Assets.xcassets */,
 				760B537625225566000B129B /* Info.plist */,
 				760B537325225566000B129B /* Preview Content */,
-				5E367BE8252BA3230064B989 /* UserData.swift */,
 			);
 			path = LungLearner;
 			sourceTree = "<group>";
@@ -125,21 +124,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		8C08F10B252D341600D54603 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				7601200B2522647200497CD4 /* CaseData.swift */,
-				8C08F10C252D343500D54603 /* CaseDatabaseManager.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		8C08F116252D545900D54603 /* Database */ = {
 			isa = PBXGroup;
 			children = (
 				8C08F113252D51B700D54603 /* CaseDb.sqlite3 */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		8CBB8F23252DF5CD00A0C16E /* Backend */ = {
+			isa = PBXGroup;
+			children = (
+				8CBB8F24252DF5CD00A0C16E /* UserData.swift */,
+				8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */,
+				8CBB8F26252DF5CD00A0C16E /* CaseData.swift */,
+			);
+			path = Backend;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,12 +218,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E367BE9252BA3230064B989 /* UserData.swift in Sources */,
+				8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */,
+				8CBB8F29252DF5CD00A0C16E /* CaseData.swift in Sources */,
 				C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */,
 				C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */,
+				8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */,
 				4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */,
 				760B53702522555F000B129B /* NewCase.swift in Sources */,
-				8C08F10D252D343500D54603 /* CaseDatabaseManager.swift in Sources */,
 				76F22C69252424C800FB864F /* Diagnose.swift in Sources */,
 				76012016252399DC00497CD4 /* Category.swift in Sources */,
 				760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */,
@@ -231,7 +232,6 @@
 				76F22C6F2526B1E500FB864F /* Steps.swift in Sources */,
 				4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */,
 				76F22C6C25242A1300FB864F /* Cause.swift in Sources */,
-				7601200C2522647200497CD4 /* CaseData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
