@@ -50,3 +50,35 @@ func getTotalUserProgress() -> (totalCases: Int, correctCases: Int, incorrectCas
     
     return (totalCases, correctCases, incorrectCases)
 }
+
+struct UserCaseResult {
+    //The id of the case that has been completed
+    var caseid: Int64
+    //Array of the various diagnoses the user made. The last diagnosis is considered the 'final' diagnosis for determining correctness
+    var diagnoses: [String]
+    //The user-supplied reason for their diagnosis
+    var reason: String
+    //Whether or not the user got this case right
+    var correct: Bool
+}
+
+func storeCaseResult(result: UserCaseResult) {
+    let path = NSSearchPathForDirectoriesInDomains(
+        .documentDirectory, .userDomainMask, true
+    ).first!
+    let db = try! Connection("\(path)/userdb.sqlite3")
+    let userInfo = Table("userInfo")
+    
+    let id = Expression<Int64>("id")
+    let time = Expression<Int64>("time")
+    let diagnoses = Expression<String>("diagnoses")
+    let reason = Expression<String>("reason")
+    let correct = Expression<Bool>("correct")
+    
+    let insert = userInfo.insert(id <- result.caseid,
+        time <- Int64(Date().timeIntervalSince1970),
+        diagnoses <- result.diagnoses.joined(separator: ","),
+        reason <- result.reason,
+        correct <- result.correct)
+    try! db.run(insert)
+}
