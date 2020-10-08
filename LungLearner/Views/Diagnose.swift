@@ -11,33 +11,34 @@ struct Diagnose: View {
     @State private var selected: String = ""
     
     var body: some View {
-        HStack {
-            ForEach(causes) { cause in
-                VStack {
-                    Button(action: {
-                        if selected == cause.name {
-                            selected = ""
-                        } else {
-                            selected = cause.name
-                        }
-                    }) {
-                        Image(systemName: cause.symbolName)
-                            .font(.title)
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(.black)
-                            .clipShape(Circle())
-                            .padding()
-                            .overlay(
-                                selected == cause.name ? Circle().stroke(Color.yellow, lineWidth: 3) : Circle().stroke(Color.secondary, lineWidth: 3)
-                                )
-                            .padding(2)
-                            
-                    }
-                    Text(cause.name)
-                        .font(.caption)
-                }
-            }
-        }
+        Text("Deprecated")
+//        HStack {
+//            ForEach(causes) { cause in
+//                VStack {
+//                    Button(action: {
+//                        if selected == cause.name {
+//                            selected = ""
+//                        } else {
+//                            selected = cause.name
+//                        }
+//                    }) {
+//                        Image(systemName: cause.symbolName)
+//                            .font(.title)
+//                            .frame(width: 25, height: 25)
+//                            .foregroundColor(.black)
+//                            .clipShape(Circle())
+//                            .padding()
+//                            .overlay(
+//                                selected == cause.name ? Circle().stroke(Color.yellow, lineWidth: 3) : Circle().stroke(Color.secondary, lineWidth: 3)
+//                                )
+//                            .padding(2)
+//
+//                    }
+//                    Text(cause.name)
+//                        .font(.caption)
+//                }
+//            }
+//        }
     }
 }
 

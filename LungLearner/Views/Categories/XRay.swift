@@ -1,48 +1,40 @@
 //
-//  CategoryView.swift
+//  XRay.swift
 //  LungLearner
 //
-//  Created by Audrey Ladd on 9/29/20.
+//  Created by Audrey Ladd on 10/8/20.
 //
 
 import SwiftUI
 
-struct CategoryView: View {
-    var category: Category
+struct XRay: View {
     @State var showImage: Bool = false
     
     var body: some View {
         ZStack {
             VStack {
-                Spacer()
-                Image(category.imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 200, height: 200, alignment: .center)
-                Text(category.title)
+                Text("X-Ray")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
-                Text(category.description)
+                Text("Example description.")
                     .multilineTextAlignment(.center)
                     .font(.body)
                     .foregroundColor(.secondary)
                     .padding()
-                if imageCategories.contains(category.imageName) {
-                    Button(action: {
-                        self.showImage.toggle()
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.largeTitle)
-                    }
-                    .padding(.bottom)
-                    .disabled(self.showImage)
+                Button(action: {
+                    self.showImage.toggle()
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.largeTitle)
                 }
+                .padding(.bottom)
+                .disabled(self.showImage)
             }
             .blur(radius: self.showImage ? 5 : 0)
             if self.showImage {
                 VStack {
-                    Image("\(category.imageName)Sample")
+                    Image("XRaySample")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .overlay(Rectangle().stroke(Color.white, lineWidth: 4))
@@ -63,8 +55,8 @@ struct CategoryView: View {
     }
 }
 
-struct CategoryView_Previews: PreviewProvider {
+struct XRay_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(category: testCategories[5])
+        XRay()
     }
 }

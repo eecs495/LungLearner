@@ -10,15 +10,19 @@
 		4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */; };
 		4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */; };
 		5EB0706F252512E3009AB694 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB0706E252512E3009AB694 /* SQLite */; };
-		760120112523997E00497CD4 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760120102523997E00497CD4 /* CategoryView.swift */; };
 		76012016252399DC00497CD4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76012015252399DC00497CD4 /* Category.swift */; };
 		760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B536D2522555F000B129B /* LungLearnerApp.swift */; };
 		760B53702522555F000B129B /* NewCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B536F2522555F000B129B /* NewCase.swift */; };
 		760B537225225566000B129B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760B537125225566000B129B /* Assets.xcassets */; };
 		760B537525225566000B129B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760B537425225566000B129B /* Preview Assets.xcassets */; };
+		7677234A252E8E5500D5521B /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772349252E8E5500D5521B /* History.swift */; };
+		7677234D252E91C900D5521B /* Symptoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7677234C252E91C900D5521B /* Symptoms.swift */; };
+		76772350252E953E00D5521B /* PhysicalExam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7677234F252E953E00D5521B /* PhysicalExam.swift */; };
+		76772353252E95F100D5521B /* LabValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772352252E95F100D5521B /* LabValues.swift */; };
+		76772357252F643900D5521B /* ArterialBloodGas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772356252F643900D5521B /* ArterialBloodGas.swift */; };
+		7677235A252F645700D5521B /* XRay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772359252F645700D5521B /* XRay.swift */; };
 		76F22C69252424C800FB864F /* Diagnose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C68252424C700FB864F /* Diagnose.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
-		76F22C6F2526B1E500FB864F /* Steps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6E2526B1E500FB864F /* Steps.swift */; };
 		8C08F114252D51B700D54603 /* CaseDb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C08F113252D51B700D54603 /* CaseDb.sqlite3 */; };
 		8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F24252DF5CD00A0C16E /* UserData.swift */; };
 		8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */; };
@@ -30,7 +34,6 @@
 /* Begin PBXFileReference section */
 		4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incorr.swift; sourceTree = "<group>"; };
 		4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagProcess.swift; sourceTree = "<group>"; };
-		760120102523997E00497CD4 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		76012015252399DC00497CD4 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		760B536A2522555F000B129B /* LungLearner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LungLearner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		760B536D2522555F000B129B /* LungLearnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungLearnerApp.swift; sourceTree = "<group>"; };
@@ -38,9 +41,14 @@
 		760B537125225566000B129B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		760B537425225566000B129B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		760B537625225566000B129B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76772349252E8E5500D5521B /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		7677234C252E91C900D5521B /* Symptoms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symptoms.swift; sourceTree = "<group>"; };
+		7677234F252E953E00D5521B /* PhysicalExam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalExam.swift; sourceTree = "<group>"; };
+		76772352252E95F100D5521B /* LabValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabValues.swift; sourceTree = "<group>"; };
+		76772356252F643900D5521B /* ArterialBloodGas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArterialBloodGas.swift; sourceTree = "<group>"; };
+		76772359252F645700D5521B /* XRay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRay.swift; sourceTree = "<group>"; };
 		76F22C68252424C700FB864F /* Diagnose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnose.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
-		76F22C6E2526B1E500FB864F /* Steps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Steps.swift; sourceTree = "<group>"; };
 		8C08F113252D51B700D54603 /* CaseDb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaseDb.sqlite3; sourceTree = "<group>"; };
 		8CBB8F24252DF5CD00A0C16E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseDatabaseManager.swift; sourceTree = "<group>"; };
@@ -64,10 +72,10 @@
 		7601200E2523995800497CD4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				760120102523997E00497CD4 /* CategoryView.swift */,
+				760B536F2522555F000B129B /* NewCase.swift */,
+				7677235C252F6D4A00D5521B /* Categories */,
 				76F22C68252424C700FB864F /* Diagnose.swift */,
 				4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */,
-				76F22C6E2526B1E500FB864F /* Steps.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -107,7 +115,6 @@
 				8C08F116252D545900D54603 /* Database */,
 				76012014252399BE00497CD4 /* Models */,
 				7601200E2523995800497CD4 /* Views */,
-				760B536F2522555F000B129B /* NewCase.swift */,
 				760B536D2522555F000B129B /* LungLearnerApp.swift */,
 				760B537125225566000B129B /* Assets.xcassets */,
 				760B537625225566000B129B /* Info.plist */,
@@ -122,6 +129,19 @@
 				760B537425225566000B129B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7677235C252F6D4A00D5521B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				76772349252E8E5500D5521B /* History.swift */,
+				7677234C252E91C900D5521B /* Symptoms.swift */,
+				7677234F252E953E00D5521B /* PhysicalExam.swift */,
+				76772352252E95F100D5521B /* LabValues.swift */,
+				76772356252F643900D5521B /* ArterialBloodGas.swift */,
+				76772359252F645700D5521B /* XRay.swift */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 		8C08F116252D545900D54603 /* Database */ = {
@@ -218,18 +238,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7677235A252F645700D5521B /* XRay.swift in Sources */,
 				8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */,
 				8CBB8F29252DF5CD00A0C16E /* CaseData.swift in Sources */,
 				C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */,
 				C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */,
 				8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */,
+				76772350252E953E00D5521B /* PhysicalExam.swift in Sources */,
+				7677234D252E91C900D5521B /* Symptoms.swift in Sources */,
 				4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */,
 				760B53702522555F000B129B /* NewCase.swift in Sources */,
 				76F22C69252424C800FB864F /* Diagnose.swift in Sources */,
 				76012016252399DC00497CD4 /* Category.swift in Sources */,
+				7677234A252E8E5500D5521B /* History.swift in Sources */,
+				76772357252F643900D5521B /* ArterialBloodGas.swift in Sources */,
 				760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */,
-				760120112523997E00497CD4 /* CategoryView.swift in Sources */,
-				76F22C6F2526B1E500FB864F /* Steps.swift in Sources */,
+				76772353252E95F100D5521B /* LabValues.swift in Sources */,
 				4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */,
 				76F22C6C25242A1300FB864F /* Cause.swift in Sources */,
 			);

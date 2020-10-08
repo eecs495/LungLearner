@@ -13,9 +13,9 @@ struct Cause: Identifiable {
     var symbolName: String
 }
 
-let causes: [Cause] = [
-    Cause(name: "CHF", symbolName: "bandage.fill"),
-    Cause(name: "COPD", symbolName: "waveform.path.ecg"),
-    Cause(name: "Pneumonia", symbolName: "staroflife.fill"),
-    Cause(name: "Unsure", symbolName: "questionmark"),
-]
+//let causes: [Cause] = [
+//    Cause(name: "CHF", symbolName: "bandage.fill"),
+//    Cause(name: "COPD", symbolName: "waveform.path.ecg"),
+//    Cause(name: "Pneumonia", symbolName: "staroflife.fill"),
+//    Cause(name: "Unsure", symbolName: "questionmark"),
+//]
