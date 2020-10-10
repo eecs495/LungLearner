@@ -24,7 +24,7 @@
 		767723612530D92000D5521B /* ReviewCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767723602530D92000D5521B /* ReviewCase.swift */; };
 		76F22C69252424C800FB864F /* Diagnose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C68252424C700FB864F /* Diagnose.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
-		8C08F114252D51B700D54603 /* CaseDb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C08F113252D51B700D54603 /* CaseDb.sqlite3 */; };
+		8C19AB8D2531E2F100505770 /* CaseDb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */; };
 		8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F24252DF5CD00A0C16E /* UserData.swift */; };
 		8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */; };
 		8CBB8F29252DF5CD00A0C16E /* CaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F26252DF5CD00A0C16E /* CaseData.swift */; };
@@ -51,7 +51,7 @@
 		767723602530D92000D5521B /* ReviewCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCase.swift; sourceTree = "<group>"; };
 		76F22C68252424C700FB864F /* Diagnose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnose.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
-		8C08F113252D51B700D54603 /* CaseDb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaseDb.sqlite3; sourceTree = "<group>"; };
+		8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaseDb.sqlite3; sourceTree = "<group>"; };
 		8CBB8F24252DF5CD00A0C16E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseDatabaseManager.swift; sourceTree = "<group>"; };
 		8CBB8F26252DF5CD00A0C16E /* CaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseData.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		8C08F116252D545900D54603 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				8C08F113252D51B700D54603 /* CaseDb.sqlite3 */,
+				8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -229,8 +229,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				760B537525225566000B129B /* Preview Assets.xcassets in Resources */,
-				8C08F114252D51B700D54603 /* CaseDb.sqlite3 in Resources */,
 				760B537225225566000B129B /* Assets.xcassets in Resources */,
+				8C19AB8D2531E2F100505770 /* CaseDb.sqlite3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
