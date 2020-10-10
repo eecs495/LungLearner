@@ -45,7 +45,7 @@ struct PhysicalExam: View {
                         .padding()
                 }
                 .simultaneousGesture(TapGesture().onEnded{
-                    steps.PhysicalExam = causes[selectedCause]
+                    steps.stepList.append(causes[selectedCause])
                 })
             }
         }

@@ -23,7 +23,7 @@ struct LungLearnerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
-            NewCase()
+            MainMenu().environmentObject(Steps())
         }
     }
 }

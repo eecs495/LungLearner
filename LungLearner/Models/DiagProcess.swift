@@ -37,10 +37,5 @@ class DiagnosticProcess {
 let causes = ["CHF", "COPD", "Pneuomnia", "Unsure"]
 
 class Steps: ObservableObject {
-    @Published var History: String = ""
-    @Published var Symptoms: String = ""
-    @Published var PhysicalExam: String = ""
-    @Published var LabValues: String = ""
-    @Published var ArterialBloodGas: String = ""
-    @Published var XRay: String = ""
+    @Published var stepList: [String] = []
 }

@@ -45,7 +45,7 @@ struct ArterialBloodGas: View {
                         .padding()
                 }
                 .simultaneousGesture(TapGesture().onEnded{
-                    steps.ArterialBloodGas = causes[selectedCause]
+                    steps.stepList.append(causes[selectedCause])
                 })
             }
         }

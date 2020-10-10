@@ -55,7 +55,7 @@ struct LabValues: View {
                             .padding()
                     }
                     .simultaneousGesture(TapGesture().onEnded{
-                        steps.LabValues = causes[selectedCause]
+                        steps.stepList.append(causes[selectedCause])
                     })
                 }
                 .blur(radius: self.showImage ? 5 : 0)

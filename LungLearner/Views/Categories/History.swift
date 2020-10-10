@@ -45,7 +45,7 @@ struct History: View {
                         .padding()
                 }
                 .simultaneousGesture(TapGesture().onEnded{
-                    steps.History = causes[selectedCause]
+                    steps.stepList.append(causes[selectedCause])
                 })
             }
         }

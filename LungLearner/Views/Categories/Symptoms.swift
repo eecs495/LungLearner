@@ -45,7 +45,7 @@ struct Symptoms: View {
                         .padding()
                 }
                 .simultaneousGesture(TapGesture().onEnded{
-                    steps.Symptoms = causes[selectedCause]
+                    steps.stepList.append(causes[selectedCause])
                 })
             }
         }

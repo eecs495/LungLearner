@@ -55,7 +55,7 @@ struct XRay: View {
                             .padding()
                     }
                     .simultaneousGesture(TapGesture().onEnded{
-                        steps.XRay = causes[selectedCause]
+                        steps.stepList.append(causes[selectedCause])
                     })
                 }
                 .blur(radius: self.showImage ? 5 : 0)
