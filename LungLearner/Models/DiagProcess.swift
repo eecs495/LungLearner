@@ -27,9 +27,20 @@ let processes: [Process] = [
 class DiagnosticProcess {
     var cause: String
     var myProcess: [Process]
-    
+
     init(cause: String, myProcess: [Process]) {
         self.cause = cause
         self.myProcess = myProcess
     }
+}
+
+let causes = ["CHF", "COPD", "Pneuomnia", "Unsure"]
+
+class Steps: ObservableObject {
+    @Published var History: String = ""
+    @Published var Symptoms: String = ""
+    @Published var PhysicalExam: String = ""
+    @Published var LabValues: String = ""
+    @Published var ArterialBloodGas: String = ""
+    @Published var XRay: String = ""
 }

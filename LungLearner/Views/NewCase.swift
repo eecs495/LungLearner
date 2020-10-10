@@ -7,8 +7,13 @@
 
 import SwiftUI
 
+struct ViewData {
+    var viewName: String
+    var nextViewName: String
+}
 
-let causes = ["CHF", "COPD", "Pneuomnia", "Unsure"]
+//let causes = ["CHF", "COPD", "Pneuomnia", "Unsure"]
+    
 
 struct NewCase: View {
     
@@ -17,68 +22,73 @@ struct NewCase: View {
     @State var selectedCause: Int = 0
 
     var body: some View {
-        switch category {
-        case "History":
+        if category == "History" {
             ScrollView {
                 VStack {
-                    History()
-                        .padding(.top)
+                    History(canGoBack: false)
+                        .padding(.top, 40)
                     CausePicker(selectedCause: $selectedCause)
                     NextButton(category: $category, selectedCause: $selectedCause, process: $process,  nextCategory: "Symptoms")
+                        .padding(.bottom)
                 }
             }
-        case "Symptoms":
+        }
+        if category == "Symptoms" {
             ScrollView {
                 VStack {
                     Symptoms()
-                        .padding(.top)
+                        .padding(.top, 40)
                     CausePicker(selectedCause: $selectedCause)
                     NextButton(category: $category, selectedCause: $selectedCause, process: $process,  nextCategory: "PhysicalExam")
+                        .padding(.bottom)
                 }
             }
-        case "PhysicalExam":
+        }
+        if category == "PhysicalExam" {
             ScrollView {
                 VStack {
                     PhysicalExam()
-                        .padding(.top)
+                        .padding(.top, 40)
                     CausePicker(selectedCause: $selectedCause)
                     NextButton(category: $category, selectedCause: $selectedCause, process: $process,  nextCategory: "LabValues")
+                        .padding(.bottom)
                 }
             }
-        case "LabValues":
+        }
+        if category == "LabValues" {
             ScrollView {
                 VStack {
                     LabValues()
-                        .padding(.top)
+                        .padding(.top, 40)
                     CausePicker(selectedCause: $selectedCause)
                     NextButton(category: $category, selectedCause: $selectedCause, process: $process,  nextCategory: "ArterialBloodGas")
+                        .padding(.bottom)
                 }
             }
-        case "ArterialBloodGas":
+        }
+        if category == "ArterialBloodGas" {
             ScrollView {
                 VStack {
                     ArterialBloodGas()
-                        .padding(.top)
+                        .padding(.top, 40)
                     CausePicker(selectedCause: $selectedCause)
                     NextButton(category: $category, selectedCause: $selectedCause, process: $process,  nextCategory: "XRay")
                 }
             }
-        case "XRay":
+        }
+        if category == "XRay" {
             ScrollView {
                 VStack {
                     XRay()
-                        .padding(.top)
+                        .padding(.top, 40)
                     CausePicker(selectedCause: $selectedCause)
                     NextButton(category: $category, selectedCause: $selectedCause, process: $process,  nextCategory: "Default")
+                        .padding(.bottom)
                 }
             }
-        default:
-            VStack {
-                Text("Your Diagnostic Process:")
-                ForEach(process, id: \.self) { step in
-                    Text(step)
-                }
-            }
+        }
+        if category == "Default" {
+            ReviewCase()
         }
     }
 }
@@ -92,8 +102,10 @@ struct NextButton: View {
     
     var body: some View {
         Button(action: {
-            category = nextCategory
-            process.append(causes[selectedCause])
+            withAnimation {
+                category = nextCategory
+                process.append(causes[selectedCause])
+            }
         }) {
             Image(systemName: "arrow.right")
                 .font(.largeTitle)
@@ -128,3 +140,5 @@ struct NewCase_Previews: PreviewProvider {
         NewCase()
     }
 }
+
+

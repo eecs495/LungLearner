@@ -8,55 +8,85 @@
 import SwiftUI
 
 struct LabValues: View {
+    @EnvironmentObject var steps: Steps
+    @State private var selectedCause = 0
     @State var showImage: Bool = false
     
     var body: some View {
-        ZStack {
-            VStack {
-                Text("Lab Values")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                Text("Example description.")
-                    .multilineTextAlignment(.center)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .padding()
-                Button(action: {
-                    self.showImage.toggle()
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.largeTitle)
-                }
-                .padding(.bottom)
-                .disabled(self.showImage)
-            }
-            .blur(radius: self.showImage ? 5 : 0)
-            if self.showImage {
+        ScrollView {
+            ZStack {
                 VStack {
-                    Image("LabValuesSample")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .overlay(Rectangle().stroke(Color.white, lineWidth: 4))
-                        .shadow(radius: 10)
+                    Text("Lab Values")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .padding(.top, 40)
+                        .padding(.bottom)
+                    Text("Example description.")
+                        .multilineTextAlignment(.center)
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .padding()
                     Button(action: {
                         self.showImage.toggle()
                     }) {
-                        Image(systemName: "multiply.circle.fill")
+                        Image(systemName: "plus.circle.fill")
                             .font(.largeTitle)
-                            .foregroundColor(.red)
                     }
-                    .shadow(radius: 10)
+                    .padding(.bottom)
+                    .disabled(self.showImage)
+                    VStack {
+                         Picker(selection: $selectedCause, label: Text("Please choose a color")) {
+                             ForEach(0 ..< causes.count) {
+                                 Text(causes[$0])
+                             }
+                         }
+                         Text("Current Diagnosis")
+                             .bold()
+                             .padding(.bottom, 2)
+                         Text("\(causes[selectedCause])")
+                             .font(.body)
+                             .foregroundColor(.accentColor)
+                    }
+                    NavigationLink(destination: ArterialBloodGas()) {
+                        Image(systemName: "arrow.right")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.black)
+                            .padding()
+                    }
+                    .simultaneousGesture(TapGesture().onEnded{
+                        steps.LabValues = causes[selectedCause]
+                    })
+                }
+                .blur(radius: self.showImage ? 5 : 0)
+                if self.showImage {
+                    VStack {
+                        Image("LabValuesSample")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .overlay(Rectangle().stroke(Color.white, lineWidth: 4))
+                            .shadow(radius: 10)
+                        Button(action: {
+                            self.showImage.toggle()
+                        }) {
+                            Image(systemName: "multiply.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(.red)
+                        }
+                        .shadow(radius: 10)
+                        .padding()
+                    }
                     .padding()
                 }
-                .padding()
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 
 struct LabValues_Previews: PreviewProvider {
     static var previews: some View {
-        LabValues()
+        LabValues().environmentObject(Steps())
     }
 }

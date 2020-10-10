@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainMenu: View {
     var body: some View {
-        VStack(alignment: .leading){
+        //VStack(alignment: .leading){
             
             NavigationView{
                 
@@ -17,7 +17,7 @@ struct MainMenu: View {
                 Text("Home").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).multilineTextAlignment(.leading)
                 Spacer()
                 NavigationLink(
-                    destination: NewCase()){
+                    destination: History(canGoBack: false)){
                     HomeItem(pic_name: "newCase",title: "New Cases")
                 }
                 Spacer()
@@ -29,12 +29,12 @@ struct MainMenu: View {
 
             }
             }
-        }
+        //}
     }
 }
 
 struct MainMenu_Previews: PreviewProvider {
     static var previews: some View {
-        MainMenu()
+        MainMenu().environmentObject(Steps())
     }
 }
