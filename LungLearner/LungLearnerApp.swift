@@ -13,6 +13,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // Currently here to test printing all the cases
         let caseDbManager = CaseDatabaseManager()
         caseDbManager.getAllCases()
+        caseDbManager.getCaseById(Id: 1)
         return true
     }
 }

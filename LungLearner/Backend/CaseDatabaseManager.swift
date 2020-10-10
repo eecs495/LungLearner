@@ -35,6 +35,26 @@ class CaseDatabaseManager {
         }
     }
 
+    // Getting a case by ID
+    func getCaseById(Id: Int64) {
+        let cases = Table("cases")
+        let ID = Expression<Int64>("ID")
+        let CorrectDiagnosis = Expression<String>("CorrectDiagnosis")
+        let Persona = Expression<String?>("Persona")
+        let Temperature = Expression<Double>("Temperature")
+        let HeartRate = Expression<Double>("HeartRate")
+
+        let filtered = try! self.db.prepare(cases.filter(ID == Id))
+
+        for caseInfo in filtered {
+//            caseData = CaseData(id:caseInfo[ID], persona:caseInfo[Persona], sympto)
+            print("""
+                    id: \(caseInfo[ID]), correct: \(caseInfo[CorrectDiagnosis]), Persona: \(caseInfo[Persona] ?? "NA"), Temperature: \(caseInfo[Temperature]), Heart Rate: \(caseInfo[HeartRate])
+                    """)
+        }
+        print(filtered)
+    }
+
     // Static method just for testing
     static func connectAndPrintCases() {
         // Establish a read-only connection to the database since it is added as
