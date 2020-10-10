@@ -12,7 +12,6 @@
 		5EB0706F252512E3009AB694 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB0706E252512E3009AB694 /* SQLite */; };
 		76012016252399DC00497CD4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76012015252399DC00497CD4 /* Category.swift */; };
 		760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B536D2522555F000B129B /* LungLearnerApp.swift */; };
-		760B53702522555F000B129B /* NewCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B536F2522555F000B129B /* NewCase.swift */; };
 		760B537225225566000B129B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760B537125225566000B129B /* Assets.xcassets */; };
 		760B537525225566000B129B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760B537425225566000B129B /* Preview Assets.xcassets */; };
 		7677234A252E8E5500D5521B /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772349252E8E5500D5521B /* History.swift */; };
@@ -22,7 +21,6 @@
 		76772357252F643900D5521B /* ArterialBloodGas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772356252F643900D5521B /* ArterialBloodGas.swift */; };
 		7677235A252F645700D5521B /* XRay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772359252F645700D5521B /* XRay.swift */; };
 		767723612530D92000D5521B /* ReviewCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767723602530D92000D5521B /* ReviewCase.swift */; };
-		76F22C69252424C800FB864F /* Diagnose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C68252424C700FB864F /* Diagnose.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
 		8C19AB8D2531E2F100505770 /* CaseDb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */; };
 		8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F24252DF5CD00A0C16E /* UserData.swift */; };
@@ -38,7 +36,6 @@
 		76012015252399DC00497CD4 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		760B536A2522555F000B129B /* LungLearner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LungLearner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		760B536D2522555F000B129B /* LungLearnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungLearnerApp.swift; sourceTree = "<group>"; };
-		760B536F2522555F000B129B /* NewCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCase.swift; sourceTree = "<group>"; };
 		760B537125225566000B129B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		760B537425225566000B129B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		760B537625225566000B129B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,13 +46,12 @@
 		76772356252F643900D5521B /* ArterialBloodGas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArterialBloodGas.swift; sourceTree = "<group>"; };
 		76772359252F645700D5521B /* XRay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRay.swift; sourceTree = "<group>"; };
 		767723602530D92000D5521B /* ReviewCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCase.swift; sourceTree = "<group>"; };
-		76F22C68252424C700FB864F /* Diagnose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnose.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaseDb.sqlite3; sourceTree = "<group>"; };
 		8CBB8F24252DF5CD00A0C16E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseDatabaseManager.swift; sourceTree = "<group>"; };
 		8CBB8F26252DF5CD00A0C16E /* CaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseData.swift; sourceTree = "<group>"; };
-		C9327387252ABDB9003C2641 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainMenu.swift; path = LungLearner/MainMenu.swift; sourceTree = "<group>"; };
+		C9327387252ABDB9003C2641 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		C9327388252ABDB9003C2641 /* HomeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeItem.swift; path = LungLearner/HomeItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,10 +70,9 @@
 		7601200E2523995800497CD4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				760B536F2522555F000B129B /* NewCase.swift */,
-				767723602530D92000D5521B /* ReviewCase.swift */,
+				C9327387252ABDB9003C2641 /* MainMenu.swift */,
 				7677235C252F6D4A00D5521B /* Categories */,
-				76F22C68252424C700FB864F /* Diagnose.swift */,
+				767723602530D92000D5521B /* ReviewCase.swift */,
 				4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */,
 			);
 			path = Views;
@@ -97,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				C9327388252ABDB9003C2641 /* HomeItem.swift */,
-				C9327387252ABDB9003C2641 /* MainMenu.swift */,
 				760B536C2522555F000B129B /* LungLearner */,
 				760B536B2522555F000B129B /* Products */,
 			);
@@ -251,8 +245,6 @@
 				767723612530D92000D5521B /* ReviewCase.swift in Sources */,
 				7677234D252E91C900D5521B /* Symptoms.swift in Sources */,
 				4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */,
-				760B53702522555F000B129B /* NewCase.swift in Sources */,
-				76F22C69252424C800FB864F /* Diagnose.swift in Sources */,
 				76012016252399DC00497CD4 /* Category.swift in Sources */,
 				7677234A252E8E5500D5521B /* History.swift in Sources */,
 				76772357252F643900D5521B /* ArterialBloodGas.swift in Sources */,
