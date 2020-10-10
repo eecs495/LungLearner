@@ -12,11 +12,11 @@ struct HomeItem: View {
     var title:String;
     var body: some View {
         VStack{
-            Image(pic_name)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 300, height: 170, alignment: .center)
-                .shadow(radius: 10)
+//            Image(pic_name)
+//                .resizable()
+//                .aspectRatio(contentMode: .fit)
+//                .frame(width: 300, height: 170, alignment: .center)
+//                .shadow(radius: 10)
                 
             
             

@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let causeNames: [String] = ["History", "Symptoms", "Physical Exam", "Lab Values", "Arterial Blood Gas", "X-Ray"]
+
 struct ReviewCase: View {
     @EnvironmentObject var steps: Steps
     @State private var selectedCause = 0
@@ -16,50 +18,34 @@ struct ReviewCase: View {
             Text("Your Diagnostic Process")
                 .bold()
                 .padding(.bottom, 2)
-            ForEach(steps.stepList, id: \.self) { step in
-                Text(step)
-                    .font(.body)
-                    .foregroundColor(.accentColor)
+            VStack(alignment: .leading) {
+                ForEach((0...5), id: \.self) {
+                    Text("\(steps.stepList[$0]) after \(causeNames[$0])")
+                        .font(.body)
+                        .foregroundColor(.accentColor)
+                    }
             }
             Picker(selection: $selectedCause, label: Text("Please choose a color")) {
                 ForEach(0 ..< causes.count) {
                     Text(causes[$0])
                 }
             }
+            Text("Final Diagnosis")
+                .bold()
+                .padding(.bottom, 2)
+            Text("\(causes[selectedCause])")
+                .font(.body)
+                .foregroundColor(.accentColor)
+                .padding(.bottom)
+            NavigationLink(destination: Symptoms()) {
+                Text("CHECK")
+                    .foregroundColor(.red)
+                    .bold()
+            }
+            .simultaneousGesture(TapGesture().onEnded{
+                steps.stepList.append(causes[selectedCause])
+            })
         }
-//        NavigationView {
-//            VStack(alignment: .center) {
-//                Button(action: {
-//                    print("Delete button tapped!")
-//                }) {
-//                    Text("DIAGNOSE")
-//                        .bold()
-//                }
-//                Text(steps.History)
-//                Text(steps.Symptoms)
-//                Text(steps.PhysicalExam)
-//                List {
-//                    NavigationLink(destination: History(canGoBack: true)) {
-//                        Text("History")
-//                    }
-//                    NavigationLink(destination: Symptoms()) {
-//                        Text("Symptoms")
-//                    }
-//                    NavigationLink(destination: PhysicalExam()) {
-//                        Text("PhysicalExam")
-//                    }
-//                    NavigationLink(destination: LabValues()) {
-//                        Text("Lab Values")
-//                    }
-//                    NavigationLink(destination: ArterialBloodGas()) {
-//                        Text("Arterial Blood Gas")
-//                    }
-//                    NavigationLink(destination: XRay()) {
-//                        Text("X-Ray")
-//                    }
-//                }
-//            }
-//        }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }
