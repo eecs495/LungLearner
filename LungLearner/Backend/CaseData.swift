@@ -18,6 +18,8 @@ struct CaseData: Identifiable {
     var xRayName: String { return "xRay\(id)" }
 }
 
+
+
 let testData = [
     CaseData(id: 0,
          persona: "You are seeing a 25 year-old female with pneumonia. She is slightly confused. You obtain a history from her husband. He reports that she has had four days of fevers and cough. Today, she is sleepier than usual.",

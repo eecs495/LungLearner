@@ -13,7 +13,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // Currently here to test printing all the cases
         let caseDbManager = CaseDatabaseManager()
         caseDbManager.getAllCases()
-        caseDbManager.getCaseById(Id: 1)
+        do {
+            let caseInfo = try caseDbManager.getCaseById(Id: 2)
+            print(caseInfo)
+        } catch CaseError.runtimeError(let errorMessage) {
+            print(errorMessage)
+        } catch {
+            print("Other errors")
+        }
         return true
     }
 }
