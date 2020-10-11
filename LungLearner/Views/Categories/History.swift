@@ -10,7 +10,7 @@ import SwiftUI
 struct History: View {
     @EnvironmentObject var steps: Steps
     @State private var selectedCause = 0
-    var canGoBack: Bool
+    var caseData: CaseData
     
     var body: some View {
         ScrollView {
@@ -21,10 +21,11 @@ struct History: View {
                     .foregroundColor(.primary)
                     .padding(.top, 40)
                     .padding(.bottom)
-                Text("Example description.")
-                    .multilineTextAlignment(.center)
+                Text(caseData.history)
+                    .multilineTextAlignment(.leading)
                     .font(.body)
                     .foregroundColor(.secondary)
+                    .padding(.horizontal, 30)
                 VStack {
                      Picker(selection: $selectedCause, label: Text("Please choose a color")) {
                          ForEach(0 ..< causes.count) {
@@ -38,24 +39,25 @@ struct History: View {
                          .font(.body)
                          .foregroundColor(.accentColor)
                 }
-                NavigationLink(destination: Symptoms()) {
+                NavigationLink(destination: Symptoms(caseData: caseData)) {
                     Image(systemName: "arrow.right")
                         .font(.largeTitle)
                         .foregroundColor(Color.black)
                         .padding()
+                        .padding(.bottom, 30)
                 }
                 .simultaneousGesture(TapGesture().onEnded{
                     steps.stepList.append(causes[selectedCause])
                 })
             }
         }
-        .navigationBarBackButtonHidden(!canGoBack)
-        .navigationBarHidden(!canGoBack)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 
 struct History_Previews: PreviewProvider {
     static var previews: some View {
-        History(canGoBack: false).environmentObject(Steps())
+        History(caseData: testCaseData).environmentObject(Steps())
     }
 }

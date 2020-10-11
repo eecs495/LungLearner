@@ -11,6 +11,7 @@ struct LabValues: View {
     @EnvironmentObject var steps: Steps
     @State private var selectedCause = 0
     @State var showImage: Bool = false
+    var caseData: CaseData
     
     var body: some View {
         ScrollView {
@@ -22,18 +23,18 @@ struct LabValues: View {
                         .foregroundColor(.primary)
                         .padding(.top, 40)
                         .padding(.bottom)
-                    Text("Example description.")
-                        .multilineTextAlignment(.center)
+                    Text("Click on the plus button below to view this patient's lab values.")
+                        .multilineTextAlignment(.leading)
                         .font(.body)
                         .foregroundColor(.secondary)
-                        .padding()
+                        .padding(.horizontal, 30)
                     Button(action: {
                         self.showImage.toggle()
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.largeTitle)
                     }
-                    .padding(.bottom)
+                    .padding(.vertical)
                     .disabled(self.showImage)
                     VStack {
                          Picker(selection: $selectedCause, label: Text("Please choose a color")) {
@@ -48,11 +49,12 @@ struct LabValues: View {
                              .font(.body)
                              .foregroundColor(.accentColor)
                     }
-                    NavigationLink(destination: ArterialBloodGas()) {
+                    NavigationLink(destination: ArterialBloodGas(caseData: caseData)) {
                         Image(systemName: "arrow.right")
                             .font(.largeTitle)
                             .foregroundColor(Color.black)
                             .padding()
+                            .padding(.bottom, 30)
                     }
                     .simultaneousGesture(TapGesture().onEnded{
                         steps.stepList.append(causes[selectedCause])
@@ -61,7 +63,7 @@ struct LabValues: View {
                 .blur(radius: self.showImage ? 5 : 0)
                 if self.showImage {
                     VStack {
-                        Image("LabValuesSample")
+                        Image(caseData.labValuesName)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .overlay(Rectangle().stroke(Color.white, lineWidth: 4))
@@ -87,6 +89,6 @@ struct LabValues: View {
 
 struct LabValues_Previews: PreviewProvider {
     static var previews: some View {
-        LabValues().environmentObject(Steps())
+        LabValues(caseData: testCaseData).environmentObject(Steps())
     }
 }

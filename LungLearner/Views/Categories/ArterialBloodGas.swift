@@ -10,6 +10,7 @@ import SwiftUI
 struct ArterialBloodGas: View {
     @EnvironmentObject var steps: Steps
     @State private var selectedCause = 0
+    var caseData: CaseData
     
     var body: some View {
         ScrollView {
@@ -20,11 +21,11 @@ struct ArterialBloodGas: View {
                     .foregroundColor(.primary)
                     .padding(.top, 40)
                     .padding(.bottom)
-                Text("Example description.")
-                    .multilineTextAlignment(.center)
+                Text(caseData.bloodGas)
+                    .multilineTextAlignment(.leading)
                     .font(.body)
                     .foregroundColor(.secondary)
-                    .padding()
+                    .padding(.horizontal, 30)
                 VStack {
                      Picker(selection: $selectedCause, label: Text("Please choose a color")) {
                          ForEach(0 ..< causes.count) {
@@ -38,11 +39,12 @@ struct ArterialBloodGas: View {
                          .font(.body)
                          .foregroundColor(.accentColor)
                 }
-                NavigationLink(destination: XRay()) {
+                NavigationLink(destination: XRay(caseData: caseData)) {
                     Image(systemName: "arrow.right")
                         .font(.largeTitle)
                         .foregroundColor(Color.black)
                         .padding()
+                        .padding(.bottom, 30)
                 }
                 .simultaneousGesture(TapGesture().onEnded{
                     steps.stepList.append(causes[selectedCause])
@@ -56,6 +58,6 @@ struct ArterialBloodGas: View {
 
 struct ArterialBloodGas_Previews: PreviewProvider {
     static var previews: some View {
-        ArterialBloodGas().environmentObject(Steps())
+        ArterialBloodGas(caseData: testCaseData).environmentObject(Steps())
     }
 }

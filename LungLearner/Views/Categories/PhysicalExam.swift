@@ -10,6 +10,7 @@ import SwiftUI
 struct PhysicalExam: View {
     @EnvironmentObject var steps: Steps
     @State private var selectedCause = 0
+    var caseData: CaseData
     
     var body: some View {
         ScrollView {
@@ -20,11 +21,23 @@ struct PhysicalExam: View {
                     .foregroundColor(.primary)
                     .padding(.top, 40)
                     .padding(.bottom)
-                Text("Example description.")
-                    .multilineTextAlignment(.center)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .padding()
+                VStack(alignment: .leading) {
+                    Text("General")
+                    Text("\(caseData.exam.general)")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .padding(.bottom)
+                    Text("Cardiovascular")
+                    Text("\(caseData.exam.cardiovascular)")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                        .padding(.bottom)
+                    Text("Chest")
+                    Text("\(caseData.exam.chest)")
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                }
+                .padding(.horizontal, 30)
                 VStack {
                      Picker(selection: $selectedCause, label: Text("Please choose a color")) {
                          ForEach(0 ..< causes.count) {
@@ -38,11 +51,12 @@ struct PhysicalExam: View {
                          .font(.body)
                          .foregroundColor(.accentColor)
                 }
-                NavigationLink(destination: LabValues()) {
+                NavigationLink(destination: LabValues(caseData: caseData)) {
                     Image(systemName: "arrow.right")
                         .font(.largeTitle)
                         .foregroundColor(Color.black)
                         .padding()
+                        .padding(.bottom, 30)
                 }
                 .simultaneousGesture(TapGesture().onEnded{
                     steps.stepList.append(causes[selectedCause])
@@ -56,6 +70,6 @@ struct PhysicalExam: View {
 
 struct PhysicalExam_Previews: PreviewProvider {
     static var previews: some View {
-        PhysicalExam().environmentObject(Steps())
+        PhysicalExam(caseData: testCaseData).environmentObject(Steps())
     }
 }

@@ -11,6 +11,7 @@ struct XRay: View {
     @EnvironmentObject var steps: Steps
     @State private var selectedCause = 0
     @State var showImage: Bool = false
+    var caseData: CaseData
     
     var body: some View {
         ScrollView {
@@ -22,18 +23,18 @@ struct XRay: View {
                         .foregroundColor(.primary)
                         .padding(.top, 40)
                         .padding(.bottom)
-                    Text("Example description.")
-                        .multilineTextAlignment(.center)
+                    Text("Click on the plus button below to view this patient's X-ray.")
+                        .multilineTextAlignment(.leading)
                         .font(.body)
                         .foregroundColor(.secondary)
-                        .padding()
+                        .padding(.horizontal, 30)
                     Button(action: {
                         self.showImage.toggle()
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .font(.largeTitle)
                     }
-                    .padding(.bottom)
+                    .padding(.vertical)
                     .disabled(self.showImage)
                     VStack {
                          Picker(selection: $selectedCause, label: Text("Please choose a color")) {
@@ -53,6 +54,7 @@ struct XRay: View {
                             .font(.largeTitle)
                             .foregroundColor(Color.black)
                             .padding()
+                            .padding(.bottom, 30)
                     }
                     .simultaneousGesture(TapGesture().onEnded{
                         steps.stepList.append(causes[selectedCause])
@@ -61,7 +63,7 @@ struct XRay: View {
                 .blur(radius: self.showImage ? 5 : 0)
                 if self.showImage {
                     VStack {
-                        Image("XRaySample")
+                        Image(caseData.xRayName)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .overlay(Rectangle().stroke(Color.white, lineWidth: 4))
@@ -87,6 +89,6 @@ struct XRay: View {
 
 struct XRay_Previews: PreviewProvider {
     static var previews: some View {
-        XRay().environmentObject(Steps())
+        XRay(caseData: testCaseData).environmentObject(Steps())
     }
 }

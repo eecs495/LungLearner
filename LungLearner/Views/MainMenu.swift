@@ -8,26 +8,47 @@
 import SwiftUI
 
 struct MainMenu: View {
+    var caseDbManager = CaseDatabaseManager()
+    var caseData: CaseData?
+    
+    init() {
+        do {
+            self.caseData = try caseDbManager.getCaseById(Id: 2)
+            // print(caseData)
+        } catch CaseError.runtimeError(let errorMessage) {
+            print(errorMessage)
+        } catch {
+            print("Other errors")
+        }
+    }
+    
     var body: some View {
         //VStack(alignment: .leading){
             
-            NavigationView{
-                
-            VStack{
-                Text("Home").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).multilineTextAlignment(.leading)
-                Spacer()
-                NavigationLink(
-                    destination: History(canGoBack: false)){
-                    HomeItem(pic_name: "newCase",title: "New Cases")
+            NavigationView {
+                VStack {
+                    Text("Lung Learner")
+                        .font(.largeTitle)
+                        .bold()
+                        // .multilineTextAlignment(.leading)
+                    // Spacer()
+                    NavigationLink(
+                        destination: History(caseData: caseData!)) {
+                        Text("NEW CASE")
+                            .font(.headline)
+                        // HomeItem(pic_name: "newCase",title: "New Cases")
+                    }
+                    .padding(.top, 50)
+                    // Spacer()
+                    NavigationLink(
+                        destination: Text("Past Cases interface")) {
+                        Text("REVIEW CASES")
+                            .font(.headline)
+                            .padding(.top, 50)
+                    // HomeItem(pic_name: "pastCase",title: "Past Cases")
+                    }
+                    Spacer()
                 }
-                Spacer()
-                NavigationLink(
-                    destination: Text("Past Cases interface")){
-                HomeItem(pic_name: "pastCase",title: "Past Cases")
-                }
-                Spacer()
-
-            }
             }
         //}
     }
