@@ -67,7 +67,12 @@ func printCase(caseInfo: Row) {
     print(caseInfo)
 }
 
-let testSymptom = Symptom(temperature: 49.5, heartRate: 49.5, respiratoryRate: 49.5, bloodPressure: "Test BP", oxygenSaturation: "Test OS")
-let testExam = Exam(general: "Test General", cardiovascular: "Test CV", chest: "Test Chest")
-let testCaseData = CaseData(id: 495, history: "Test History", correctDiagnosis: "COPD", symptoms: testSymptom, exam: testExam, bloodGas: "Test BG")
-
+// Utility method to get a dummy case in case there is an error
+func getDummyCase() -> CaseData {
+    let exam = Exam(general:"Awake, alert, fully oriented",
+                    cardiovascular:"Regular rate and rhythm, no murmurs",
+                    chest: "Rales bilaterally")
+    let symptom = Symptom(temperature:37.9, heartRate:92.0, respiratoryRate:26.0, bloodPressure:"80/47", oxygenSaturation:"92% on 6 liters per minute of supplemental oxygen")
+    let caseData = CaseData(id:0, history:"You are seeing a 75-year-old White male with pneumonia. Over the past six days, he has had increasing shortness of breath, fevers, and myalgias.", correctDiagnosis:"CHF", symptoms:symptom, exam:exam, bloodGas:"pH 7.35, pCO2 39, pO2 71 on 6 L/minute of O2")
+    return caseData
+}
