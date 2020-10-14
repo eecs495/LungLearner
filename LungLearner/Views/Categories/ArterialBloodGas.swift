@@ -21,7 +21,7 @@ struct ArterialBloodGas: View {
                     .foregroundColor(.primary)
                     .padding(.top, 40)
                     .padding(.bottom)
-                Text(caseData.bloodGas)
+                Text(caseData.symptomValuesData.amountOfOxygenReceived)
                     .multilineTextAlignment(.leading)
                     .font(.body)
                     .foregroundColor(.secondary)

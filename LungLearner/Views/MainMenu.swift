@@ -13,8 +13,8 @@ struct MainMenu: View {
     
     init() {
         do {
-            self.caseData = try caseDbManager.getCaseById(Id: 2)
-            // print(caseData)
+            self.caseData = try caseDbManager.getCaseById(Id: 1)
+             print(caseData)
         } catch CaseError.runtimeError(let errorMessage) {
             print(errorMessage)
         } catch {

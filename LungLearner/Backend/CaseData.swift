@@ -10,27 +10,67 @@ import SQLite
 
 struct CaseData: Identifiable {
     var id: Int
-    var history: String
     var correctDiagnosis: String
-    var symptoms: Symptom
-    var exam: Exam
+    var age: Int
+    var gender: String
+    var history1: String
+    var history2: String
+    var history3: String
+    var tobaccoUse: String
+    var symptomData: SymptomData
+    var symptomValuesData: SymptomValuesData
+    var physicalExamData: PhysicalExamData
+    var labExamData: LabExamData
     var labValuesName: String { return "labValues\(id)" }
-    var bloodGas: String
     var xRayName: String { return "xRay\(id)" }
 }
 
-struct Symptom {
+struct SymptomData {
+    var onsetSymptoms: String
+    var durationSymptoms: String
+    var provocatingFactors: String
+    var descriptionSymptoms: String
+    var severitySymptoms: String
+    var relievingFactors: String
+}
+
+struct SymptomValuesData {
     var temperature: Double
     var heartRate: Double
     var respiratoryRate: Double
     var bloodPressure: String
     var oxygenSaturation: String
+    var amountOfOxygenReceived: String
 }
 
-struct Exam {
+struct PhysicalExamData {
     var general: String
-    var cardiovascular: String
-    var chest: String
+    var head: String
+    var neck: String
+    var heart: String
+    var lungs: String
+    var abdomen: String
+    var extremities: String
+    var skin: String
+}
+
+struct LabExamData {
+    var whiteBloodCells: Double
+    var hemoglobin: Double
+    var hematocrit: Double
+    var platelets: Double
+    var sodium: Double
+    var potassium: Double
+    var chloride: Double
+    var bicarbonate: Double
+    var bun: Double
+    var creatinine: Double
+    var glucose: Double
+    var bnp: Double
+    var abgPh: Double
+    var abgPCo2: Double
+    var abgPO2: Double
+    var lactate: Double
 }
 
 // Error Type for CaseData related Errors
@@ -42,21 +82,61 @@ enum CaseError: Error {
 // Utility method used to convert to CaseData type
 func makeCase(caseInfo: Row) -> CaseData {
     let ID = Expression<Int64>("ID")
-    let CorrectDiagnosis = Expression<String>("CorrectDiagnosis")
-    let Persona = Expression<String>("History")
+//    let CorrectDiagnosis = Expression<String?>("CorrectDiagnosis")
+    let Age = Expression<Int64>("Age")
+    let Gender = Expression<String>("Gender")
+    let History1 = Expression<String>("History1")
+    let History2 = Expression<String>("History2")
+    let History3 = Expression<String>("History3")
+    let TobaccoUse = Expression<String>("TobaccoUse")
+    let OnsetSymptoms = Expression<String>("OnsetSymptoms")
+    let DurationSymptoms = Expression<String>("DurationSymptoms")
+    let ProvocatingFactors = Expression<String>("ProvocatingFactors")
+    let DescriptionSymptoms = Expression<String>("DescriptionSymptoms")
+    let SeveritySymptoms = Expression<String>("SeveritySymptoms")
+    let RelievingFactors = Expression<String>("RelievingFactors")
     let Temperature = Expression<Double>("Temperature")
     let HeartRate = Expression<Double>("HeartRate")
-    let RespiratoryRate = Expression<Double?>("RespiratoryRate")
+    let RespiratoryRate = Expression<Double>("RespiratoryRate")
     let BloodPressure = Expression<String>("BloodPressure")
     let OxygenSaturation = Expression<String>("OxygenSaturation")
-    let General = Expression<String>("General")
-    let Cardiovascular = Expression<String>("Cardiovascular")
-    let Chest = Expression<String>("Chest")
-    let BloodGas = Expression<String>("Bloodgas")
+    let AmountOfOxygenReceived = Expression<String>("AmountOfOxygenReceived")
+    let PhysicalExamGeneral = Expression<String>("PhysicalExamGeneral")
+    let PhysicalExamHead = Expression<String>("PhysicalExamHead")
+    let PhysicalExamNeck = Expression<String>("Gender")
+    let PhysicalExamHeart = Expression<String>("PhysicalExamHeart")
+    let PhysicalExamLungs = Expression<String>("PhysicalExamLungs")
+    let PhysicalExamAbdomen = Expression<String>("PhysicalExamAbdomen")
+    let PhysicalExamExtremities = Expression<String>("PhysicalExamExtremities")
+    let PhysicalExamSkin = Expression<String>("PhysicalExamSkin")
+    let WhiteBloodCells = Expression<Double>("WhiteBloodCells")
+    let Hemoglobin = Expression<Double>("Hemoglobin")
+    let Hematocrit = Expression<Double>("Hematocrit")
+    let Platelets = Expression<Double>("Platelets")
+    let Sodium = Expression<Double>("Sodium")
+    let Potassium = Expression<Double>("Potassium")
+    let Chloride = Expression<Double>("Chloride")
+    let Bicarbonate = Expression<Double>("Bicarbonate")
+    let BUN = Expression<Double>("BUN")
+    let Creatinine = Expression<Double>("Creatinine")
+    let Glucose = Expression<Double>("Glucose")
+    let BNP = Expression<Double>("BNP")
+    let ABGPh = Expression<Double>("ABG-pH")
+    let ABGpCO2 = Expression<Double>("ABG-pCO2")
+    let ABGpO2 = Expression<Double>("ABG-pO2")
+    let Lactate = Expression<Double>("Lactate")
 
-    let exam = Exam(general:caseInfo[General],cardiovascular:caseInfo[Cardiovascular], chest: caseInfo[Chest])
-    let symptom = Symptom(temperature:caseInfo[Temperature], heartRate:caseInfo[HeartRate], respiratoryRate:caseInfo[RespiratoryRate] ?? 23.0, bloodPressure:caseInfo[BloodPressure], oxygenSaturation:caseInfo[OxygenSaturation])
-    let caseData = CaseData(id:Int(caseInfo[ID]), history:caseInfo[Persona], correctDiagnosis:caseInfo[CorrectDiagnosis], symptoms:symptom, exam:exam, bloodGas:caseInfo[BloodGas])
+
+    let symptom = SymptomData(onsetSymptoms: caseInfo[OnsetSymptoms], durationSymptoms: caseInfo[DurationSymptoms], provocatingFactors: caseInfo[ProvocatingFactors], descriptionSymptoms: caseInfo[DescriptionSymptoms], severitySymptoms: caseInfo[SeveritySymptoms], relievingFactors: caseInfo[RelievingFactors])
+
+    let symptomValuesData = SymptomValuesData(temperature: caseInfo[Temperature], heartRate: caseInfo[HeartRate], respiratoryRate: caseInfo[RespiratoryRate], bloodPressure: caseInfo[BloodPressure], oxygenSaturation: caseInfo[OxygenSaturation], amountOfOxygenReceived: caseInfo[AmountOfOxygenReceived])
+    
+    let physicalExamData = PhysicalExamData(general: caseInfo[PhysicalExamGeneral], head: caseInfo[PhysicalExamHead], neck: caseInfo[PhysicalExamNeck], heart: caseInfo[PhysicalExamHeart], lungs: caseInfo[PhysicalExamLungs], abdomen: caseInfo[PhysicalExamAbdomen], extremities: caseInfo[PhysicalExamExtremities], skin: caseInfo[PhysicalExamSkin])
+    
+    let labExamData = LabExamData(whiteBloodCells: caseInfo[WhiteBloodCells], hemoglobin: caseInfo[Hemoglobin], hematocrit: caseInfo[Hematocrit], platelets: caseInfo[Platelets], sodium: caseInfo[Sodium], potassium: caseInfo[Potassium], chloride: caseInfo[Chloride], bicarbonate: caseInfo[Bicarbonate], bun: caseInfo[BUN], creatinine: caseInfo[Creatinine], glucose: caseInfo[Glucose], bnp: caseInfo[BNP], abgPh: caseInfo[ABGPh], abgPCo2: caseInfo[ABGpCO2], abgPO2: caseInfo[ABGpO2], lactate: caseInfo[Lactate])
+
+    let caseData = CaseData(id: Int(caseInfo[ID]), correctDiagnosis: "COPD", age: Int(caseInfo[Age]), gender: caseInfo[Gender], history1: caseInfo[History1], history2: caseInfo[History2], history3: caseInfo[History3], tobaccoUse: caseInfo[TobaccoUse], symptomData: symptom, symptomValuesData: symptomValuesData, physicalExamData: physicalExamData, labExamData: labExamData)
+
     return caseData
 }
 
@@ -69,10 +149,15 @@ func printCase(caseInfo: Row) {
 
 // Utility method to get a dummy case in case there is an error
 func getDummyCase() -> CaseData {
-    let exam = Exam(general:"Awake, alert, fully oriented",
-                    cardiovascular:"Regular rate and rhythm, no murmurs",
-                    chest: "Rales bilaterally")
-    let symptom = Symptom(temperature:37.9, heartRate:92.0, respiratoryRate:26.0, bloodPressure:"80/47", oxygenSaturation:"92% on 6 liters per minute of supplemental oxygen")
-    let caseData = CaseData(id:0, history:"You are seeing a 75-year-old White male with pneumonia. Over the past six days, he has had increasing shortness of breath, fevers, and myalgias.", correctDiagnosis:"CHF", symptoms:symptom, exam:exam, bloodGas:"pH 7.35, pCO2 39, pO2 71 on 6 L/minute of O2")
+    let symptomData = SymptomData(onsetSymptoms: "onsetSymptoms", durationSymptoms: "durationSymptoms", provocatingFactors: "provocatingFactors", descriptionSymptoms: "descriptionSymptoms", severitySymptoms: "severitySymptoms", relievingFactors: "relievingFactors")
+
+    let symptomValuesData = SymptomValuesData(temperature: 38.4, heartRate: 38.4, respiratoryRate: 24.0, bloodPressure: "104/53", oxygenSaturation: "91%", amountOfOxygenReceived: "4 liters per minute")
+
+    let physicalExamData = PhysicalExamData(general: "awake, alert, oriented x 2", head: "pupils equal and reactive, dry mucous membranes", neck: "No jugular venous distention", heart: "tachycardic, regular rhythm", lungs: "Crackles in the right lung", abdomen: "soft, nontender, nondistended", extremities: "no edema", skin: "warm, dry")
+
+    let labExamData = LabExamData(whiteBloodCells: 14.2, hemoglobin: 13.6, hematocrit: 40.1, platelets: 247.0, sodium: 137.0, potassium: 4.2, chloride: 104.0, bicarbonate: 21.0, bun: 24.0, creatinine: 1.6, glucose: 137.0, bnp: 37.0, abgPh: 7.35, abgPCo2: 39.0, abgPO2: 71.0, lactate: 2.4)
+
+    let caseData = CaseData(id: 495, correctDiagnosis: "COPD", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: symptomData, symptomValuesData: symptomValuesData, physicalExamData: physicalExamData, labExamData: labExamData)
+
     return caseData
 }

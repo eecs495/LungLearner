@@ -21,7 +21,7 @@ struct History: View {
                     .foregroundColor(.primary)
                     .padding(.top, 40)
                     .padding(.bottom)
-                Text(caseData.history)
+                Text(caseData.history1)
                     .multilineTextAlignment(.leading)
                     .font(.body)
                     .foregroundColor(.secondary)
