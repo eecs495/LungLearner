@@ -10,76 +10,47 @@ import SwiftUI
 struct LabValues: View {
     @EnvironmentObject var steps: Steps
     @State private var selectedCause = 0
-    @State var showImage: Bool = false
     var caseData: CaseData
     
     var body: some View {
         ScrollView {
-            ZStack {
+            VStack {
+                Text("Lab Values")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                    .padding(.top, 40)
+                    .padding(.bottom)
+                VStack(alignment: .leading) {
+                    BloodValues(caseData: caseData)
+                    ChemicalValues(caseData: caseData)
+                    ABGValues(caseData: caseData)
+                    DataBlock(title: "Lactate", description: "\(caseData.labExamData.lactate)", horizontal: true, last: true)
+                }
+                .padding(.horizontal, 30)
                 VStack {
-                    Text("Lab Values")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .padding(.top, 40)
-                        .padding(.bottom)
-                    Text("Click on the plus button below to view this patient's lab values.")
-                        .multilineTextAlignment(.leading)
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal, 30)
-                    Button(action: {
-                        self.showImage.toggle()
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.largeTitle)
-                    }
-                    .padding(.vertical)
-                    .disabled(self.showImage)
-                    VStack {
-                         Picker(selection: $selectedCause, label: Text("Please choose a color")) {
-                             ForEach(0 ..< causes.count) {
-                                 Text(causes[$0])
-                             }
+                     Picker(selection: $selectedCause, label: Text("Please choose a color")) {
+                         ForEach(0 ..< causes.count) {
+                             Text(causes[$0])
                          }
-                         Text("Current Diagnosis")
-                             .bold()
-                             .padding(.bottom, 2)
-                         Text("\(causes[selectedCause])")
-                             .font(.body)
-                             .foregroundColor(.accentColor)
-                    }
-                    NavigationLink(destination: ArterialBloodGas(caseData: caseData)) {
-                        Image(systemName: "arrow.right")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.black)
-                            .padding()
-                            .padding(.bottom, 30)
-                    }
-                    .simultaneousGesture(TapGesture().onEnded{
-                        steps.stepList.append(causes[selectedCause])
-                    })
+                     }
+                     Text("Current Diagnosis")
+                         .bold()
+                         .padding(.bottom, 2)
+                     Text("\(causes[selectedCause])")
+                         .font(.body)
+                         .foregroundColor(.accentColor)
                 }
-                .blur(radius: self.showImage ? 5 : 0)
-                if self.showImage {
-                    VStack {
-                        Image(caseData.labValuesName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .overlay(Rectangle().stroke(Color.white, lineWidth: 4))
-                            .shadow(radius: 10)
-                        Button(action: {
-                            self.showImage.toggle()
-                        }) {
-                            Image(systemName: "multiply.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.red)
-                        }
-                        .shadow(radius: 10)
+                NavigationLink(destination: XRay(caseData: caseData)) {
+                    Image(systemName: "arrow.right")
+                        .font(.largeTitle)
+                        .foregroundColor(Color.black)
                         .padding()
-                    }
-                    .padding()
+                        .padding(.bottom, 30)
                 }
+                .simultaneousGesture(TapGesture().onEnded{
+                    steps.stepList.append(causes[selectedCause])
+                })
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -90,5 +61,41 @@ struct LabValues: View {
 struct LabValues_Previews: PreviewProvider {
     static var previews: some View {
         LabValues(caseData: testCaseData).environmentObject(Steps())
+    }
+}
+
+struct BloodValues: View {
+    var caseData: CaseData
+    
+    var body: some View {
+        DataBlock(title: "White Blood Cells", description: "\(caseData.labExamData.whiteBloodCells)", horizontal: true)
+        DataBlock(title: "Hemoglobin", description: "\(caseData.labExamData.hemoglobin)", horizontal: true)
+        DataBlock(title: "Hematocrit", description: "\(caseData.labExamData.hematocrit)", horizontal: true)
+        DataBlock(title: "Platelets", description: "\(caseData.labExamData.platelets)", horizontal: true, last: true)
+    }
+}
+
+struct ChemicalValues: View {
+    var caseData: CaseData
+    
+    var body: some View {
+        DataBlock(title: "Sodium", description: "\(caseData.labExamData.sodium)", horizontal: true)
+        DataBlock(title: "Potassium", description: "\(caseData.labExamData.potassium)", horizontal: true)
+        DataBlock(title: "Chloride", description: "\(caseData.labExamData.chloride)", horizontal: true)
+        DataBlock(title: "Bicarbonate", description: "\(caseData.labExamData.bicarbonate)", horizontal: true)
+        DataBlock(title: "BUN", description: "\(caseData.labExamData.bun)", horizontal: true)
+        DataBlock(title: "Creatinine", description: "\(caseData.labExamData.creatinine)", horizontal: true)
+        DataBlock(title: "Glucose", description: "\(caseData.labExamData.glucose)", horizontal: true)
+        DataBlock(title: "BNP", description: "\(caseData.labExamData.bnp)", horizontal: true, last: true)
+    }
+}
+
+struct ABGValues: View {
+    var caseData: CaseData
+    
+    var body: some View {
+        DataBlock(title: "ABG - pH", description: "\(caseData.labExamData.abgPh)", horizontal: true)
+        DataBlock(title: "ABG - pCO2", description: "\(caseData.labExamData.abgPCo2)", horizontal: true)
+        DataBlock(title: "ABG - pO2", description: "\(caseData.labExamData.abgPO2)", horizontal: true, last: true)
     }
 }

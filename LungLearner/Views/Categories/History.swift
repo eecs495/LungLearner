@@ -15,13 +15,14 @@ struct History: View {
     var body: some View {
         ScrollView {
             VStack {
+                Text(caseData.xRayName)
                 Text("History")
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
                     .padding(.top, 40)
                     .padding(.bottom)
-                Text(caseData.history1)
+                Text("Your patient is a \(caseData.age) year old \(caseData.gender) with a past medical history of \(caseData.history1), \(caseData.history2), and \(caseData.history3). Tobacco use is \(caseData.tobaccoUse).")
                     .multilineTextAlignment(.leading)
                     .font(.body)
                     .foregroundColor(.secondary)

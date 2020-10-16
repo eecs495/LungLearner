@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let causeNames: [String] = ["History", "Symptoms", "Physical Exam", "Lab Values", "Arterial Blood Gas", "X-Ray"]
+let causeNames: [String] = ["History", "Symptoms", "Physical Exam", "Lab Values", "X-Ray"]
 
 struct ReviewCase: View {
     @EnvironmentObject var steps: Steps
@@ -23,7 +23,7 @@ struct ReviewCase: View {
                     .padding(.top, 40)
                     .padding(.bottom)
                 VStack(alignment: .leading) {
-                    ForEach((0...5), id: \.self) {
+                    ForEach((0...4), id: \.self) {
                         Text("\(steps.stepList[$0]) after \(causeNames[$0])")
                             .font(.body)
                             .foregroundColor(.secondary)
