@@ -15,19 +15,8 @@ struct LabValues: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("Lab Values")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .padding(.top, 40)
-                    .padding(.bottom)
-                VStack(alignment: .leading) {
-                    BloodValues(caseData: caseData)
-                    ChemicalValues(caseData: caseData)
-                    ABGValues(caseData: caseData)
-                    DataBlock(title: "Lactate", description: "\(caseData.labExamData.lactate)", horizontal: true, last: true)
-                }
-                .padding(.horizontal, 30)
+                LabValuesText(caseData: caseData)
+                    .padding(.horizontal, 30)
                 VStack {
                      Picker(selection: $selectedCause, label: Text("Please choose a color")) {
                          ForEach(0 ..< causes.count) {
@@ -64,7 +53,7 @@ struct LabValues_Previews: PreviewProvider {
     }
 }
 
-struct BloodValues: View {
+struct BloodDataBlocks: View {
     var caseData: CaseData
     
     var body: some View {
@@ -75,7 +64,7 @@ struct BloodValues: View {
     }
 }
 
-struct ChemicalValues: View {
+struct ChemicalDataBlocks: View {
     var caseData: CaseData
     
     var body: some View {
@@ -90,12 +79,31 @@ struct ChemicalValues: View {
     }
 }
 
-struct ABGValues: View {
+struct ABGDataBlocks: View {
     var caseData: CaseData
     
     var body: some View {
         DataBlock(title: "ABG - pH", description: "\(caseData.labExamData.abgPh)", horizontal: true)
         DataBlock(title: "ABG - pCO2", description: "\(caseData.labExamData.abgPCo2)", horizontal: true)
         DataBlock(title: "ABG - pO2", description: "\(caseData.labExamData.abgPO2)", horizontal: true, last: true)
+    }
+}
+
+struct LabValuesText: View {
+    var caseData: CaseData
+    
+    var body: some View {
+        Text("Lab Values")
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundColor(.primary)
+            .padding(.top, 30)
+            .padding(.bottom)
+        VStack(alignment: .leading) {
+            BloodDataBlocks(caseData: caseData)
+            ChemicalDataBlocks(caseData: caseData)
+            ABGDataBlocks(caseData: caseData)
+            DataBlock(title: "Lactate", description: "\(caseData.labExamData.lactate)", horizontal: true, last: true)
+        }
     }
 }

@@ -15,23 +15,8 @@ struct PhysicalExam: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("Physical Exam")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .padding(.top, 40)
-                    .padding(.bottom)
-                VStack(alignment: .leading) {
-                    DataBlock(title: "General", description: "\(caseData.physicalExamData.general)")
-                    DataBlock(title: "Head", description: "\(caseData.physicalExamData.head)")
-                    DataBlock(title: "Neck", description: "\(caseData.physicalExamData.neck)")
-                    DataBlock(title: "Heart", description: "\(caseData.physicalExamData.heart)")
-                    DataBlock(title: "Lungs", description: "\(caseData.physicalExamData.lungs)")
-                    DataBlock(title: "Abdomen", description: "\(caseData.physicalExamData.abdomen)")
-                    DataBlock(title: "Extremities", description: "\(caseData.physicalExamData.extremities)")
-                    DataBlock(title: "Skin", description: "\(caseData.physicalExamData.skin)")
-                }
-                .padding(.horizontal, 30)
+                PhysicalExamText(caseData: caseData)
+                    .padding(.horizontal, 30)
                 VStack {
                      Picker(selection: $selectedCause, label: Text("Please choose a color")) {
                          ForEach(0 ..< causes.count) {
@@ -65,5 +50,36 @@ struct PhysicalExam: View {
 struct PhysicalExam_Previews: PreviewProvider {
     static var previews: some View {
         PhysicalExam(caseData: testCaseData).environmentObject(Steps())
+    }
+}
+
+struct PhysicalExamDataBlocks: View {
+    var caseData: CaseData
+    
+    var body: some View {
+        DataBlock(title: "General", description: "\(caseData.physicalExamData.general)")
+        DataBlock(title: "Head", description: "\(caseData.physicalExamData.head)")
+        DataBlock(title: "Neck", description: "\(caseData.physicalExamData.neck)")
+        DataBlock(title: "Heart", description: "\(caseData.physicalExamData.heart)")
+        DataBlock(title: "Lungs", description: "\(caseData.physicalExamData.lungs)")
+        DataBlock(title: "Abdomen", description: "\(caseData.physicalExamData.abdomen)")
+        DataBlock(title: "Extremities", description: "\(caseData.physicalExamData.extremities)")
+        DataBlock(title: "Skin", description: "\(caseData.physicalExamData.skin)", last: true)
+    }
+}
+
+struct PhysicalExamText: View {
+    var caseData: CaseData
+    
+    var body: some View {
+        Text("Physical Exam")
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundColor(.primary)
+            .padding(.top, 30)
+            .padding(.bottom)
+        VStack(alignment: .leading) {
+            PhysicalExamDataBlocks(caseData: caseData)
+        }
     }
 }

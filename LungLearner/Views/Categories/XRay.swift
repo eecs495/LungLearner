@@ -49,7 +49,7 @@ struct XRay: View {
                              .font(.body)
                              .foregroundColor(.accentColor)
                     }
-                    NavigationLink(destination: ReviewCase()) {
+                    NavigationLink(destination: ReviewCase(caseData: caseData)) {
                         Image(systemName: "arrow.right")
                             .font(.largeTitle)
                             .foregroundColor(Color.black)
@@ -62,23 +62,26 @@ struct XRay: View {
                 }
                 .blur(radius: self.showImage ? 5 : 0)
                 if self.showImage {
-                    VStack {
-                        Image(caseData.xRayName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .overlay(Rectangle().stroke(Color.white, lineWidth: 4))
-                            .shadow(radius: 10)
-                        Button(action: {
-                            self.showImage.toggle()
-                        }) {
-                            Image(systemName: "multiply.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.red)
+                    ZStack {
+                        Color.white
+                        VStack {
+                            Image(caseData.xRayName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .cornerRadius(10)
+                            Spacer()
+                            Button(action: {
+                                self.showImage.toggle()
+                            }) {
+                                Image(systemName: "multiply.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(.red)
+                            }
                         }
-                        .shadow(radius: 10)
                         .padding()
                     }
-                    .padding()
+                    .frame(width: 300, height: 300)
+                    .cornerRadius(20).shadow(radius: 20)
                 }
             }
         }

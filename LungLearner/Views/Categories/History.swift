@@ -15,17 +15,7 @@ struct History: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text(caseData.xRayName)
-                Text("History")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .padding(.top, 40)
-                    .padding(.bottom)
-                Text("Your patient is a \(caseData.age) year old \(caseData.gender) with a past medical history of \(caseData.history1), \(caseData.history2), and \(caseData.history3). Tobacco use is \(caseData.tobaccoUse).")
-                    .multilineTextAlignment(.leading)
-                    .font(.body)
-                    .foregroundColor(.secondary)
+                HistoryText(caseData: caseData)
                     .padding(.horizontal, 30)
                 VStack {
                      Picker(selection: $selectedCause, label: Text("Please choose a color")) {
@@ -60,5 +50,22 @@ struct History: View {
 struct History_Previews: PreviewProvider {
     static var previews: some View {
         History(caseData: testCaseData).environmentObject(Steps())
+    }
+}
+
+struct HistoryText: View {
+    var caseData: CaseData
+    
+    var body: some View {
+        Text("History")
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundColor(.primary)
+            .padding(.top, 30)
+            .padding(.bottom)
+        Text("Your patient is a \(caseData.age) year old \(caseData.gender) with a past medical history of \(caseData.history1), \(caseData.history2), and \(caseData.history3). Tobacco use is \(caseData.tobaccoUse).")
+            .multilineTextAlignment(.leading)
+            .font(.body)
+            .foregroundColor(.secondary)
     }
 }
