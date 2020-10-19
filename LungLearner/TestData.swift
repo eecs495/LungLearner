@@ -17,3 +17,5 @@ let testPhysicalExamData = PhysicalExamData(general: "awake, alert, oriented x 2
 let testLabExamData = LabExamData(whiteBloodCells: 14.2, hemoglobin: 13.6, hematocrit: 40.1, platelets: 247.0, sodium: 137.0, potassium: 4.2, chloride: 104.0, bicarbonate: 21.0, bun: 24.0, creatinine: 1.6, glucose: 137.0, bnp: 37.0, abgPh: 7.35, abgPCo2: 39.0, abgPO2: 71.0, lactate: 2.4)
 
 let testCaseData = CaseData(id: 1, correctDiagnosis: "COPD", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+
+//let testSteps = Steps(

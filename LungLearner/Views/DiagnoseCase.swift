@@ -41,7 +41,7 @@ struct DiagnoseCase: View {
                     .font(.body)
                     .foregroundColor(.accentColor)
                     .padding(.bottom)
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: Incorr(caseData: caseData)) {
                     Text("CHECK")
                         .foregroundColor(.red)
                         .font(.headline)

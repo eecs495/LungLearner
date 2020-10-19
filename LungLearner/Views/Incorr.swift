@@ -18,6 +18,10 @@ struct DiagnoseRow: View {
     }
 }
 struct Incorr: View {
+    
+    @EnvironmentObject var steps: Steps
+    var caseData: CaseData
+    
     var drewClass = DiagnosticProcess(cause: "being too cool", myProcess: processes)
     
     var body: some View {
@@ -27,20 +31,43 @@ struct Incorr: View {
                 Text("Cause of Respiratory Failure: ")
                 Text(drewClass.cause)
             }
+            
             VStack(alignment: .leading) {
                 Text("Your diagnostic process: ")
                     .padding(4)
                 VStack(alignment: .leading) {
-                    ForEach(drewClass.myProcess) { process in
-                        VStack {
-                            DiagnoseRow(process: process)
-                        }
-                        .padding(.top, 5)
-                    }
+//                    ForEach(drewClass.myProcess) { process in
+//                        VStack {
+//                            DiagnoseRow(process: process)
+//                        }
+//                        .padding(.top, 5)
+//                    }
+                    
+                    // ------- KEEP THIS -------
+//                    VStack(alignment: .leading) {
+//                        ForEach((0...4), id: \.self) {
+//                            Text("\(steps.stepList[$0]) after \(causeNames[$0])")
+//                                .font(.body)
+//                                .foregroundColor(.secondary)
+//                            }
+//                    }
+                    // -------------------------
                 }
                 .border(Color.black, width: 1)
-                
             }
+            
+            VStack {
+                
+                NavigationLink(destination: MainMenu()) {
+                    Text("click here to go home")
+                    Image(systemName: "home")
+//                        .font(.largeTitle)
+//                        .foregroundColor(Color.black)
+//                        .padding()
+//                        .padding(.bottom, 30)
+                }
+            }
+            
         }
         
         
@@ -55,6 +82,6 @@ struct Incorr: View {
 
 struct Incorr_Previews: PreviewProvider {
     static var previews: some View {
-        Incorr()
+        Incorr(caseData: testCaseData)
     }
 }
