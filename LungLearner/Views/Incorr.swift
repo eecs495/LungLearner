@@ -22,54 +22,55 @@ struct Incorr: View {
     @EnvironmentObject var steps: Steps
     var caseData: CaseData
     
-    var drewClass = DiagnosticProcess(cause: "being too cool", myProcess: processes)
+    // var drewClass = DiagnosticProcess(cause: "being too cool", myProcess: processes)
     
     var body: some View {
-        VStack {
+        ScrollView {
             VStack {
-                Text("Correct!")
-                Text("Cause of Respiratory Failure: ")
-                Text(drewClass.cause)
-            }
-            
-            VStack(alignment: .leading) {
-                Text("Your diagnostic process: ")
-                    .padding(4)
+                Text(caseData.correctDiagnosis == steps.stepList[5] ? "Correct!" : "Incorrect")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                    .padding(.top, 40)
+                    .padding(.bottom)
+                Text("Cause of Respiratory Failure")
+                    .bold()
+                    .padding(.bottom, 2)
+                    .padding(.top)
+                Text("\(caseData.correctDiagnosis)")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
+                Text("Your Diagnostic Process")
+                    .bold()
+                    .padding(.bottom, 2)
+                    .padding(.top)
                 VStack(alignment: .leading) {
-//                    ForEach(drewClass.myProcess) { process in
-//                        VStack {
-//                            DiagnoseRow(process: process)
-//                        }
-//                        .padding(.top, 5)
-//                    }
-                    
-                    // ------- KEEP THIS -------
-//                    VStack(alignment: .leading) {
-//                        ForEach((0...4), id: \.self) {
-//                            Text("\(steps.stepList[$0]) after \(causeNames[$0])")
-//                                .font(.body)
-//                                .foregroundColor(.secondary)
-//                            }
-//                    }
-                    // -------------------------
+                    ForEach((0...4), id: \.self) {
+                        Text("\(steps.stepList[$0]) after \(causeNames[$0])")
+                            .font(.body)
+                            .foregroundColor(.secondary)
+                        }
                 }
-                .border(Color.black, width: 1)
-            }
-            
-            VStack {
-                
+                Text("Final Diagnosis")
+                    .bold()
+                    .padding(.bottom, 2)
+                    .padding(.top)
+                Text("\(steps.stepList[5])")
+                    .font(.body)
+                    .foregroundColor(.accentColor)
                 NavigationLink(destination: MainMenu()) {
-                    Text("click here to go home")
-                    Image(systemName: "home")
-//                        .font(.largeTitle)
-//                        .foregroundColor(Color.black)
-//                        .padding()
-//                        .padding(.bottom, 30)
+                    Image(systemName: "house.fill")
+                        .font(.largeTitle)
+                        .foregroundColor(Color.black)
+                        .padding()
+                        .padding(.vertical)
                 }
+                .padding(.bottom, 30)
+                
             }
-            
         }
-        
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
         
     }
 }
@@ -82,6 +83,6 @@ struct Incorr: View {
 
 struct Incorr_Previews: PreviewProvider {
     static var previews: some View {
-        Incorr(caseData: testCaseData)
+        Incorr(caseData: testCaseData1)
     }
 }

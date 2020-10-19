@@ -16,6 +16,51 @@ let testPhysicalExamData = PhysicalExamData(general: "awake, alert, oriented x 2
 
 let testLabExamData = LabExamData(whiteBloodCells: 14.2, hemoglobin: 13.6, hematocrit: 40.1, platelets: 247.0, sodium: 137.0, potassium: 4.2, chloride: 104.0, bicarbonate: 21.0, bun: 24.0, creatinine: 1.6, glucose: 137.0, bnp: 37.0, abgPh: 7.35, abgPCo2: 39.0, abgPO2: 71.0, lactate: 2.4)
 
-let testCaseData = CaseData(id: 1, correctDiagnosis: "COPD", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+let testCaseData1 = CaseData(id: 1, correctDiagnosis: "COPD", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
 
-//let testSteps = Steps(
+let testCaseData2 = CaseData(id: 2, correctDiagnosis: "COPD", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+
+let testCaseData3 = CaseData(id: 3, correctDiagnosis: "CHF", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+
+
+let testCaseData4 = CaseData(id: 4, correctDiagnosis: "CHF", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+
+
+let testCaseData5 = CaseData(id: 5, correctDiagnosis: "CHF", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+
+let testCaseData = CaseData(id: 5, correctDiagnosis: "CHF", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+
+
+let testXRayName = "xRay1"
+
+struct MockCaseDataForReview: Identifiable {
+    
+    var id: Int
+    var caseData: CaseData
+    var correct: Correctness
+    
+    enum Correctness: String, CaseIterable,Codable,Hashable {
+        case Correct = "Correct"
+        case Incorrect = "Incorrect"
+    }
+}
+
+let testCorrectCaseDataList = [ testCaseData1,
+                                testCaseData2,
+                                testCaseData3 ]
+
+let testIncorrectCaseDataList = [ testCaseData4,
+                                  testCaseData5 ]
+
+struct FranksCaseData: Hashable,Codable, Identifiable{
+    var id:Int
+    var correct:Correctness
+    var history1: String
+    var XrayName:String
+    
+    enum Correctness: String, CaseIterable,Codable,Hashable {
+        case Correct = "Correct"
+        case Incorrect = "Incorrect"
+        
+    }
+}

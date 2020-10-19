@@ -16,6 +16,8 @@
 		765AD732253A4BD10053C3CB /* ReviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AD731253A4BD00053C3CB /* ReviewButton.swift */; };
 		765AD735253A4D980053C3CB /* DiagnoseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AD734253A4D980053C3CB /* DiagnoseCase.swift */; };
 		765AD73D253A4F6B0053C3CB /* ClosePopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AD73C253A4F6B0053C3CB /* ClosePopUpButton.swift */; };
+		765AD742253DCFAD0053C3CB /* ReviewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AD741253DCFAD0053C3CB /* ReviewList.swift */; };
+		765AD745253DD0190053C3CB /* CaseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AD744253DD0190053C3CB /* CaseDetail.swift */; };
 		7675FB992533AAA7006DE9BA /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FB982533AAA7006DE9BA /* TestData.swift */; };
 		7675FB9D2539FA08006DE9BA /* DataBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FB9C2539FA08006DE9BA /* DataBlock.swift */; };
 		7677234A252E8E5500D5521B /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772349252E8E5500D5521B /* History.swift */; };
@@ -44,6 +46,8 @@
 		765AD731253A4BD00053C3CB /* ReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewButton.swift; sourceTree = "<group>"; };
 		765AD734253A4D980053C3CB /* DiagnoseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnoseCase.swift; sourceTree = "<group>"; };
 		765AD73C253A4F6B0053C3CB /* ClosePopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosePopUpButton.swift; sourceTree = "<group>"; };
+		765AD741253DCFAD0053C3CB /* ReviewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewList.swift; sourceTree = "<group>"; };
+		765AD744253DD0190053C3CB /* CaseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetail.swift; sourceTree = "<group>"; };
 		7675FB982533AAA7006DE9BA /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		7675FB9C2539FA08006DE9BA /* DataBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBlock.swift; sourceTree = "<group>"; };
 		76772349252E8E5500D5521B /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 				767723602530D92000D5521B /* ReviewCase.swift */,
 				765AD734253A4D980053C3CB /* DiagnoseCase.swift */,
 				4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */,
+				765AD741253DCFAD0053C3CB /* ReviewList.swift */,
+				765AD744253DD0190053C3CB /* CaseDetail.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,6 +260,7 @@
 			files = (
 				7677235A252F645700D5521B /* XRay.swift in Sources */,
 				8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */,
+				765AD742253DCFAD0053C3CB /* ReviewList.swift in Sources */,
 				8CBB8F29252DF5CD00A0C16E /* CaseData.swift in Sources */,
 				C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */,
 				C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */,
@@ -271,6 +278,7 @@
 				76772353252E95F100D5521B /* LabValues.swift in Sources */,
 				4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */,
 				76F22C6C25242A1300FB864F /* Cause.swift in Sources */,
+				765AD745253DD0190053C3CB /* CaseDetail.swift in Sources */,
 				765AD732253A4BD10053C3CB /* ReviewButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

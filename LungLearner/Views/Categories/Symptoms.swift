@@ -49,7 +49,7 @@ struct Symptoms: View {
 
 struct Symptoms_Previews: PreviewProvider {
     static var previews: some View {
-        Symptoms(caseData: testCaseData).environmentObject(Steps())
+        Symptoms(caseData: testCaseData1).environmentObject(Steps())
     }
 }
 

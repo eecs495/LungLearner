@@ -34,21 +34,35 @@ struct MainMenu: View {
                     NavigationLink(
                         destination: History(caseData: caseData!)) {
                         Text("NEW CASE")
-                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(Color(UIColor.systemGray5))
+                            .cornerRadius(10)
+                            .padding(.vertical)
+                            .padding(.horizontal, 50)
+                            
                         // HomeItem(pic_name: "newCase",title: "New Cases")
                     }
-                    .padding(.top, 50)
+                    .padding(.top, 30)
                     // Spacer()
                     NavigationLink(
-                        destination: Text("Past Cases interface")) {
+                        destination: ReviewList(correctCases: testCorrectCaseDataList, incorrectCases: testIncorrectCaseDataList)) {
                         Text("REVIEW CASES")
-                            .font(.headline)
-                            .padding(.top, 50)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(Color(UIColor.systemGray5))
+                            .cornerRadius(10)
+                            .padding(.vertical)
+                            .padding(.horizontal, 50)
                     // HomeItem(pic_name: "pastCase",title: "Past Cases")
                     }
                     Spacer()
                 }
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         //}
     }
 }

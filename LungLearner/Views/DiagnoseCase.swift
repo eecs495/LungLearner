@@ -59,6 +59,6 @@ struct DiagnoseCase: View {
 
 struct DiagnoseCase_Previews: PreviewProvider {
     static var previews: some View {
-        DiagnoseCase(caseData: testCaseData)
+        DiagnoseCase(caseData: testCaseData1)
     }
 }

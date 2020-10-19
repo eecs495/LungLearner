@@ -21,33 +21,46 @@ struct ReviewCase: View {
     @State var showXRay: Bool = false
     
     var caseData: CaseData
+    var firstDiagnosis: Bool = true
     
     var body: some View {
         ScrollView {
             ZStack {
                 VStack(alignment: .center) {
-                    Text("Review")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .padding(.top, 30)
-                        .padding(.bottom)
-                    Group {
+                    if firstDiagnosis {
+                        Text("Review")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .padding(.top, 20)
+                            .padding(.bottom)
+                    }
+                    VStack {
                         ReviewButton(showCategory: $showHistory, blurBackground: $blurBackground, title: "History")
                         ReviewButton(showCategory: $showSymptoms, blurBackground: $blurBackground, title: "Symptoms")
-                        ReviewButton(showCategory: $showPhysicalExam, blurBackground: $blurBackground, title: "PhysicalExam")
+                        ReviewButton(showCategory: $showPhysicalExam, blurBackground: $blurBackground, title: "Physical Exam")
                         ReviewButton(showCategory: $showLabValues, blurBackground: $blurBackground, title: "Lab Values")
                         ReviewButton(showCategory: $showXRay, blurBackground: $blurBackground, title: "X-Ray")
                     }
-                    NavigationLink(destination: DiagnoseCase(caseData: caseData)) {
-                        Image(systemName: "arrow.right")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.black)
-                            .padding()
-                            .padding(.vertical)
+                    .padding(.top, 10)
+                    if firstDiagnosis {
+                        NavigationLink(destination: DiagnoseCase(caseData: caseData)) {
+                            Image(systemName: "arrow.right")
+                                .font(.largeTitle)
+                                .foregroundColor(Color.black)
+                                .padding()
+                                .padding(.vertical)
+                        }
                     }
-                    
-
+                    if !firstDiagnosis {
+                        Text("Correct Diagnosis")
+                            .bold()
+                            .padding(.bottom, 2)
+                            .padding(.top)
+                        Text("\(caseData.correctDiagnosis)")
+                            .font(.body)
+                            .foregroundColor(.accentColor)
+                    }
                 }
                 .blur(radius: self.blurBackground ? 5 : 0)
                 if self.showHistory {
@@ -138,13 +151,14 @@ struct ReviewCase: View {
                 
             }
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
+        .navigationBarTitle("Case \(caseData.id)")
+        .navigationBarBackButtonHidden(firstDiagnosis)
+        .navigationBarHidden(firstDiagnosis)
     }
 }
 
 struct ReviewCase_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewCase(caseData: testCaseData).environmentObject(Steps())
+        ReviewCase(caseData: testCaseData1, firstDiagnosis: true).environmentObject(Steps())
     }
 }
