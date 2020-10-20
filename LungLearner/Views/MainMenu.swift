@@ -22,48 +22,41 @@ struct MainMenu: View {
     }
     
     var body: some View {
-        //VStack(alignment: .leading){
-            
-            NavigationView {
-                VStack {
-                    Text("Lung Learner")
-                        .font(.largeTitle)
+        NavigationView {
+            VStack {
+                Text("Lung Learner")
+                    .font(.largeTitle)
+                    .bold()
+                NavigationLink(
+                    destination: History(caseData: caseData!)) {
+                    Text("New Case")
                         .bold()
-                        // .multilineTextAlignment(.leading)
-                    // Spacer()
-                    NavigationLink(
-                        destination: History(caseData: caseData!)) {
-                        Text("NEW CASE")
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(.black)
-                            .padding()
-                            .background(Color(UIColor.systemGray5))
-                            .cornerRadius(10)
-                            .padding(.vertical)
-                            .padding(.horizontal, 50)
-                            
-                        // HomeItem(pic_name: "newCase",title: "New Cases")
-                    }
-                    .padding(.top, 30)
-                    // Spacer()
-                    NavigationLink(
-                        destination: ReviewList(correctCases: testCorrectCaseDataList, incorrectCases: testIncorrectCaseDataList)) {
-                        Text("REVIEW CASES")
-                            .frame(maxWidth: .infinity)
-                            .foregroundColor(.black)
-                            .padding()
-                            .background(Color(UIColor.systemGray5))
-                            .cornerRadius(10)
-                            .padding(.vertical)
-                            .padding(.horizontal, 50)
-                    // HomeItem(pic_name: "pastCase",title: "Past Cases")
-                    }
-                    Spacer()
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding(.vertical)
+                        .padding(.horizontal, 50)
                 }
+                .padding(.top, 30)
+                NavigationLink(
+                    destination: Progress()) {
+                    Text("Review")
+                        .bold()
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding(.vertical)
+                        .padding(.horizontal, 50)
+                }
+                Spacer()
             }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
-        //}
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 
