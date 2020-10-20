@@ -83,9 +83,27 @@ func storeCaseResult(result: UserCaseResult) {
     try! db.run(insert)
 }
 
+// Because unix time is weird(tm), I added this function so we can work with it a bit easier
 func convertUnixTime(unixtime: Int64) -> (year: Int, month: Int, day: Int) {
     let interval = TimeInterval(unixtime)
     let date = Date(timeIntervalSince1970: interval)
     let calendar = Calendar.current
     return (calendar.component(.year, from: date), calendar.component(.month, from: date), calendar.component(.day, from: date))
+}
+
+func getListOfCompletedCases() -> [(id: Int64, correct: Bool)] {
+    var results:[(id: Int64, correct: Bool)] = []
+    let path = NSSearchPathForDirectoriesInDomains(
+        .documentDirectory, .userDomainMask, true
+    ).first!
+    let db = try! Connection("\(path)/userdb.sqlite3")
+    let userInfo = Table("userInfo")
+    let id = Expression<Int64>("id")
+    let correct = Expression<Bool>("correct")
+    
+    for caseEntry in try! db.prepare(userInfo.select(id, correct).order(id.asc)) {
+        results.append((id: caseEntry[id], correct: caseEntry[correct]))
+    }
+    print(results)
+    return results
 }
