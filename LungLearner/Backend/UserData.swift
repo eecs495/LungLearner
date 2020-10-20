@@ -82,3 +82,10 @@ func storeCaseResult(result: UserCaseResult) {
         correct <- result.correct)
     try! db.run(insert)
 }
+
+func convertUnixTime(unixtime: Int64) -> (year: Int, month: Int, day: Int) {
+    let interval = TimeInterval(unixtime)
+    let date = Date(timeIntervalSince1970: interval)
+    let calendar = Calendar.current
+    return (calendar.component(.year, from: date), calendar.component(.month, from: date), calendar.component(.day, from: date))
+}

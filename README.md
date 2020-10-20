@@ -16,4 +16,15 @@ The frontend code is mainly located in the *LungLearner > Views* folder. The *Co
 
 ### Backend
 
-Insert backend structure.
+The backend code structure is rather straightforward. All current backend code
+is contained in the *LungLearner > Backend* folder. `CaseDatabaseManager.swift`
+contains code for acessing the preloaded SQLite case database using a class
+wrapper. We experimented with a class wrapper structure in an attempt to
+increase efficiency by reducing the number of database connections.
+`CaseData.swift` contains the code for converting between SQLite rows and our
+internal case data structures, as well as a function to provide dummy testing
+data. `UserData.swift` contains the code for generating, modifying, and accessing the
+locally stored per-user data, including case completion history and correctness
+statistics. The preloaded database is contained under *LungLearner > Database >
+CaseDb.sqlite3*. While the database only holds one entry as of yet, all current
+code is set up to work with an arbitratily sized database.
