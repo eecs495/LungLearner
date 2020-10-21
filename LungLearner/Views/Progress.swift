@@ -25,14 +25,14 @@ struct Progress: View {
                     Text("\(counts.incorrectCases)")
                         .foregroundColor(Color.red)
                         .font(.system(size: 70))
-                    Text("Correct")
+                    Text("Incorrect")
                 }
                 .padding(.vertical, -10)
                 HStack(alignment: .lastTextBaseline) {
                     Text("\(incomplete)")
                         .foregroundColor(Color.gray)
                         .font(.system(size: 70))
-                    Text("Correct")
+                    Text("Incomplete")
                 }
                 .padding(.vertical, -10)
             }
