@@ -37,7 +37,7 @@ struct LabValues: View {
                         .padding()
                         .padding(.bottom, 30)
                 }
-                .simultaneousGesture(TapGesture().onEnded{
+                .simultaneousGesture(TapGesture().onEnded {
                     steps.stepList.append(causes[selectedCause])
                 })
             }

@@ -23,14 +23,16 @@ struct DiagnoseCase: View {
                     .padding(.top, 40)
                     .padding(.bottom)
                 VStack(alignment: .leading) {
-                    ForEach((0...4), id: \.self) {
-                        Text("\(steps.stepList[$0]) after \(causeNames[$0])")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                        }
+                    if steps.stepList.count == 5 {
+                        ForEach((0 ..< 4), id: \.self) {
+                            Text("\(steps.stepList[$0]) after \(causeNames[$0])")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                            }
+                    }
                 }
                 Picker(selection: $selectedCause, label: Text("Please choose a color")) {
-                    ForEach(0 ..< causes.count) {
+                    ForEach(0 ..< causes.count - 1) {
                         Text(causes[$0])
                     }
                 }

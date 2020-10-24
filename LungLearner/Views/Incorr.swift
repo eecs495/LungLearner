@@ -27,12 +27,14 @@ struct Incorr: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text(caseData.correctDiagnosis == steps.stepList[5] ? "Correct!" : "Incorrect")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .padding(.top, 40)
-                    .padding(.bottom)
+                if steps.stepList.count == 6 {
+                    Text(caseData.correctDiagnosis == steps.stepList[5] ? "Correct!" : "Incorrect")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                        .padding(.top, 40)
+                        .padding(.bottom)
+                }
                 Text("Cause of Respiratory Failure")
                     .bold()
                     .padding(.bottom, 2)
@@ -45,17 +47,19 @@ struct Incorr: View {
                     .padding(.bottom, 2)
                     .padding(.top)
                 VStack(alignment: .leading) {
-                    ForEach((0...4), id: \.self) {
-                        Text("\(steps.stepList[$0]) after \(causeNames[$0])")
-                            .font(.body)
-                            .foregroundColor(.secondary)
-                        }
+                    if steps.stepList.count == 6 {
+                        ForEach((0 ..< 4), id: \.self) {
+                            Text("\(steps.stepList[$0]) after \(causeNames[$0])")
+                                .font(.body)
+                                .foregroundColor(.secondary)
+                            }
+                    }
                 }
                 Text("Final Diagnosis")
                     .bold()
                     .padding(.bottom, 2)
                     .padding(.top)
-                Text("\(steps.stepList[5])")
+                Text(steps.stepList.count == 6 ? "\(steps.stepList[5])" : "")
                     .font(.body)
                     .foregroundColor(.accentColor)
                 NavigationLink(destination: MainMenu()) {
@@ -64,8 +68,12 @@ struct Incorr: View {
                         .foregroundColor(Color.black)
                         .padding()
                         .padding(.vertical)
+                        .padding(.bottom, 30)
                 }
-                .padding(.bottom, 30)
+                .simultaneousGesture(TapGesture().onEnded {
+                    steps.stepList.removeAll()
+                })
+                
                 
             }
         }

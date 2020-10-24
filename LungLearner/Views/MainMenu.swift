@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct MainMenu: View {
+    @EnvironmentObject var steps: Steps
     var caseDbManager = CaseDatabaseManager()
     var caseData: CaseData?
+    
+    @State private var isPresented = false
     
     init() {
         do {
