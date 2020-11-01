@@ -1,0 +1,5 @@
+type LeaderboardEntry @model {
+    id: ID!
+    username: String!
+    score: Int!
+}

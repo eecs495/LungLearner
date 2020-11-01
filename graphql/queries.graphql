@@ -1,0 +1,59 @@
+# this is an auto generated file. This will be overwritten
+query SyncLeaderboardEntries(
+  $filter: ModelLeaderboardEntryFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncLeaderboardEntries(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      username
+      score
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetLeaderboardEntry($id: ID!) {
+  getLeaderboardEntry(id: $id) {
+    id
+    username
+    score
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+query ListLeaderboardEntrys(
+  $filter: ModelLeaderboardEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listLeaderboardEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      username
+      score
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}

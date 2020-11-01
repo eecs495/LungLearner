@@ -1,0 +1,46 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateLeaderboardEntry(
+  $input: CreateLeaderboardEntryInput!
+  $condition: ModelLeaderboardEntryConditionInput
+) {
+  createLeaderboardEntry(input: $input, condition: $condition) {
+    id
+    username
+    score
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateLeaderboardEntry(
+  $input: UpdateLeaderboardEntryInput!
+  $condition: ModelLeaderboardEntryConditionInput
+) {
+  updateLeaderboardEntry(input: $input, condition: $condition) {
+    id
+    username
+    score
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteLeaderboardEntry(
+  $input: DeleteLeaderboardEntryInput!
+  $condition: ModelLeaderboardEntryConditionInput
+) {
+  deleteLeaderboardEntry(input: $input, condition: $condition) {
+    id
+    username
+    score
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}

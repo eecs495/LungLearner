@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00AD931C84F44AFA9CC4E1E8 /* LeaderboardEntry+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB56C3A00EA347548E47C36B /* LeaderboardEntry+Schema.swift */; };
+		2DD745158641E2AB64303CF0 /* Pods_LungLearner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7CE1E9D6A5C1E110B857C4 /* Pods_LungLearner.framework */; };
+		3A19C25EB5784B4EABD0425D /* LeaderboardEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F3E1B587B48EE87D9AB0A /* LeaderboardEntry.swift */; };
 		4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */; };
 		4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */; };
+		5E8840F12549C7CC00E8EE99 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8840F02549C7CC00E8EE99 /* Leaderboard.swift */; };
 		5EB0706F252512E3009AB694 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB0706E252512E3009AB694 /* SQLite */; };
 		760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B536D2522555F000B129B /* LungLearnerApp.swift */; };
 		760B537225225566000B129B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760B537125225566000B129B /* Assets.xcassets */; };
@@ -34,16 +38,25 @@
 		8CBB8F29252DF5CD00A0C16E /* CaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F26252DF5CD00A0C16E /* CaseData.swift */; };
 		C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9327387252ABDB9003C2641 /* MainMenu.swift */; };
 		C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9327388252ABDB9003C2641 /* HomeItem.swift */; };
+		EE87C0D6767A4D09BC8EFAE9 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E7997402D1C480797A9F936 /* awsconfiguration.json */; };
+		F0DD595F332746F59BB0DB88 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845552C4F21429E81BC68A2 /* AmplifyModels.swift */; };
+		FEA58CEED040415782F11763 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = A972FC2994F948709B3DFB1D /* amplifyconfiguration.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0845552C4F21429E81BC68A2 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
+		119F3E1B587B48EE87D9AB0A /* LeaderboardEntry.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = LeaderboardEntry.swift; path = amplify/generated/models/LeaderboardEntry.swift; sourceTree = "<group>"; };
+		2E7997402D1C480797A9F936 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = awsconfiguration.json; sourceTree = "<group>"; };
 		4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incorr.swift; sourceTree = "<group>"; };
 		4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagProcess.swift; sourceTree = "<group>"; };
+		56AA0BE553FE433EEBDAADAC /* Pods-LungLearner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LungLearner.debug.xcconfig"; path = "Target Support Files/Pods-LungLearner/Pods-LungLearner.debug.xcconfig"; sourceTree = "<group>"; };
+		5E8840F02549C7CC00E8EE99 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		760B536A2522555F000B129B /* LungLearner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LungLearner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		760B536D2522555F000B129B /* LungLearnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungLearnerApp.swift; sourceTree = "<group>"; };
 		760B537125225566000B129B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		760B537425225566000B129B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		760B537625225566000B129B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76399A660A3F441FB44678A7 /* amplifytools.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; path = amplifytools.xcconfig; sourceTree = "<group>"; };
 		765AD731253A4BD00053C3CB /* ReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewButton.swift; sourceTree = "<group>"; };
 		765AD734253A4D980053C3CB /* DiagnoseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnoseCase.swift; sourceTree = "<group>"; };
 		765AD73C253A4F6B0053C3CB /* ClosePopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosePopUpButton.swift; sourceTree = "<group>"; };
@@ -63,6 +76,11 @@
 		8CBB8F24252DF5CD00A0C16E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseDatabaseManager.swift; sourceTree = "<group>"; };
 		8CBB8F26252DF5CD00A0C16E /* CaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseData.swift; sourceTree = "<group>"; };
+		9C7CE1E9D6A5C1E110B857C4 /* Pods_LungLearner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LungLearner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E3AC1CA8EB34CF5B23D455C /* schema.graphql */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text; name = schema.graphql; path = amplify/backend/api/amplifyDatasource/schema.graphql; sourceTree = "<group>"; };
+		A972FC2994F948709B3DFB1D /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		AB56C3A00EA347548E47C36B /* LeaderboardEntry+Schema.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "LeaderboardEntry+Schema.swift"; path = "amplify/generated/models/LeaderboardEntry+Schema.swift"; sourceTree = "<group>"; };
+		B8D49F520A43221516194D6B /* Pods-LungLearner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LungLearner.release.xcconfig"; path = "Target Support Files/Pods-LungLearner/Pods-LungLearner.release.xcconfig"; sourceTree = "<group>"; };
 		C9327387252ABDB9003C2641 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		C9327388252ABDB9003C2641 /* HomeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,12 +91,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EB0706F252512E3009AB694 /* SQLite in Frameworks */,
+				2DD745158641E2AB64303CF0 /* Pods_LungLearner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35041408756DE70ACC61CBBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C7CE1E9D6A5C1E110B857C4 /* Pods_LungLearner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		47B6EDB5FF6647FC9E7FB108 /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				0845552C4F21429E81BC68A2 /* AmplifyModels.swift */,
+				119F3E1B587B48EE87D9AB0A /* LeaderboardEntry.swift */,
+				AB56C3A00EA347548E47C36B /* LeaderboardEntry+Schema.swift */,
+			);
+			name = AmplifyModels;
+			path = .;
+			sourceTree = "<group>";
+		};
 		7601200E2523995800497CD4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,8 +145,12 @@
 		760B53612522555F000B129B = {
 			isa = PBXGroup;
 			children = (
+				47B6EDB5FF6647FC9E7FB108 /* AmplifyModels */,
+				C655B01314224DB1A2804EF7 /* AmplifyConfig */,
 				760B536C2522555F000B129B /* LungLearner */,
 				760B536B2522555F000B129B /* Products */,
+				F583D93D34EF3891A3A7A92A /* Pods */,
+				35041408756DE70ACC61CBBC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,8 +223,30 @@
 				8CBB8F24252DF5CD00A0C16E /* UserData.swift */,
 				8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */,
 				8CBB8F26252DF5CD00A0C16E /* CaseData.swift */,
+				5E8840F02549C7CC00E8EE99 /* Leaderboard.swift */,
 			);
 			path = Backend;
+			sourceTree = "<group>";
+		};
+		C655B01314224DB1A2804EF7 /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				76399A660A3F441FB44678A7 /* amplifytools.xcconfig */,
+				A972FC2994F948709B3DFB1D /* amplifyconfiguration.json */,
+				2E7997402D1C480797A9F936 /* awsconfiguration.json */,
+				9E3AC1CA8EB34CF5B23D455C /* schema.graphql */,
+			);
+			name = AmplifyConfig;
+			path = .;
+			sourceTree = "<group>";
+		};
+		F583D93D34EF3891A3A7A92A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				56AA0BE553FE433EEBDAADAC /* Pods-LungLearner.debug.xcconfig */,
+				B8D49F520A43221516194D6B /* Pods-LungLearner.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,9 +256,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 760B537925225566000B129B /* Build configuration list for PBXNativeTarget "LungLearner" */;
 			buildPhases = (
+				E54CEE89017BF23A9414604B /* [CP] Check Pods Manifest.lock */,
 				760B53662522555F000B129B /* Sources */,
 				760B53672522555F000B129B /* Frameworks */,
 				760B53682522555F000B129B /* Resources */,
+				651798F5BC343E5E8B76D36F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -251,10 +317,54 @@
 				760B537525225566000B129B /* Preview Assets.xcassets in Resources */,
 				760B537225225566000B129B /* Assets.xcassets in Resources */,
 				8C19AB8D2531E2F100505770 /* CaseDb.sqlite3 in Resources */,
+				FEA58CEED040415782F11763 /* amplifyconfiguration.json in Resources */,
+				EE87C0D6767A4D09BC8EFAE9 /* awsconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		651798F5BC343E5E8B76D36F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LungLearner/Pods-LungLearner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LungLearner/Pods-LungLearner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LungLearner/Pods-LungLearner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E54CEE89017BF23A9414604B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LungLearner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		760B53662522555F000B129B /* Sources */ = {
@@ -268,6 +378,7 @@
 				C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */,
 				C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */,
 				765AD74B253E67390053C3CB /* Progress.swift in Sources */,
+				5E8840F12549C7CC00E8EE99 /* Leaderboard.swift in Sources */,
 				8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */,
 				76772350252E953E00D5521B /* PhysicalExam.swift in Sources */,
 				7675FB9D2539FA08006DE9BA /* DataBlock.swift in Sources */,
@@ -284,6 +395,9 @@
 				76F22C6C25242A1300FB864F /* Cause.swift in Sources */,
 				765AD745253DD0190053C3CB /* CaseDetail.swift in Sources */,
 				765AD732253A4BD10053C3CB /* ReviewButton.swift in Sources */,
+				F0DD595F332746F59BB0DB88 /* AmplifyModels.swift in Sources */,
+				3A19C25EB5784B4EABD0425D /* LeaderboardEntry.swift in Sources */,
+				00AD931C84F44AFA9CC4E1E8 /* LeaderboardEntry+Schema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +522,7 @@
 		};
 		760B537A25225566000B129B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56AA0BE553FE433EEBDAADAC /* Pods-LungLearner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -430,6 +545,7 @@
 		};
 		760B537B25225566000B129B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8D49F520A43221516194D6B /* Pods-LungLearner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

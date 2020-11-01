@@ -6,10 +6,26 @@
 //
 
 import SwiftUI
+import Amplify
+import AmplifyPlugins
+
+func configureAmp() {
+    let dataStore = AWSDataStorePlugin(modelRegistration: AmplifyModels())
+    let api = AWSAPIPlugin(modelRegistration: AmplifyModels())
+    do {
+        try Amplify.add(plugin: dataStore)
+        try Amplify.add(plugin: api)
+        try Amplify.configure()
+        print("amplify init")
+    } catch {
+        print("amplify init failed: \(error)")
+    }
+}
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         prepareUserDatabase()
+        
         // Currently here to test retrieving case info by id
         let caseDbManager = CaseDatabaseManager()
         do {
@@ -20,6 +36,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         } catch {
             print("Other errors")
         }
+        configureAmp()
+        storeToLeaderboard(username: "billy", score: 256)
         return true
     }
 }
