@@ -91,6 +91,9 @@ func convertUnixTime(unixtime: Int64) -> (year: Int, month: Int, day: Int) {
     return (calendar.component(.year, from: date), calendar.component(.month, from: date), calendar.component(.day, from: date))
 }
 
+// Implement which cases right/wrong getter
+// check all completed cases and return a list of case IDs paired with booleans marking whether the
+// user diagnosed the case right of ir they diagnosed the case wrong
 func getListOfCompletedCases() -> [(id: Int64, correct: Bool)] {
     var results:[(id: Int64, correct: Bool)] = []
     let path = NSSearchPathForDirectoriesInDomains(
@@ -106,4 +109,26 @@ func getListOfCompletedCases() -> [(id: Int64, correct: Bool)] {
     }
     print(results)
     return results
+}
+
+
+// Implement user explanation/diagnosis getter
+// take in a case ID and return the diagnosis and explanation the user gave for that case
+func getUserDiagnosis(idInput: Int64) -> (diagnoses: String, reason: String){
+    let path = NSSearchPathForDirectoriesInDomains(
+        .documentDirectory, .userDomainMask, true
+    ).first!
+    let db = try! Connection("\(path)/userdb.sqlite3")
+    let userInfo = Table("userInfo")
+    
+    var results:(diagnoses: String, reason: String)? = nil
+    let id = Expression<Int64>("id")
+    let diagnoses = Expression<String>("diagnoses")
+    let reason = Expression<String>("reason")
+    
+    for caseEntry in try! db.prepare(userInfo.select(diagnoses, reason).filter(id==idInput)) {
+        results = (diagnoses: caseEntry[diagnoses], reason: caseEntry[reason])
+    }
+    print(results ?? ("Not valid","Not valid"))
+    return results ?? ("Not valid", "Not valid")
 }
