@@ -9,7 +9,8 @@ import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        prepareUserDatabase()
+        let userDbManager = UserDatabaseManager()
+        userDbManager.prepareUserDatabase()
         // Currently here to test retrieving case info by id
         let caseDbManager = CaseDatabaseManager()
         do {

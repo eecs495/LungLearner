@@ -9,7 +9,8 @@ import SwiftUI
 
 struct Progress: View {
     var body: some View {
-        let counts = getTotalUserProgress()
+        let userDbManager = UserDatabaseManager()
+        let counts = userDbManager.getTotalUserProgress()
         let incomplete = counts.totalCases - counts.correctCases - counts.incorrectCases
         //overall container
         VStack {

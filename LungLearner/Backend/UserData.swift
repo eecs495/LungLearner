@@ -8,49 +8,6 @@
 import Foundation
 import SQLite
 
-func prepareUserDatabase() {
-    let path = NSSearchPathForDirectoriesInDomains(
-        .documentDirectory, .userDomainMask, true
-    ).first!
-    let db = try! Connection("\(path)/userdb.sqlite3")
-    let userInfo = Table("userInfo")
-    
-    //The id of the completed case
-    let id = Expression<Int64>("id")
-    //When the case was completed in unix time
-    let time = Expression<Int64>("time")
-    //The diagnoses made by the user, comma separated, last diagnosis is the final diagnosis
-    let diagnoses = Expression<String>("diagnoses")
-    //User-supplied reasoning
-    let reason = Expression<String>("reason")
-    //Whether the user got it right
-    let correct = Expression<Bool>("correct")
-    
-    try! db.run(userInfo.create(ifNotExists: true) { t in
-        t.column(id, primaryKey: true)
-        t.column(time)
-        t.column(diagnoses)
-        t.column(reason)
-        t.column(correct)
-    })
-}
-
-//Returns how many cases the user completed, how many they got right, and how many they got wrong
-func getTotalUserProgress() -> (totalCases: Int, correctCases: Int, incorrectCases: Int) {
-    let path = NSSearchPathForDirectoriesInDomains(
-        .documentDirectory, .userDomainMask, true
-    ).first!
-    let db = try! Connection("\(path)/userdb.sqlite3")
-    let userInfo = Table("userInfo")
-    let correct = Expression<Bool>("correct")
-    
-    let totalCases = try! db.scalar(userInfo.count)
-    let correctCases = try! db.scalar(userInfo.filter(correct == true).count)
-    let incorrectCases = try! db.scalar(userInfo.filter(correct == false).count)
-    
-    return (totalCases, correctCases, incorrectCases)
-}
-
 struct UserCaseResult {
     //The id of the case that has been completed
     var caseid: Int64
@@ -62,25 +19,81 @@ struct UserCaseResult {
     var correct: Bool
 }
 
-func storeCaseResult(result: UserCaseResult) {
-    let path = NSSearchPathForDirectoriesInDomains(
-        .documentDirectory, .userDomainMask, true
-    ).first!
-    let db = try! Connection("\(path)/userdb.sqlite3")
-    let userInfo = Table("userInfo")
+class UserDatabaseManager {
+    var db:Connection
+    var userInfo = Table("userInfo")
     
-    let id = Expression<Int64>("id")
-    let time = Expression<Int64>("time")
-    let diagnoses = Expression<String>("diagnoses")
-    let reason = Expression<String>("reason")
-    let correct = Expression<Bool>("correct")
-    
-    let insert = userInfo.insert(id <- result.caseid,
-        time <- Int64(Date().timeIntervalSince1970),
-        diagnoses <- result.diagnoses.joined(separator: ","),
-        reason <- result.reason,
-        correct <- result.correct)
-    try! db.run(insert)
+    //The id of the completed case
+    var id = Expression<Int64>("id")
+    //When the case was completed in unix time
+    var time = Expression<Int64>("time")
+    //The diagnoses made by the user, comma separated, last diagnosis is the final diagnosis
+    var diagnoses = Expression<String>("diagnoses")
+    //User-supplied reasoning
+    var reason = Expression<String>("reason")
+    //Whether the user got it right
+    var correct = Expression<Bool>("correct")
+
+    init() {
+        let path = NSSearchPathForDirectoriesInDomains(
+            .documentDirectory, .userDomainMask, true
+        ).first!
+        db = try! Connection("\(path)/userdb.sqlite3")
+    }
+    func prepareUserDatabase() {
+        try! db.run(userInfo.create(ifNotExists: true) { t in
+            t.column(id, primaryKey: true)
+            t.column(time)
+            t.column(diagnoses)
+            t.column(reason)
+            t.column(correct)
+        })
+    }
+
+    //Returns how many cases the user completed, how many they got right, and how many they got wrong
+    func getTotalUserProgress() -> (totalCases: Int, correctCases: Int, incorrectCases: Int) {
+        
+        let totalCases = try! db.scalar(userInfo.count)
+        let correctCases = try! db.scalar(userInfo.filter(correct == true).count)
+        let incorrectCases = try! db.scalar(userInfo.filter(correct == false).count)
+        
+        return (totalCases, correctCases, incorrectCases)
+    }
+
+    func storeCaseResult(result: UserCaseResult) {
+        
+        let insert = userInfo.insert(id <- result.caseid,
+            time <- Int64(Date().timeIntervalSince1970),
+            diagnoses <- result.diagnoses.joined(separator: ","),
+            reason <- result.reason,
+            correct <- result.correct)
+        try! db.run(insert)
+    }
+
+    // Implement which cases right/wrong getter
+    // check all completed cases and return a list of case IDs paired with booleans marking whether the
+    // user diagnosed the case right of ir they diagnosed the case wrong
+    func getListOfCompletedCases() -> [(id: Int64, correct: Bool)] {
+        var results:[(id: Int64, correct: Bool)] = []
+        
+        for caseEntry in try! db.prepare(userInfo.select(id, correct).order(id.asc)) {
+            results.append((id: caseEntry[id], correct: caseEntry[correct]))
+        }
+        print(results)
+        return results
+    }
+
+
+    // Implement user explanation/diagnosis getter
+    // take in a case ID and return the diagnosis and explanation the user gave for that case
+    func getUserDiagnosis(idInput: Int64) -> (diagnoses: String, reason: String){
+        var results:(diagnoses: String, reason: String)? = nil
+        for caseEntry in try! db.prepare(userInfo.select(diagnoses, reason).filter(id==idInput)) {
+            results = (diagnoses: caseEntry[diagnoses], reason: caseEntry[reason])
+        }
+        print(results ?? ("Not valid","Not valid"))
+        return results ?? ("Not valid", "Not valid")
+    }
 }
 
 // Because unix time is weird(tm), I added this function so we can work with it a bit easier
@@ -89,46 +102,4 @@ func convertUnixTime(unixtime: Int64) -> (year: Int, month: Int, day: Int) {
     let date = Date(timeIntervalSince1970: interval)
     let calendar = Calendar.current
     return (calendar.component(.year, from: date), calendar.component(.month, from: date), calendar.component(.day, from: date))
-}
-
-// Implement which cases right/wrong getter
-// check all completed cases and return a list of case IDs paired with booleans marking whether the
-// user diagnosed the case right of ir they diagnosed the case wrong
-func getListOfCompletedCases() -> [(id: Int64, correct: Bool)] {
-    var results:[(id: Int64, correct: Bool)] = []
-    let path = NSSearchPathForDirectoriesInDomains(
-        .documentDirectory, .userDomainMask, true
-    ).first!
-    let db = try! Connection("\(path)/userdb.sqlite3")
-    let userInfo = Table("userInfo")
-    let id = Expression<Int64>("id")
-    let correct = Expression<Bool>("correct")
-    
-    for caseEntry in try! db.prepare(userInfo.select(id, correct).order(id.asc)) {
-        results.append((id: caseEntry[id], correct: caseEntry[correct]))
-    }
-    print(results)
-    return results
-}
-
-
-// Implement user explanation/diagnosis getter
-// take in a case ID and return the diagnosis and explanation the user gave for that case
-func getUserDiagnosis(idInput: Int64) -> (diagnoses: String, reason: String){
-    let path = NSSearchPathForDirectoriesInDomains(
-        .documentDirectory, .userDomainMask, true
-    ).first!
-    let db = try! Connection("\(path)/userdb.sqlite3")
-    let userInfo = Table("userInfo")
-    
-    var results:(diagnoses: String, reason: String)? = nil
-    let id = Expression<Int64>("id")
-    let diagnoses = Expression<String>("diagnoses")
-    let reason = Expression<String>("reason")
-    
-    for caseEntry in try! db.prepare(userInfo.select(diagnoses, reason).filter(id==idInput)) {
-        results = (diagnoses: caseEntry[diagnoses], reason: caseEntry[reason])
-    }
-    print(results ?? ("Not valid","Not valid"))
-    return results ?? ("Not valid", "Not valid")
 }
