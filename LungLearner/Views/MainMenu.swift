@@ -26,36 +26,29 @@ struct MainMenu: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Lung Learner")
-                    .font(.largeTitle)
-                    .bold()
-                NavigationLink(
-                    destination: History(caseData: caseData!)) {
-                    Text("New Case")
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .padding(.vertical)
-                        .padding(.horizontal, 50)
+            ZStack {
+                VStack {
+                    Image("Logo")
+                        .resizable()
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .padding(.bottom, 30)
+                    NavigationLink(
+                        destination: History(caseData: caseData!)) {
+                        Text("New Case")
+                            .font(.system(size: 20))
+                    }
+                    .buttonStyle(WideButtonStyle())
+                    .padding(.bottom)
+                    .padding(.horizontal, 30)
+                    NavigationLink(
+                        destination: Progress()) {
+                        Text("Review")
+                            .font(.system(size: 20))
+                    }
+                    .buttonStyle(WideButtonStyle())
+                    .padding(.horizontal, 30)
+                    Spacer()
                 }
-                .padding(.top, 30)
-                NavigationLink(
-                    destination: Progress()) {
-                    Text("Review")
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .padding(.vertical)
-                        .padding(.horizontal, 50)
-                }
-                Spacer()
             }
         }
         .navigationBarBackButtonHidden(true)

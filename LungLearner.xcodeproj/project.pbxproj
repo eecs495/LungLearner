@@ -13,6 +13,10 @@
 		760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B536D2522555F000B129B /* LungLearnerApp.swift */; };
 		760B537225225566000B129B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760B537125225566000B129B /* Assets.xcassets */; };
 		760B537525225566000B129B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760B537425225566000B129B /* Preview Assets.xcassets */; };
+		7610BF8B254F1A82007FD5C3 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610BF8A254F1A82007FD5C3 /* Login.swift */; };
+		7610BF8E254F3177007FD5C3 /* CutomStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610BF8D254F3177007FD5C3 /* CutomStyles.swift */; };
+		764DC9A32551F80B00826A9A /* DiagnoseButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764DC9A22551F80B00826A9A /* DiagnoseButtons.swift */; };
+		764DC9A62552051300826A9A /* ProgressCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764DC9A52552051300826A9A /* ProgressCircles.swift */; };
 		765AD732253A4BD10053C3CB /* ReviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AD731253A4BD00053C3CB /* ReviewButton.swift */; };
 		765AD735253A4D980053C3CB /* DiagnoseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AD734253A4D980053C3CB /* DiagnoseCase.swift */; };
 		765AD73D253A4F6B0053C3CB /* ClosePopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765AD73C253A4F6B0053C3CB /* ClosePopUpButton.swift */; };
@@ -44,6 +48,10 @@
 		760B537125225566000B129B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		760B537425225566000B129B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		760B537625225566000B129B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7610BF8A254F1A82007FD5C3 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		7610BF8D254F3177007FD5C3 /* CutomStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutomStyles.swift; sourceTree = "<group>"; };
+		764DC9A22551F80B00826A9A /* DiagnoseButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnoseButtons.swift; sourceTree = "<group>"; };
+		764DC9A52552051300826A9A /* ProgressCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircles.swift; sourceTree = "<group>"; };
 		765AD731253A4BD00053C3CB /* ReviewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewButton.swift; sourceTree = "<group>"; };
 		765AD734253A4D980053C3CB /* DiagnoseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnoseCase.swift; sourceTree = "<group>"; };
 		765AD73C253A4F6B0053C3CB /* ClosePopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosePopUpButton.swift; sourceTree = "<group>"; };
@@ -91,6 +99,7 @@
 				765AD74A253E67390053C3CB /* Progress.swift */,
 				765AD741253DCFAD0053C3CB /* ReviewList.swift */,
 				765AD744253DD0190053C3CB /* CaseDetail.swift */,
+				7610BF8A254F1A82007FD5C3 /* Login.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -128,6 +137,7 @@
 				76012014252399BE00497CD4 /* Models */,
 				7601200E2523995800497CD4 /* Views */,
 				7675FB982533AAA7006DE9BA /* TestData.swift */,
+				7610BF8D254F3177007FD5C3 /* CutomStyles.swift */,
 				760B536D2522555F000B129B /* LungLearnerApp.swift */,
 				760B537125225566000B129B /* Assets.xcassets */,
 				760B537625225566000B129B /* Info.plist */,
@@ -151,6 +161,8 @@
 				765AD73C253A4F6B0053C3CB /* ClosePopUpButton.swift */,
 				765AD731253A4BD00053C3CB /* ReviewButton.swift */,
 				C9327388252ABDB9003C2641 /* HomeItem.swift */,
+				764DC9A22551F80B00826A9A /* DiagnoseButtons.swift */,
+				764DC9A52552051300826A9A /* ProgressCircles.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -261,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7610BF8E254F3177007FD5C3 /* CutomStyles.swift in Sources */,
 				7677235A252F645700D5521B /* XRay.swift in Sources */,
 				8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */,
 				765AD742253DCFAD0053C3CB /* ReviewList.swift in Sources */,
@@ -276,7 +289,10 @@
 				7677234D252E91C900D5521B /* Symptoms.swift in Sources */,
 				7675FB992533AAA7006DE9BA /* TestData.swift in Sources */,
 				4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */,
+				7610BF8B254F1A82007FD5C3 /* Login.swift in Sources */,
+				764DC9A32551F80B00826A9A /* DiagnoseButtons.swift in Sources */,
 				7677234A252E8E5500D5521B /* History.swift in Sources */,
+				764DC9A62552051300826A9A /* ProgressCircles.swift in Sources */,
 				760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */,
 				765AD73D253A4F6B0053C3CB /* ClosePopUpButton.swift in Sources */,
 				76772353252E95F100D5521B /* LabValues.swift in Sources */,

@@ -7,43 +7,47 @@
 
 import SwiftUI
 
+
+
 struct History: View {
     @EnvironmentObject var steps: Steps
-    @State private var selectedCause = 0
+    @State private var selectedCause: String = "Unsure"
     var caseData: CaseData
     
     var body: some View {
-        ScrollView {
+            
+        VStack {
+            ProgressCircles(coloredIndex: 0)
+            HistoryText(caseData: caseData)
+            Spacer()
             VStack {
-                HistoryText(caseData: caseData)
-                    .padding(.horizontal, 30)
-                VStack {
-                     Picker(selection: $selectedCause, label: Text("Please choose a color")) {
-                         ForEach(0 ..< causes.count) {
-                             Text(causes[$0])
-                         }
-                     }
-                     Text("Current Diagnosis")
-                         .bold()
-                         .padding(.bottom, 2)
-                     Text("\(causes[selectedCause])")
-                         .font(.body)
-                         .foregroundColor(.accentColor)
+                HStack {
+                    Text("My current diagnosis is")
+                        .font(.system(size: 20))
+                    Text(selectedCause)
+                        .font(.system(size: 20))
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(Color.hotPink)
                 }
+                .padding(.bottom)
+                DiagnoseButtons(selectedCause: $selectedCause)
                 NavigationLink(destination: Symptoms(caseData: caseData)) {
-                    Image(systemName: "arrow.right")
-                        .font(.largeTitle)
-                        .foregroundColor(Color.black)
-                        .padding()
-                        .padding(.bottom, 30)
+                    HStack {
+                        Text("Symptoms")
+                            .foregroundColor(Color.hotPink)
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(Color.hotPink)
+                    }
+                    .padding(.vertical)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    steps.stepList.append(causes[selectedCause])
+                    steps.stepList.append(selectedCause)
                 })
             }
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
+        
     }
 }
 
@@ -57,15 +61,22 @@ struct HistoryText: View {
     var caseData: CaseData
     
     var body: some View {
-        Text("History")
-            .font(.title)
-            .fontWeight(.bold)
-            .foregroundColor(.primary)
-            .padding(.top, 30)
-            .padding(.bottom)
+        VStack(alignment: .leading) {
+            Text("History")
+                .font(.system(size: 35))
+                .fontWeight(.semibold)
+                .padding(.bottom, 5)
+            HistoryTextBody(caseData: caseData)
+        }
+        .padding(.horizontal, 30)
+    }
+}
+
+struct HistoryTextBody: View {
+    var caseData: CaseData
+    
+    var body: some View {
         Text("Your patient is a \(caseData.age) year old \(caseData.gender) with a past medical history of \(caseData.history1), \(caseData.history2), and \(caseData.history3). Tobacco use is \(caseData.tobaccoUse).")
-            .multilineTextAlignment(.leading)
             .font(.body)
-            .foregroundColor(.secondary)
     }
 }

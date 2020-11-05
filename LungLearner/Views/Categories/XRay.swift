@@ -9,81 +9,66 @@ import SwiftUI
 
 struct XRay: View {
     @EnvironmentObject var steps: Steps
-    @State private var selectedCause = 0
+    @State private var selectedCause: String = "Unsure"
     @State var showImage: Bool = false
+    
+    private let minZoom: CGFloat = 0.75
+    private let maxZoom: CGFloat = 3.0
+    @GestureState private var magnificationLevel: CGFloat = 1.0
+    @State private var zoomLevel: CGFloat = 1.0
+
     var caseData: CaseData
     
+    func setZoom(magnification: CGFloat) -> CGFloat {
+        return max(min(self.zoomLevel * magnification, self.maxZoom), self.minZoom)
+    }
+        
     var body: some View {
-        ScrollView {
-            ZStack {
-                VStack {
+            VStack {
+                ProgressCircles(coloredIndex: 4)
+                VStack(alignment: .leading) {
                     Text("X-Ray")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .padding(.top, 40)
-                        .padding(.bottom)
-                    Text("Click on the plus button below to view this patient's X-ray.")
-                        .multilineTextAlignment(.leading)
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .padding(.horizontal, 30)
-                    Button(action: {
-                        self.showImage.toggle()
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.largeTitle)
+                        .font(.system(size: 35))
+                        .fontWeight(.semibold)
+                        .padding(.bottom, 5)
+                    Text("Your patient's chest X-ray is shown below.")
+                        .padding(.bottom, 5)
+                    Image(caseData.xRayName)
+                        .resizable()
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .frame(height: 350)
+                        .padding(.bottom, 5)
+//                        .scaleEffect(setZoom(magnification: magnificationLevel))
+//                        .gesture(MagnificationGesture().updating($magnificationLevel, body: { (value, state, _) in state = value }).onEnded({ (value) in self.zoomLevel = self.setZoom(magnification: value)})
+//                            )
+                }
+                .padding(.horizontal, 30)
+                Spacer()
+                VStack {
+                    HStack {
+                        Text("My current diagnosis is")
+                            .font(.system(size: 20))
+                        Text(selectedCause)
+                            .font(.system(size: 20))
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(Color.hotPink)
                     }
-                    .padding(.vertical)
-                    .disabled(self.showImage)
-                    VStack {
-                         Picker(selection: $selectedCause, label: Text("Please choose a color")) {
-                             ForEach(0 ..< causes.count) {
-                                 Text(causes[$0])
-                             }
-                         }
-                         Text("Current Diagnosis")
-                             .bold()
-                             .padding(.bottom, 2)
-                         Text("\(causes[selectedCause])")
-                             .font(.body)
-                             .foregroundColor(.accentColor)
-                    }
+                    .padding(.bottom)
+                    DiagnoseButtons(selectedCause: $selectedCause)
                     NavigationLink(destination: ReviewCase(caseData: caseData)) {
-                        Image(systemName: "arrow.right")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.black)
-                            .padding()
-                            .padding(.bottom, 30)
+                        HStack {
+                            Text("Review Case")
+                                .foregroundColor(Color.hotPink)
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.hotPink)
+                        }
+                        .padding(.vertical)
                     }
                     .simultaneousGesture(TapGesture().onEnded {
-                        steps.stepList.append(causes[selectedCause])
+                        steps.stepList.append(selectedCause)
                     })
                 }
-                .blur(radius: self.showImage ? 5 : 0)
-                if self.showImage {
-                    ZStack {
-                        Color.white
-                        VStack {
-                            Image(caseData.xRayName)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .cornerRadius(10)
-                            Spacer()
-                            Button(action: {
-                                self.showImage.toggle()
-                            }) {
-                                Image(systemName: "multiply.circle.fill")
-                                    .font(.largeTitle)
-                                    .foregroundColor(.red)
-                            }
-                        }
-                        .padding()
-                    }
-                    .frame(width: 300, height: 300)
-                    .cornerRadius(20).shadow(radius: 20)
-                }
-            }
+
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)

@@ -18,14 +18,8 @@ struct ReviewButton: View {
             self.blurBackground.toggle()
         }) {
             Text(title)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color(UIColor.systemGray5))
-                
         }
-        .foregroundColor(.black)
-        .cornerRadius(10)
-        .padding(.horizontal)
+        .buttonStyle(WideButtonStyle())
     }
 }
 

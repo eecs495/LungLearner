@@ -9,48 +9,49 @@ import SwiftUI
 
 struct DiagnoseCase: View {
     @EnvironmentObject var steps: Steps
-    @State private var selectedCause = 0
+    @State private var selectedCause: String = "Unsure"
     
     var caseData: CaseData
     
     var body: some View {
-        ScrollView {
-            VStack {
+        VStack {
+            VStack(alignment: .leading) {
                 Text("Thoughts so far...")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .padding(.top, 40)
-                    .padding(.bottom)
-                VStack(alignment: .leading) {
-                    if steps.stepList.count == 5 {
-                        ForEach((0 ..< 4), id: \.self) {
-                            Text("\(steps.stepList[$0]) after \(causeNames[$0])")
-                                .font(.body)
-                                .foregroundColor(.secondary)
-                            }
-                    }
+                    .font(.system(size: 35))
+                    .fontWeight(.semibold)
+                    .padding(.vertical)
+                if steps.stepList.count == 5 {
+                    StepListText(stepList: steps.stepList, index: 0)
+                    StepListText(stepList: steps.stepList, index: 1)
+                    StepListText(stepList: steps.stepList, index: 2)
+                    StepListText(stepList: steps.stepList, index: 3)
+                    StepListText(stepList: steps.stepList, index: 4)
                 }
-                Picker(selection: $selectedCause, label: Text("Please choose a color")) {
-                    ForEach(0 ..< causes.count - 1) {
-                        Text(causes[$0])
-                    }
+            }
+            .padding(.horizontal, 30)
+            Spacer()
+            VStack {
+                HStack {
+                    Text("My final diagnosis is")
+                        .font(.system(size: 20))
+                    Text(selectedCause)
+                        .font(.system(size: 20))
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(Color.hotPink)
                 }
-                Text("Final Diagnosis")
-                    .bold()
-                    .padding(.bottom, 2)
-                Text("\(causes[selectedCause])")
-                    .font(.body)
-                    .foregroundColor(.accentColor)
-                    .padding(.bottom)
+                .padding(.bottom)
+                DiagnoseButtons(selectedCause: $selectedCause)
                 NavigationLink(destination: Incorr(caseData: caseData)) {
-                    Text("CHECK")
-                        .foregroundColor(.red)
-                        .font(.headline)
+                    HStack {
+                        Text("CHECK")
+                            .foregroundColor(Color.hotPink)
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(Color.hotPink)
+                    }
+                    .padding(.vertical)
                 }
-                .padding(.bottom, 30)
-                .simultaneousGesture(TapGesture().onEnded{
-                    steps.stepList.append(causes[selectedCause])
+                .simultaneousGesture(TapGesture().onEnded {
+                    steps.stepList.append(selectedCause)
                 })
             }
         }
@@ -62,5 +63,19 @@ struct DiagnoseCase: View {
 struct DiagnoseCase_Previews: PreviewProvider {
     static var previews: some View {
         DiagnoseCase(caseData: testCaseData1)
+    }
+}
+
+struct StepListText: View {
+    var stepList: [String]
+    var index: Int
+    
+    var body: some View {
+        HStack {
+            Text(stepList[index])
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                .foregroundColor(Color.hotPink)
+            Text("after \(causeNames[index])")
+        }
     }
 }

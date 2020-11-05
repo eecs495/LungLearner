@@ -24,32 +24,40 @@ struct ReviewCase: View {
     var firstDiagnosis: Bool = true
     
     var body: some View {
-        ScrollView {
             ZStack {
                 VStack(alignment: .center) {
-                    if firstDiagnosis {
-                        Text("Review")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-                            .padding(.top, 20)
-                            .padding(.bottom)
-                    }
-                    VStack {
-                        ReviewButton(showCategory: $showHistory, blurBackground: $blurBackground, title: "History")
-                        ReviewButton(showCategory: $showSymptoms, blurBackground: $blurBackground, title: "Symptoms")
-                        ReviewButton(showCategory: $showPhysicalExam, blurBackground: $blurBackground, title: "Physical Exam")
-                        ReviewButton(showCategory: $showLabValues, blurBackground: $blurBackground, title: "Lab Values")
-                        ReviewButton(showCategory: $showXRay, blurBackground: $blurBackground, title: "X-Ray")
-                    }
+                        if firstDiagnosis {
+                            VStack(alignment: .leading) {
+                                Text("Review")
+                                    .font(.system(size: 35))
+                                    .fontWeight(.semibold)
+                                    .padding(.bottom, 5)
+                                Text("Review your patient's case data by selecting the categories below.")
+                                    .padding(.bottom, 5)
+                                }
+                            .padding(.horizontal, 30)
+                        }
+                        Group {
+                            ReviewButton(showCategory: $showHistory, blurBackground: $blurBackground, title: "History")
+                            ReviewButton(showCategory: $showSymptoms, blurBackground: $blurBackground, title: "Symptoms")
+                            ReviewButton(showCategory: $showPhysicalExam, blurBackground: $blurBackground, title: "Physical Exam")
+                            ReviewButton(showCategory: $showLabValues, blurBackground: $blurBackground, title: "Lab Values")
+                                ReviewButton(showCategory: $showXRay, blurBackground: $blurBackground, title: "X-Ray")
+                        }
+                        .padding(.bottom, 5)
+                        .padding(.horizontal, 25)
+                    
                     .padding(.top, 10)
                     if firstDiagnosis {
+                        Spacer()
                         NavigationLink(destination: DiagnoseCase(caseData: caseData)) {
-                            Image(systemName: "arrow.right")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.black)
-                                .padding()
-                                .padding(.vertical)
+                            HStack {
+                                Text("Diagnose Case")
+                                    .foregroundColor(Color.hotPink)
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(Color.hotPink)
+                            }
+                            .padding(.vertical)
                         }
                     }
                     if !firstDiagnosis {
@@ -68,16 +76,20 @@ struct ReviewCase: View {
                         Color.white
                         VStack {
                             ScrollView {
-                                HistoryText(caseData: caseData)
-                                    .padding(.horizontal)
+                                VStack(alignment: .leading) {
+                                    HistoryTextBody(caseData: caseData)
+                                }
+                                .padding()
                             }
                             Spacer()
                             ClosePopUpButton(showCategory: $showHistory, blurBackground: $blurBackground)
                         }
                         .padding()
                     }
-                    .frame(width: 300, height: 400)
+                    .frame(height: 500)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                     .cornerRadius(20).shadow(radius: 20)
+                    .padding(.horizontal)
                 }
                 
                 if self.showSymptoms {
@@ -85,16 +97,20 @@ struct ReviewCase: View {
                         Color.white
                         VStack {
                             ScrollView {
-                                SymptomsText(caseData: caseData)
-                                    .padding(.horizontal)
+                                VStack(alignment: .leading) {
+                                    SymptomsTextBody(caseData: caseData)
+                                }
+                                .padding()
                             }
                             Spacer()
                             ClosePopUpButton(showCategory: $showSymptoms, blurBackground: $blurBackground)
                         }
                         .padding()
                     }
-                    .frame(width: 300, height: 400)
+                    .frame(height: 500)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                     .cornerRadius(20).shadow(radius: 20)
+                    .padding(.horizontal)
                 }
                 
                 if self.showPhysicalExam {
@@ -102,16 +118,20 @@ struct ReviewCase: View {
                         Color.white
                         VStack {
                             ScrollView {
-                                PhysicalExamText(caseData: caseData)
-                                    .padding(.horizontal)
+                                VStack(alignment: .leading) {
+                                    PhysicalExamTextBody(caseData: caseData)
+                                }
+                                .padding()
                             }
                             Spacer()
                             ClosePopUpButton(showCategory: $showPhysicalExam, blurBackground: $blurBackground)
                         }
                         .padding()
                     }
-                    .frame(width: 300, height: 400)
+                    .frame(height: 500)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                     .cornerRadius(20).shadow(radius: 20)
+                    .padding(.horizontal)
                 }
                 
                 if self.showLabValues {
@@ -119,16 +139,24 @@ struct ReviewCase: View {
                         Color.white
                         VStack {
                             ScrollView {
-                                LabValuesText(caseData: caseData)
-                                    .padding(.horizontal)
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        LabValuesTextBody(caseData: caseData)
+                                    }
+                                    .padding()
+                                    Spacer()
+                                }
                             }
+
                             Spacer()
                             ClosePopUpButton(showCategory: $showLabValues, blurBackground: $blurBackground)
                         }
                         .padding()
                     }
-                    .frame(width: 300, height: 400)
+                    .frame(height: 500)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                     .cornerRadius(20).shadow(radius: 20)
+                    .padding(.horizontal)
                 }
                 
                 if self.showXRay {
@@ -144,13 +172,14 @@ struct ReviewCase: View {
                         }
                         .padding()
                     }
-                    .frame(width: 300, height: 300)
+                    .frame(height: 375)
+                    .frame(minWidth: 0, maxWidth: .infinity)
                     .cornerRadius(20).shadow(radius: 20)
+                    .padding(.horizontal)
                 }
                 
                 
             }
-        }
         .navigationBarTitle("Case \(caseData.id)")
         .navigationBarBackButtonHidden(firstDiagnosis)
         .navigationBarHidden(firstDiagnosis)
