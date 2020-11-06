@@ -12,38 +12,47 @@ struct PhysicalExam: View {
     @State private var selectedCause: String = "Unsure"
     var caseData: CaseData
     
+    init(caseData: CaseData){
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
+        UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
+        self.caseData = caseData
+    }
+    
     var body: some View {
-        VStack {
-            ProgressCircles(coloredIndex: 2)
-            PhysicalExamText(caseData: caseData)
-            Spacer()
+        ScrollView {
             VStack {
-                HStack {
-                    Text("My current diagnosis is")
-                        .font(.system(size: 20))
-                    Text(selectedCause)
-                        .font(.system(size: 20))
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(Color.hotPink)
-                }
-                .padding(.bottom)
-                DiagnoseButtons(selectedCause: $selectedCause)
-                NavigationLink(destination: LabValues(caseData: caseData)) {
+                ProgressCircles(coloredIndex: 2)
+                PhysicalExamText(caseData: caseData)
+                Spacer()
+                VStack {
                     HStack {
-                        Text("Lab Values")
-                            .foregroundColor(Color.hotPink)
-                        Image(systemName: "chevron.right")
+                        Text("My current diagnosis is")
+                            .font(.system(size: 20))
+                        Text(selectedCause)
+                            .font(.system(size: 20))
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundColor(Color.hotPink)
                     }
                     .padding(.vertical)
+                    DiagnoseButtons(selectedCause: $selectedCause)
+                    NavigationLink(destination: LabValues(caseData: caseData)) {
+                        HStack {
+                            Text("Lab Values")
+                                .foregroundColor(Color.hotPink)
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.hotPink)
+                        }
+                        .padding(.vertical)
+                    }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        steps.stepList.append(selectedCause)
+                    })
                 }
-                .simultaneousGesture(TapGesture().onEnded {
-                    steps.stepList.append(selectedCause)
-                })
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
     }
 }
 
@@ -73,7 +82,6 @@ struct PhysicalExamTextBody: View {
     
     var body: some View {
         Group {
-            Text("Notes from your patient's physical exam are recorded below.")
             DataBlock(title: "General", description: "\(caseData.physicalExamData.general)")
             DataBlock(title: "Head", description: "\(caseData.physicalExamData.head)")
             DataBlock(title: "Neck", description: "\(caseData.physicalExamData.neck)")

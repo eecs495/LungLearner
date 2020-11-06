@@ -12,38 +12,47 @@ struct Symptoms: View {
     @State private var selectedCause: String = "Unsure"
     var caseData: CaseData
     
+    init(caseData: CaseData){
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
+        UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
+        self.caseData = caseData
+    }
+    
     var body: some View {
-        VStack {
-            ProgressCircles(coloredIndex: 1)
-            SymptomsText(caseData: caseData)
-            Spacer()
+        ScrollView {
             VStack {
-                HStack {
-                    Text("My current diagnosis is")
-                        .font(.system(size: 20))
-                    Text(selectedCause)
-                        .font(.system(size: 20))
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(Color.hotPink)
-                }
-                .padding(.bottom)
-                DiagnoseButtons(selectedCause: $selectedCause)
-                NavigationLink(destination: PhysicalExam(caseData: caseData)) {
+                ProgressCircles(coloredIndex: 1)
+                SymptomsText(caseData: caseData)
+                Spacer()
+                VStack {
                     HStack {
-                        Text("Physical Exam")
-                            .foregroundColor(Color.hotPink)
-                        Image(systemName: "chevron.right")
+                        Text("My current diagnosis is")
+                            .font(.system(size: 20))
+                        Text(selectedCause)
+                            .font(.system(size: 20))
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundColor(Color.hotPink)
                     }
                     .padding(.vertical)
+                    DiagnoseButtons(selectedCause: $selectedCause)
+                    NavigationLink(destination: PhysicalExam(caseData: caseData)) {
+                        HStack {
+                            Text("Physical Exam")
+                                .foregroundColor(Color.hotPink)
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.hotPink)
+                        }
+                        .padding(.vertical)
+                    }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        steps.stepList.append(selectedCause)
+                    })
                 }
-                .simultaneousGesture(TapGesture().onEnded {
-                    steps.stepList.append(selectedCause)
-                })
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
     }
 }
 
@@ -74,6 +83,7 @@ struct SymptomsTextBody: View {
     var body: some View {
             Group {
                 Text("Your patient has had \(caseData.symptomData.durationSymptoms), \(caseData.symptomData.severitySymptoms) symptoms of \(caseData.symptomData.descriptionSymptoms) for \(caseData.symptomData.onsetSymptoms). The provocating factor is \(caseData.symptomData.provocatingFactors) and the relieving factor is \(caseData.symptomData.relievingFactors).")
+                    .textStyle(WhiteCard())
                 DataBlock(title: "Temperature", description: "\(caseData.symptomValuesData.temperature)")
                 DataBlock(title: "Heart Rate", description: "\(caseData.symptomValuesData.heartRate)")
                 DataBlock(title: "Respiratory Rate", description: "\(caseData.symptomValuesData.respiratoryRate)")

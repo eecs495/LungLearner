@@ -31,13 +31,9 @@ struct XRay: View {
                         .font(.system(size: 35))
                         .fontWeight(.semibold)
                         .padding(.bottom, 5)
-                    Text("Your patient's chest X-ray is shown below.")
-                        .padding(.bottom, 5)
                     Image(caseData.xRayName)
                         .resizable()
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .frame(height: 350)
-                        .padding(.bottom, 5)
+                        .aspectRatio(contentMode: .fit)
 //                        .scaleEffect(setZoom(magnification: magnificationLevel))
 //                        .gesture(MagnificationGesture().updating($magnificationLevel, body: { (value, state, _) in state = value }).onEnded({ (value) in self.zoomLevel = self.setZoom(magnification: value)})
 //                            )
@@ -70,6 +66,7 @@ struct XRay: View {
                 }
 
         }
+        .background(Color.lighterGray.ignoresSafeArea())
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }

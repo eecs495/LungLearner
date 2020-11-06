@@ -17,16 +17,18 @@ struct DiagnoseButtons: View {
                     selectedCause = "CHF"
                 }) {
                     Text("CHF")
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 .buttonStyle(NarrowButtonStyle())
-                .padding(.leading, 15)
+                .padding(.leading, 30)
                 Button(action: {
                     selectedCause = "COPD"
                 }) {
                     Text("COPD")
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 .buttonStyle(NarrowButtonStyle())
-                .padding(.trailing, 15)
+                .padding(.trailing, 30)
             }
             .padding(.bottom, 5)
             HStack {
@@ -34,16 +36,18 @@ struct DiagnoseButtons: View {
                     selectedCause = "Pneumonia"
                 }) {
                     Text("Pneumonia")
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 .buttonStyle(NarrowButtonStyle())
-                .padding(.leading, 15)
+                .padding(.leading, 30)
                 Button(action: {
                     selectedCause = "Unsure"
                 }) {
                     Text("Unsure")
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 .buttonStyle(NarrowButtonStyle())
-                .padding(.trailing, 15)
+                .padding(.trailing, 30)
             }
         }
     }

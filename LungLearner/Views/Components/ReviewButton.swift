@@ -18,6 +18,8 @@ struct ReviewButton: View {
             self.blurBackground.toggle()
         }) {
             Text(title)
+                .font(.system(size: 20))
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
         }
         .buttonStyle(WideButtonStyle())
     }

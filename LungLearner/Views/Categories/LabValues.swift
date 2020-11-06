@@ -13,38 +13,47 @@ struct LabValues: View {
     @State var showImage: Bool = false
     var caseData: CaseData
     
+    init(caseData: CaseData){
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
+        UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
+        self.caseData = caseData
+    }
+    
     var body: some View {
-        VStack {
-            ProgressCircles(coloredIndex: 3)
-            LabValuesText(caseData: caseData)
-            Spacer()
+        ScrollView {
             VStack {
-                HStack {
-                    Text("My current diagnosis is")
-                        .font(.system(size: 20))
-                    Text(selectedCause)
-                        .font(.system(size: 20))
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(Color.hotPink)
-                }
-                .padding(.bottom)
-                DiagnoseButtons(selectedCause: $selectedCause)
-                NavigationLink(destination: XRay(caseData: caseData)) {
+                ProgressCircles(coloredIndex: 3)
+                LabValuesText(caseData: caseData)
+                Spacer()
+                VStack {
                     HStack {
-                        Text("X-Ray")
-                            .foregroundColor(Color.hotPink)
-                        Image(systemName: "chevron.right")
+                        Text("My current diagnosis is")
+                            .font(.system(size: 20))
+                        Text(selectedCause)
+                            .font(.system(size: 20))
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundColor(Color.hotPink)
                     }
                     .padding(.vertical)
+                    DiagnoseButtons(selectedCause: $selectedCause)
+                    NavigationLink(destination: XRay(caseData: caseData)) {
+                        HStack {
+                            Text("X-Ray")
+                                .foregroundColor(Color.hotPink)
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.hotPink)
+                        }
+                        .padding(.vertical)
+                    }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        steps.stepList.append(selectedCause)
+                    })
                 }
-                .simultaneousGesture(TapGesture().onEnded {
-                    steps.stepList.append(selectedCause)
-                })
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
     }
 }
 
@@ -110,12 +119,11 @@ struct LabValuesTextBody: View {
     
     var body: some View {
         Group {
-            Text("Your patient's lab results are recorded below.")
-                .padding(.bottom, 5)
             BloodDataBlocks(caseData: caseData)
             ChemicalDataBlocks(caseData: caseData)
             ABGDataBlocks(caseData: caseData)
             DataBlock(title: "Lactate", description: "\(caseData.labExamData.lactate)")
         }
+        .padding(.bottom, 5)
     }
 }

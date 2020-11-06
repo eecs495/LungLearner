@@ -31,6 +31,7 @@
 		76772353252E95F100D5521B /* LabValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772352252E95F100D5521B /* LabValues.swift */; };
 		7677235A252F645700D5521B /* XRay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772359252F645700D5521B /* XRay.swift */; };
 		767723612530D92000D5521B /* ReviewCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767723602530D92000D5521B /* ReviewCase.swift */; };
+		76C99FF325549BBB0034E6D1 /* XRayImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C99FF225549BBB0034E6D1 /* XRayImage.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
 		8C19AB8D2531E2F100505770 /* CaseDb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */; };
 		8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F24252DF5CD00A0C16E /* UserData.swift */; };
@@ -66,6 +67,7 @@
 		76772352252E95F100D5521B /* LabValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabValues.swift; sourceTree = "<group>"; };
 		76772359252F645700D5521B /* XRay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRay.swift; sourceTree = "<group>"; };
 		767723602530D92000D5521B /* ReviewCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCase.swift; sourceTree = "<group>"; };
+		76C99FF225549BBB0034E6D1 /* XRayImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayImage.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaseDb.sqlite3; sourceTree = "<group>"; };
 		8CBB8F24252DF5CD00A0C16E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				C9327388252ABDB9003C2641 /* HomeItem.swift */,
 				764DC9A22551F80B00826A9A /* DiagnoseButtons.swift */,
 				764DC9A52552051300826A9A /* ProgressCircles.swift */,
+				76C99FF225549BBB0034E6D1 /* XRayImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7610BF8E254F3177007FD5C3 /* CutomStyles.swift in Sources */,
+				76C99FF325549BBB0034E6D1 /* XRayImage.swift in Sources */,
 				7677235A252F645700D5521B /* XRay.swift in Sources */,
 				8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */,
 				765AD742253DCFAD0053C3CB /* ReviewList.swift in Sources */,
@@ -437,7 +441,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = audladd.LungLearner;
+				PRODUCT_BUNDLE_IDENTIFIER = audladd.LungLearner.uniq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -459,7 +463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = audladd.LungLearner;
+				PRODUCT_BUNDLE_IDENTIFIER = audladd.LungLearner.uniq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

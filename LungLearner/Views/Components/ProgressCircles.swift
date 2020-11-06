@@ -14,7 +14,7 @@ struct ProgressCircles: View {
             Group {
                 ForEach((0 ..< 5), id: \.self) {
                     Circle()
-                        .fill($0 == coloredIndex ? Color.hotPink : Color(UIColor.systemGray5))
+                        .fill($0 == coloredIndex ? Color.hotPink : Color(UIColor.systemGray4))
                     }
             }
             .frame(width: 15, height: 15)

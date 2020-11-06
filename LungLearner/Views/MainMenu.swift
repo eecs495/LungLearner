@@ -36,6 +36,7 @@ struct MainMenu: View {
                         destination: History(caseData: caseData!)) {
                         Text("New Case")
                             .font(.system(size: 20))
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     }
                     .buttonStyle(WideButtonStyle())
                     .padding(.bottom)
@@ -44,6 +45,7 @@ struct MainMenu: View {
                         destination: Progress()) {
                         Text("Review")
                             .font(.system(size: 20))
+                            .fontWeight(.bold)
                     }
                     .buttonStyle(WideButtonStyle())
                     .padding(.horizontal, 30)
@@ -51,6 +53,7 @@ struct MainMenu: View {
                 }
             }
         }
+        .background(Color.lighterGray.ignoresSafeArea())
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }

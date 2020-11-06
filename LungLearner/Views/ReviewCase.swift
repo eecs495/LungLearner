@@ -27,15 +27,15 @@ struct ReviewCase: View {
             ZStack {
                 VStack(alignment: .center) {
                         if firstDiagnosis {
-                            VStack(alignment: .leading) {
+                            HStack {
                                 Text("Review")
                                     .font(.system(size: 35))
                                     .fontWeight(.semibold)
                                     .padding(.bottom, 5)
-                                Text("Review your patient's case data by selecting the categories below.")
-                                    .padding(.bottom, 5)
-                                }
-                            .padding(.horizontal, 30)
+                                    .padding(.top)
+                                    .padding(.horizontal, 30)
+                                Spacer()
+                            }
                         }
                         Group {
                             ReviewButton(showCategory: $showHistory, blurBackground: $blurBackground, title: "History")
@@ -45,7 +45,7 @@ struct ReviewCase: View {
                                 ReviewButton(showCategory: $showXRay, blurBackground: $blurBackground, title: "X-Ray")
                         }
                         .padding(.bottom, 5)
-                        .padding(.horizontal, 25)
+                        .padding(.horizontal, 30)
                     
                     .padding(.top, 10)
                     if firstDiagnosis {
@@ -73,7 +73,7 @@ struct ReviewCase: View {
                 .blur(radius: self.blurBackground ? 5 : 0)
                 if self.showHistory {
                     ZStack {
-                        Color.white
+                        Color.lighterGray
                         VStack {
                             ScrollView {
                                 VStack(alignment: .leading) {
@@ -86,7 +86,7 @@ struct ReviewCase: View {
                         }
                         .padding()
                     }
-                    .frame(height: 500)
+                    .frame(height: 375)
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .cornerRadius(20).shadow(radius: 20)
                     .padding(.horizontal)
@@ -94,7 +94,7 @@ struct ReviewCase: View {
                 
                 if self.showSymptoms {
                     ZStack {
-                        Color.white
+                        Color.lighterGray
                         VStack {
                             ScrollView {
                                 VStack(alignment: .leading) {
@@ -115,7 +115,7 @@ struct ReviewCase: View {
                 
                 if self.showPhysicalExam {
                     ZStack {
-                        Color.white
+                        Color.lighterGray
                         VStack {
                             ScrollView {
                                 VStack(alignment: .leading) {
@@ -136,7 +136,7 @@ struct ReviewCase: View {
                 
                 if self.showLabValues {
                     ZStack {
-                        Color.white
+                        Color.lighterGray
                         VStack {
                             ScrollView {
                                 HStack {
@@ -161,7 +161,7 @@ struct ReviewCase: View {
                 
                 if self.showXRay {
                     ZStack {
-                        Color.white
+                        Color.lighterGray
                         VStack {
                             Image(caseData.xRayName)
                                 .resizable()
@@ -176,10 +176,9 @@ struct ReviewCase: View {
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .cornerRadius(20).shadow(radius: 20)
                     .padding(.horizontal)
-                }
-                
-                
-            }
+                }    
+        }
+        .background(Color.lighterGray.ignoresSafeArea())
         .navigationBarTitle("Case \(caseData.id)")
         .navigationBarBackButtonHidden(firstDiagnosis)
         .navigationBarHidden(firstDiagnosis)

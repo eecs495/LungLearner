@@ -45,6 +45,7 @@ struct History: View {
                 })
             }
         }
+        .background(Color.lighterGray.ignoresSafeArea())
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
         
@@ -77,6 +78,6 @@ struct HistoryTextBody: View {
     
     var body: some View {
         Text("Your patient is a \(caseData.age) year old \(caseData.gender) with a past medical history of \(caseData.history1), \(caseData.history2), and \(caseData.history3). Tobacco use is \(caseData.tobaccoUse).")
-            .font(.body)
+            .textStyle(WhiteCard())
     }
 }

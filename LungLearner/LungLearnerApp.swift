@@ -8,7 +8,9 @@
 import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        
         let userDbManager = UserDatabaseManager()
         userDbManager.prepareUserDatabase()
         // Currently here to test retrieving case info by id
@@ -21,6 +23,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         } catch {
             print("Other errors")
         }
+        
         return true
     }
 }
