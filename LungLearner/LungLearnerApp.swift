@@ -16,7 +16,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // Currently here to test retrieving case info by id
         let caseDbManager = CaseDatabaseManager()
         do {
-            let caseInfo = try caseDbManager.getCaseById(Id: 1)
+            let caseInfo = try caseDbManager.getRandomCase()
             print(caseInfo)
         } catch CaseError.runtimeError(let errorMessage) {
             print(errorMessage)
