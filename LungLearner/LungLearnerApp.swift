@@ -24,6 +24,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             print("Other errors")
         }
         
+        // Amplify stuff on startup
+        configureAmplify()
+        saveUserPoint()
+        queryUserPoint()
+        
         return true
     }
 }

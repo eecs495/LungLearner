@@ -1,0 +1,5 @@
+type UserPoint @model {
+  id: ID!
+  username: String!
+  points: Int!
+}

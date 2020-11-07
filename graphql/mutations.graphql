@@ -1,0 +1,46 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateUserPoint(
+  $input: CreateUserPointInput!
+  $condition: ModelUserPointConditionInput
+) {
+  createUserPoint(input: $input, condition: $condition) {
+    id
+    username
+    points
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateUserPoint(
+  $input: UpdateUserPointInput!
+  $condition: ModelUserPointConditionInput
+) {
+  updateUserPoint(input: $input, condition: $condition) {
+    id
+    username
+    points
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteUserPoint(
+  $input: DeleteUserPointInput!
+  $condition: ModelUserPointConditionInput
+) {
+  deleteUserPoint(input: $input, condition: $condition) {
+    id
+    username
+    points
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
