@@ -1,10 +1,3 @@
-//
-//  ReviewList.swift
-//  LungLearner
-//
-//  Created by Audrey Ladd on 10/19/20.
-//
-
 import SwiftUI
 
 struct ReviewList: View {
@@ -24,7 +17,7 @@ struct ReviewList: View {
                     ForEach(self.correctCases, id: \.id) { caseData in
                         NavigationLink(
                             destination: ReviewCase(caseData: caseData, firstDiagnosis: false)){
-                            Text("Case \(caseData.id)")
+                            PatientItem(patient:caseData, case_color:Color.green )
                         }
                     }
                 }
@@ -32,7 +25,8 @@ struct ReviewList: View {
                     ForEach(self.incorrectCases, id: \.id) { caseData in
                         NavigationLink(
                             destination: ReviewCase(caseData: caseData, firstDiagnosis: false)){
-                            Text("Case \(caseData.id)")
+                            PatientItem(patient:caseData, case_color:Color.red )
+            
                         }
                     }
                 }
