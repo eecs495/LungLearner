@@ -56,6 +56,11 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = "90255751140-l41hhvd6fg70dp88qhf0067066molabv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
         
+        // Amplify stuff on startup
+        configureAmplify()
+        saveUserPoint()
+        queryUserPoint()
+        
         return true
     }
     
