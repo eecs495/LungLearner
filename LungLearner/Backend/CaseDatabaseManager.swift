@@ -39,6 +39,22 @@ class CaseDatabaseManager {
         throw(CaseError.runtimeError("Case with ID \(Id) not found"))
     }
 
+    // Get a random case
+    func getRandomCase() throws -> CaseData {
+        let cases = Table("cases")
+        let numCases = try db.scalar(cases.count)
+
+        let randomId = Int64(Int.random(in: 1...numCases))
+        let ID = Expression<Int64>("ID")
+
+        let filtered = try! self.db.prepare(cases.filter(ID == randomId))
+
+        for caseInfo in filtered {
+            return makeCase(caseInfo:caseInfo)
+        }
+        throw(CaseError.runtimeError("Random ID generation malfunctioned"))
+    }
+
     // Static method just for testing
     static func connectAndPrintCases() {
         // Establish a read-only connection to the database since it is added as

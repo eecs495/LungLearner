@@ -1,0 +1,6 @@
+framework module Pods_LungLearner {
+  umbrella header "Pods-LungLearner-umbrella.h"
+
+  export *
+  module * { export * }
+}
