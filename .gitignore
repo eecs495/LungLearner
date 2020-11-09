@@ -5,7 +5,6 @@
 LungLearner.xcodeproj/*
 !LungLearner.xcodeproj/project.pbxproj
 
-
 #amplify
 amplify/\#current-cloud-backend
 amplify/.config/local-*
