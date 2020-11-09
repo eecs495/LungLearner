@@ -9,6 +9,7 @@ import SwiftUI
 
 struct XRay: View {
     @EnvironmentObject var steps: Steps
+    //@EnvironmentObject var timeToDiagnose: TimeToDiagnose
     @State private var selectedCause: String = "Unsure"
     @State var showImage: Bool = false
     
@@ -19,13 +20,23 @@ struct XRay: View {
 
     var caseData: CaseData
     
+    @State var secondsHere: Int = 0
+    var secondsTotal: Int
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     func setZoom(magnification: CGFloat) -> CGFloat {
         return max(min(self.zoomLevel * magnification, self.maxZoom), self.minZoom)
     }
         
     var body: some View {
             VStack {
-                ProgressCircles(coloredIndex: 4)
+                HStack {
+                    ProgressCircles(coloredIndex: 4)
+                    DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
+                    .onReceive(timer) { _ in
+                        self.secondsHere += 1
+                    }
+                }
                 VStack(alignment: .leading) {
                     Text("X-Ray")
                         .font(.system(size: 35))
@@ -51,7 +62,7 @@ struct XRay: View {
                     }
                     .padding(.bottom)
                     DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: ReviewCase(caseData: caseData)) {
+                    NavigationLink(destination: ReviewCase(caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
                         HStack {
                             Text("Review Case")
                                 .foregroundColor(Color.hotPink)
@@ -74,6 +85,6 @@ struct XRay: View {
 
 struct XRay_Previews: PreviewProvider {
     static var previews: some View {
-        XRay(caseData: testCaseData).environmentObject(Steps())
+        XRay(caseData: testCaseData, secondsTotal: 244).environmentObject(Steps())
     }
 }

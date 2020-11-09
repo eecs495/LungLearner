@@ -35,6 +35,8 @@
 		76857D192556DAEA00F293C5 /* PatientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76857D182556DAEA00F293C5 /* PatientItem.swift */; };
 		76C99FF325549BBB0034E6D1 /* XRayImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C99FF225549BBB0034E6D1 /* XRayImage.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
+		76F685C225587DE800C16D8E /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F685C125587DE800C16D8E /* Avatar.swift */; };
+		76F685C92558E11700C16D8E /* DiagnoseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F685C82558E11700C16D8E /* DiagnoseTimer.swift */; };
 		8C19AB8D2531E2F100505770 /* CaseDb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */; };
 		8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F24252DF5CD00A0C16E /* UserData.swift */; };
 		8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */; };
@@ -73,6 +75,8 @@
 		76857D182556DAEA00F293C5 /* PatientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientItem.swift; sourceTree = "<group>"; };
 		76C99FF225549BBB0034E6D1 /* XRayImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayImage.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
+		76F685C125587DE800C16D8E /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		76F685C82558E11700C16D8E /* DiagnoseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnoseTimer.swift; sourceTree = "<group>"; };
 		8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaseDb.sqlite3; sourceTree = "<group>"; };
 		8CBB8F24252DF5CD00A0C16E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseDatabaseManager.swift; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				764DC9A22551F80B00826A9A /* DiagnoseButtons.swift */,
 				764DC9A52552051300826A9A /* ProgressCircles.swift */,
 				76C99FF225549BBB0034E6D1 /* XRayImage.swift */,
+				76F685C125587DE800C16D8E /* Avatar.swift */,
+				76F685C82558E11700C16D8E /* DiagnoseTimer.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -377,12 +383,14 @@
 				8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */,
 				76772350252E953E00D5521B /* PhysicalExam.swift in Sources */,
 				7675FB9D2539FA08006DE9BA /* DataBlock.swift in Sources */,
+				76F685C92558E11700C16D8E /* DiagnoseTimer.swift in Sources */,
 				765AD735253A4D980053C3CB /* DiagnoseCase.swift in Sources */,
 				767723612530D92000D5521B /* ReviewCase.swift in Sources */,
 				76857D192556DAEA00F293C5 /* PatientItem.swift in Sources */,
 				7677234D252E91C900D5521B /* Symptoms.swift in Sources */,
 				7675FB992533AAA7006DE9BA /* TestData.swift in Sources */,
 				4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */,
+				76F685C225587DE800C16D8E /* Avatar.swift in Sources */,
 				7610BF8B254F1A82007FD5C3 /* Login.swift in Sources */,
 				764DC9A32551F80B00826A9A /* DiagnoseButtons.swift in Sources */,
 				7677234A252E8E5500D5521B /* History.swift in Sources */,

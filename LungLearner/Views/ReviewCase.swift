@@ -23,6 +23,10 @@ struct ReviewCase: View {
     var caseData: CaseData
     var firstDiagnosis: Bool = true
     
+    @State var secondsHere: Int = 0
+    var secondsTotal: Int
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some View {
             ZStack {
                 VStack(alignment: .center) {
@@ -33,8 +37,22 @@ struct ReviewCase: View {
                                     .fontWeight(.semibold)
                                     .padding(.bottom, 5)
                                     .padding(.top)
-                                    .padding(.horizontal, 30)
                                 Spacer()
+                                DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
+                                .onReceive(timer) { _ in
+                                    self.secondsHere += 1
+                                }
+                            }
+                            .padding(.horizontal, 30)
+                        }
+                        if !firstDiagnosis {
+                            VStack {
+                                DataBlock(title: "Correct Diagnosis", description: caseData.correctDiagnosis)
+                                    .padding(.bottom, 5)
+                                    .padding(.horizontal, 30)
+                                DataBlock(title: "Your Notes", description: "Insert test notes from user here.")
+                                    .padding(.bottom, 5)
+                                    .padding(.horizontal, 30)
                             }
                         }
                         Group {
@@ -50,7 +68,7 @@ struct ReviewCase: View {
                     .padding(.top, 10)
                     if firstDiagnosis {
                         Spacer()
-                        NavigationLink(destination: DiagnoseCase(caseData: caseData)) {
+                        NavigationLink(destination: DiagnoseCase(caseData: caseData, secondsTotal: secondsTotal + secondsHere)) {
                             HStack {
                                 Text("Diagnose Case")
                                     .foregroundColor(Color.hotPink)
@@ -61,13 +79,7 @@ struct ReviewCase: View {
                         }
                     }
                     if !firstDiagnosis {
-                        Text("Correct Diagnosis")
-                            .bold()
-                            .padding(.bottom, 2)
-                            .padding(.top)
-                        Text("\(caseData.correctDiagnosis)")
-                            .font(.body)
-                            .foregroundColor(.accentColor)
+                        Spacer()
                     }
                 }
                 .blur(radius: self.blurBackground ? 5 : 0)
@@ -176,7 +188,7 @@ struct ReviewCase: View {
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .cornerRadius(20).shadow(radius: 20)
                     .padding(.horizontal)
-                }    
+                }
         }
         .background(Color.lighterGray.ignoresSafeArea())
         .navigationBarTitle("Case \(caseData.id)")
@@ -187,6 +199,6 @@ struct ReviewCase: View {
 
 struct ReviewCase_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewCase(caseData: testCaseData1, firstDiagnosis: true).environmentObject(Steps())
+        ReviewCase(caseData: testCaseData1, firstDiagnosis: false, secondsTotal: 100).environmentObject(Steps())
     }
 }

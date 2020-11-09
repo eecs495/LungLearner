@@ -16,22 +16,35 @@ struct DiagnoseCase: View {
     @State private var inputNotes: String = "Enter notes here"
     let placeholderString: String = "Enter notes here"
     
-    init(caseData: CaseData) {
+    @State var secondsHere: Int = 0
+    var secondsTotal: Int
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    init(caseData: CaseData, secondsTotal: Int) {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
         UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
         UITextView.appearance().backgroundColor = .clear
         self.caseData = caseData
+        self.secondsTotal = secondsTotal
     }
     
     var body: some View {
         ScrollView {
             VStack {
                 VStack(alignment: .leading) {
-                    Text("Thoughts So Far")
-                        .font(.system(size: 35))
-                        .fontWeight(.semibold)
-                        .padding(.vertical)
+                    HStack {
+                        Text("Thoughts So Far")
+                            .font(.system(size: 35))
+                            .fontWeight(.semibold)
+                            .padding(.vertical)
+                        Spacer()
+                        DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
+                        .onReceive(timer) { _ in
+                            self.secondsHere += 1
+                        }
+                    }
+                    //.padding(.horizontal, 30)
                     if steps.stepList.count == 5 {
                         Group {
                             DataBlock(title: "After History", description: steps.stepList[0])
@@ -71,7 +84,7 @@ struct DiagnoseCase: View {
                     DiagnoseButtons(selectedCause: $selectedCause)
                     NavigationLink(destination: Incorr(caseData: caseData)) {
                         HStack {
-                            Text("CHECK")
+                            Text("Check")
                                 .foregroundColor(Color.hotPink)
                             Image(systemName: "chevron.right")
                                 .foregroundColor(Color.hotPink)
@@ -91,7 +104,7 @@ struct DiagnoseCase: View {
 
 struct DiagnoseCase_Previews: PreviewProvider {
     static var previews: some View {
-        DiagnoseCase(caseData: testCaseData1)
+        DiagnoseCase(caseData: testCaseData1, secondsTotal: 444)
     }
 }
 

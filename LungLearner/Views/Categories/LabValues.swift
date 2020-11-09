@@ -13,17 +13,28 @@ struct LabValues: View {
     @State var showImage: Bool = false
     var caseData: CaseData
     
-    init(caseData: CaseData){
+    @State var secondsHere: Int = 0
+    var secondsTotal: Int
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    init(caseData: CaseData, secondsTotal: Int){
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
         UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
         self.caseData = caseData
+        self.secondsTotal = secondsTotal
     }
     
     var body: some View {
         ScrollView {
             VStack {
-                ProgressCircles(coloredIndex: 3)
+                HStack {
+                    ProgressCircles(coloredIndex: 3)
+                    DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
+                    .onReceive(timer) { _ in
+                        self.secondsHere += 1
+                    }
+                }
                 LabValuesText(caseData: caseData)
                 Spacer()
                 VStack {
@@ -37,7 +48,7 @@ struct LabValues: View {
                     }
                     .padding(.vertical)
                     DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: XRay(caseData: caseData)) {
+                    NavigationLink(destination: XRay(caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
                         HStack {
                             Text("X-Ray")
                                 .foregroundColor(Color.hotPink)
@@ -59,7 +70,7 @@ struct LabValues: View {
 
 struct LabValues_Previews: PreviewProvider {
     static var previews: some View {
-        LabValues(caseData: testCaseData1).environmentObject(Steps())
+        LabValues(caseData: testCaseData1, secondsTotal: 200).environmentObject(Steps())
     }
 }
 

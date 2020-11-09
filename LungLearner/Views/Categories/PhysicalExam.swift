@@ -12,17 +12,28 @@ struct PhysicalExam: View {
     @State private var selectedCause: String = "Unsure"
     var caseData: CaseData
     
-    init(caseData: CaseData){
+    @State var secondsHere: Int = 0
+    var secondsTotal: Int
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    init(caseData: CaseData, secondsTotal: Int){
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
         UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
         self.caseData = caseData
+        self.secondsTotal = secondsTotal
     }
     
     var body: some View {
         ScrollView {
             VStack {
-                ProgressCircles(coloredIndex: 2)
+                HStack {
+                    ProgressCircles(coloredIndex: 2)
+                    DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
+                    .onReceive(timer) { _ in
+                        self.secondsHere += 1
+                    }
+                }
                 PhysicalExamText(caseData: caseData)
                 Spacer()
                 VStack {
@@ -36,7 +47,7 @@ struct PhysicalExam: View {
                     }
                     .padding(.vertical)
                     DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: LabValues(caseData: caseData)) {
+                    NavigationLink(destination: LabValues(caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
                         HStack {
                             Text("Lab Values")
                                 .foregroundColor(Color.hotPink)
@@ -58,7 +69,7 @@ struct PhysicalExam: View {
 
 struct PhysicalExam_Previews: PreviewProvider {
     static var previews: some View {
-        PhysicalExam(caseData: testCaseData).environmentObject(Steps())
+        PhysicalExam(caseData: testCaseData, secondsTotal: 90).environmentObject(Steps())
     }
 }
 

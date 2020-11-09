@@ -14,10 +14,30 @@ struct History: View {
     @State private var selectedCause: String = "Unsure"
     var caseData: CaseData
     
+    //@EnvironmentObject var timeToDiagnose: TimeToDiagnose
+    @State var secondsHere: Int = 0
+    var secondsTotal: Int = 0
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some View {
             
         VStack {
-            ProgressCircles(coloredIndex: 0)
+            HStack {
+                ProgressCircles(coloredIndex: 0)
+//                HStack {
+//                    Text("\((secondsHere + secondsTotal) / 60):")
+//                        .padding(.trailing, -8)
+//                    if (secondsHere + secondsTotal) % 60 < 10 {
+//                        Text("0\((secondsHere + secondsTotal) % 60)")
+//                    } else {
+//                        Text("\((secondsHere + secondsTotal) % 60)")
+//                    }
+//                }
+                DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
+                .onReceive(timer) { _ in
+                    self.secondsHere += 1
+                }
+            }
             HistoryText(caseData: caseData)
             Spacer()
             VStack {
@@ -31,7 +51,7 @@ struct History: View {
                 }
                 .padding(.bottom)
                 DiagnoseButtons(selectedCause: $selectedCause)
-                NavigationLink(destination: Symptoms(caseData: caseData)) {
+                NavigationLink(destination: Symptoms(caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
                     HStack {
                         Text("Symptoms")
                             .foregroundColor(Color.hotPink)
@@ -54,7 +74,9 @@ struct History: View {
 
 struct History_Previews: PreviewProvider {
     static var previews: some View {
-        History(caseData: testCaseData).environmentObject(Steps())
+        History(caseData: testCaseData)
+            .environmentObject(Steps())
+            //.environmentObject(TimeToDiagnose())
     }
 }
 
@@ -66,7 +88,7 @@ struct HistoryText: View {
             Text("History")
                 .font(.system(size: 35))
                 .fontWeight(.semibold)
-                .padding(.bottom, 5)
+                .padding(.bottom)
             HistoryTextBody(caseData: caseData)
         }
         .padding(.horizontal, 30)
@@ -77,7 +99,10 @@ struct HistoryTextBody: View {
     var caseData: CaseData
     
     var body: some View {
-        Text("Your patient is a \(caseData.age) year old \(caseData.gender) with a past medical history of \(caseData.history1), \(caseData.history2), and \(caseData.history3). Tobacco use is \(caseData.tobaccoUse).")
-            .textStyle(WhiteCard())
+        VStack {
+            Avatar(gender: caseData.gender, age: caseData.age)
+            Text("Your patient is a \(caseData.age) year old \(caseData.gender) with a past medical history of \(caseData.history1), \(caseData.history2), and \(caseData.history3). Tobacco use is \(caseData.tobaccoUse).")
+                .textStyle(WhiteCard())
+        }
     }
 }
