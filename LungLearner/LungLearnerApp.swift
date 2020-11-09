@@ -27,7 +27,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         GIDSignIn.sharedInstance().clientID = "90255751140-l41hhvd6fg70dp88qhf0067066molabv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = googleDelegate
-        GIDSignIn.sharedInstance().scopes = Constants.GS.scopes
         
         return true
     }
@@ -49,7 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Get the googleDelegate from AppDelegate
         let googleDelegate = (UIApplication.shared.delegate as! AppDelegate).googleDelegate
         // Add googleDelegate as an environment object
-        let contentView = ContentView()
+        let contentView = Login()
             .environmentObject(googleDelegate)
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
