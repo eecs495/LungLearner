@@ -58,7 +58,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
         
         // Amplify stuff on startup
         configureAmplify()
-        saveUserPoint()
+//        saveUserPoint()
         queryUserPoint()
         
         return true
