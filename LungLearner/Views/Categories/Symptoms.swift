@@ -93,7 +93,7 @@ struct SymptomsTextBody: View {
     
     var body: some View {
             Group {
-                Text("Your patient has had \(caseData.symptomData.durationSymptoms), \(caseData.symptomData.severitySymptoms) symptoms of \(caseData.symptomData.descriptionSymptoms) for \(caseData.symptomData.onsetSymptoms). The provocating factor is \(caseData.symptomData.provocatingFactors) and the relieving factor is \(caseData.symptomData.relievingFactors).")
+                Text("Your patient has had symptoms of \(caseData.symptomData.descriptionSymptoms) for \(caseData.symptomData.onsetSymptoms). The provocating factor is \(caseData.symptomData.provocatingFactors).")
                     .textStyle(WhiteCard())
                 DataBlock(title: "Temperature", description: "\(caseData.symptomValuesData.temperature)")
                 DataBlock(title: "Heart Rate", description: "\(caseData.symptomValuesData.heartRate)")

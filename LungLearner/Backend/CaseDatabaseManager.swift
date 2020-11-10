@@ -44,7 +44,7 @@ class CaseDatabaseManager {
         let cases = Table("cases")
         let numCases = try db.scalar(cases.count)
 
-        let randomId = Int64(Int.random(in: 1...numCases))
+        let randomId = Int64(Int.random(in: 0..<numCases))
         let ID = Expression<Int64>("ID")
 
         let filtered = try! self.db.prepare(cases.filter(ID == randomId))

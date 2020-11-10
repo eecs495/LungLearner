@@ -8,7 +8,7 @@
 import Foundation
 
 
-let testSymptomData = SymptomData(onsetSymptoms: "onsetSymptoms", durationSymptoms: "durationSymptoms", provocatingFactors: "provocatingFactors", descriptionSymptoms: "descriptionSymptoms", severitySymptoms: "severitySymptoms", relievingFactors: "relievingFactors")
+let testSymptomData = SymptomData(onsetSymptoms: "onsetSymptoms", provocatingFactors: "provocatingFactors", descriptionSymptoms: "descriptionSymptoms")
 
 let testSymptomValuesData = SymptomValuesData(temperature: 38.4, heartRate: 38.4, respiratoryRate: 24.0, bloodPressure: "104/53", oxygenSaturation: "91%", amountOfOxygenReceived: "4 liters per minute")
 
@@ -16,19 +16,19 @@ let testPhysicalExamData = PhysicalExamData(general: "awake, alert, oriented x 2
 
 let testLabExamData = LabExamData(whiteBloodCells: 14.2, hemoglobin: 13.6, hematocrit: 40.1, platelets: 247.0, sodium: 137.0, potassium: 4.2, chloride: 104.0, bicarbonate: 21.0, bun: 24.0, creatinine: 1.6, glucose: 137.0, bnp: 37.0, abgPh: 7.35, abgPCo2: 39.0, abgPO2: 71.0, lactate: 2.4)
 
-let testCaseData1 = CaseData(id: 1, correctDiagnosis: "COPD", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+let testCaseData1 = CaseData(id: 1, caseId: 201, correctDiagnosis: "COPD", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData, expertComments: "expert comments", redHerrings: "red herrings", cxrThoughts: "cxr thoughts", narratives: "narratives", difficulty: "medium")
 
-let testCaseData2 = CaseData(id: 2, correctDiagnosis: "COPD", age: 74, gender: "female", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+let testCaseData2 = CaseData(id: 2, caseId: 202, correctDiagnosis: "COPD", age: 74, gender: "female", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData, expertComments: "expert comments", redHerrings: "red herrings", cxrThoughts: "cxr thoughts", narratives: "narratives", difficulty: "medium")
 
-let testCaseData3 = CaseData(id: 3, correctDiagnosis: "CHF", age: 23, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
-
-
-let testCaseData4 = CaseData(id: 4, correctDiagnosis: "CHF", age: 23, gender: "female", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+let testCaseData3 = CaseData(id: 3, caseId: 203, correctDiagnosis: "CHF", age: 23, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData, expertComments: "expert comments", redHerrings: "red herrings", cxrThoughts: "cxr thoughts", narratives: "narratives", difficulty: "medium")
 
 
-let testCaseData5 = CaseData(id: 5, correctDiagnosis: "Pneumonia", age: 50, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+let testCaseData4 = CaseData(id: 4, caseId: 204, correctDiagnosis: "CHF", age: 23, gender: "female", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData, expertComments: "expert comments", redHerrings: "red herrings", cxrThoughts: "cxr thoughts", narratives: "narratives", difficulty: "medium")
 
-let testCaseData = CaseData(id: 5, correctDiagnosis: "Pneumonia", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData)
+
+let testCaseData5 = CaseData(id: 5, caseId: 205, correctDiagnosis: "Pneumonia", age: 50, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData, expertComments: "expert comments", redHerrings: "red herrings", cxrThoughts: "cxr thoughts", narratives: "narratives", difficulty: "medium")
+
+let testCaseData = CaseData(id: 5, caseId: 205, correctDiagnosis: "Pneumonia", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: testSymptomData, symptomValuesData: testSymptomValuesData, physicalExamData: testPhysicalExamData, labExamData: testLabExamData, expertComments: "expert comments", redHerrings: "red herrings", cxrThoughts: "cxr thoughts", narratives: "narratives", difficulty: "medium")
 
 
 let testXRayName = "xRay1"
