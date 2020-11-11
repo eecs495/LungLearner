@@ -83,6 +83,24 @@ class UserDatabaseManager {
         return results
     }
 
+    // Get a Usercase by ID
+    func getUserCaseById(Id: Int64) throws -> UserCaseResult {
+        let userInfo = Table("useInfo")
+        let id = Expression<Int64>("ID")
+
+        let filtered = try! self.db.prepare(useInfo.filter(id == id))
+
+        for caseEntry in filtered {
+            var diagnoses = Expression<String>("diagnoses")
+            var reason = Expression<String>("reason")
+            var correct = Expression<Bool>("correct")
+            
+            let usercase = UserCaseResult(caseid: Int(caseEntry[id]), diagnoses:caseEntry[diagnoses], reason : caseEntry[reason],correct:caseEntry[correct])
+            
+            return usercase
+        }
+        throw(CaseError.runtimeError("Case with ID \(Id) not found"))
+    }
 
     // Implement user explanation/diagnosis getter
     // take in a case ID and return the diagnosis and explanation the user gave for that case
@@ -110,7 +128,6 @@ class UserDatabaseManager {
         var diagnoses = Expression<String>("diagnoses")
         var reason = Expression<String>("reason")
         var correct = Expression<Bool>("correct")
-        var usercase = Expression<UserCaseResult>("usercase")
         
         // Iterate over all user completed cases
         for caseEntry in try db.prepare(userInfo.select(id)) {
@@ -148,7 +165,6 @@ class UserDatabaseManager {
         var diagnoses = Expression<String>("diagnoses")
         var reason = Expression<String>("reason")
         var correct = Expression<Bool>("correct")
-        var usercase = Expression<UserCaseResult>("usercase")
         
         // Iterate over all user completed cases
         for caseEntry in try db.prepare(userInfo.select(id)) {
