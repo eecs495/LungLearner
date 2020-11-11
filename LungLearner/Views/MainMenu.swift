@@ -17,7 +17,7 @@ struct MainMenu: View {
     
     init() {
         do {
-            self.caseData = try caseDbManager.getCaseById(Id: 1)
+            self.caseData = try caseDbManager.getRandomCase()
         } catch CaseError.runtimeError(let errorMessage) {
             print(errorMessage)
         } catch {

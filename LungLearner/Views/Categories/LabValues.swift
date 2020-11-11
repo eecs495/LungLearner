@@ -78,10 +78,10 @@ struct BloodDataBlocks: View {
     var caseData: CaseData
     
     var body: some View {
-        DataBlock(title: "White Blood Cells", description: "\(caseData.labExamData.whiteBloodCells)")
-        DataBlock(title: "Hemoglobin", description: "\(caseData.labExamData.hemoglobin)")
-        DataBlock(title: "Hematocrit", description: "\(caseData.labExamData.hematocrit)")
-        DataBlock(title: "Platelets", description: "\(caseData.labExamData.platelets)")
+        DataBlock(title: "White Blood Cells", description: "\(caseData.labExamData.whiteBloodCells)", unit: "K/ul")
+        DataBlock(title: "Hemoglobin", description: "\(caseData.labExamData.hemoglobin)", unit: "g/dL")
+        DataBlock(title: "Hematocrit", description: "\(caseData.labExamData.hematocrit)%")
+        DataBlock(title: "Platelets", description: "\(caseData.labExamData.platelets)", unit: "K/ul")
     }
 }
 
@@ -89,14 +89,14 @@ struct ChemicalDataBlocks: View {
     var caseData: CaseData
     
     var body: some View {
-        DataBlock(title: "Sodium", description: "\(caseData.labExamData.sodium)")
-        DataBlock(title: "Potassium", description: "\(caseData.labExamData.potassium)")
-        DataBlock(title: "Chloride", description: "\(caseData.labExamData.chloride)")
-        DataBlock(title: "Bicarbonate", description: "\(caseData.labExamData.bicarbonate)")
-        DataBlock(title: "BUN", description: "\(caseData.labExamData.bun)")
-        DataBlock(title: "Creatinine", description: "\(caseData.labExamData.creatinine)")
-        DataBlock(title: "Glucose", description: "\(caseData.labExamData.glucose)")
-        DataBlock(title: "BNP", description: "\(caseData.labExamData.bnp)")
+        DataBlock(title: "Sodium", description: "\(caseData.labExamData.sodium)", unit: "mmol/L")
+        DataBlock(title: "Potassium", description: "\(caseData.labExamData.potassium)", unit: "mmol/L")
+        DataBlock(title: "Chloride", description: "\(caseData.labExamData.chloride)", unit: "mmol/L")
+        DataBlock(title: "Bicarbonate", description: "\(caseData.labExamData.bicarbonate)", unit: "mmol/L")
+        DataBlock(title: "BUN", description: "\(caseData.labExamData.bun)", unit: "mg/dL")
+        DataBlock(title: "Creatinine", description: "\(caseData.labExamData.creatinine)", unit: "mg/dL")
+        DataBlock(title: "Glucose", description: "\(caseData.labExamData.glucose)", unit: "mg/dL")
+        DataBlock(title: "BNP", description: "\(caseData.labExamData.bnp)", unit: "pg/mL")
     }
 }
 
@@ -105,8 +105,8 @@ struct ABGDataBlocks: View {
     
     var body: some View {
         DataBlock(title: "ABG - pH", description: "\(caseData.labExamData.abgPh)")
-        DataBlock(title: "ABG - pCO2", description: "\(caseData.labExamData.abgPCo2)")
-        DataBlock(title: "ABG - pO2", description: "\(caseData.labExamData.abgPO2)")
+        DataBlock(title: "ABG - pCO2", description: "\(caseData.labExamData.abgPCo2)", unit: "mmHg")
+        DataBlock(title: "ABG - pO2", description: "\(caseData.labExamData.abgPO2)", unit: "mmHg")
     }
 }
 
@@ -133,7 +133,7 @@ struct LabValuesTextBody: View {
             BloodDataBlocks(caseData: caseData)
             ChemicalDataBlocks(caseData: caseData)
             ABGDataBlocks(caseData: caseData)
-            DataBlock(title: "Lactate", description: "\(caseData.labExamData.lactate)")
+            DataBlock(title: "Lactate", description: "\(caseData.labExamData.lactate)", unit: "mmol/L")
         }
         .padding(.bottom, 5)
     }

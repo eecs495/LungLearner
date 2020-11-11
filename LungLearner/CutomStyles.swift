@@ -35,6 +35,26 @@ struct WideButtonStyle: ButtonStyle {
     }
 }
 
+struct NarrowGrayButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(Color.black)
+            .padding(10)
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .background(
+                Group {
+                    if configuration.isPressed {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.lightGray)
+                    } else {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.lighterGray)
+                    }
+                }
+            )
+    }
+}
+
 struct NarrowButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -59,6 +79,7 @@ struct WhiteCard: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding()
+            .frame(minWidth: 0, maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.white)

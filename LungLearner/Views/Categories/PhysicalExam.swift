@@ -94,7 +94,9 @@ struct PhysicalExamTextBody: View {
     var body: some View {
         Group {
             DataBlock(title: "General", description: "\(caseData.physicalExamData.general)")
-            DataBlock(title: "Head", description: "\(caseData.physicalExamData.head)")
+            if caseData.physicalExamData.head != "" {
+                DataBlock(title: "Head", description: "\(caseData.physicalExamData.head)")
+            }
             DataBlock(title: "Neck", description: "\(caseData.physicalExamData.neck)")
             DataBlock(title: "Heart", description: "\(caseData.physicalExamData.heart)")
             DataBlock(title: "Lungs", description: "\(caseData.physicalExamData.lungs)")

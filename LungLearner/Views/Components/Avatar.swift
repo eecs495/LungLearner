@@ -11,7 +11,7 @@ struct Avatar: View {
     var gender: String
     var age: Int
     var small: Bool = false
-    private let smallSize: CGFloat = 35
+    private let smallSize: CGFloat = 50
     
     var body: some View {
         

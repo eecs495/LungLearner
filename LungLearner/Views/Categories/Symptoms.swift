@@ -91,14 +91,22 @@ struct SymptomsText: View {
 struct SymptomsTextBody: View {
     var caseData: CaseData
     
+    func BuildDescriptionFromCaseData() -> String {
+        var description: String = "Your patient's symptoms are \(caseData.symptomData.descriptionSymptoms). The onset of these symptoms is \(caseData.symptomData.onsetSymptoms)."
+        if caseData.symptomData.provocatingFactors != "" {
+            description += " Provocating factors include \(caseData.symptomData.provocatingFactors)."
+        }
+        return description
+    }
+    
     var body: some View {
             Group {
                 Text("Your patient has had symptoms of \(caseData.symptomData.descriptionSymptoms) for \(caseData.symptomData.onsetSymptoms). The provocating factor is \(caseData.symptomData.provocatingFactors).")
                     .textStyle(WhiteCard())
-                DataBlock(title: "Temperature", description: "\(caseData.symptomValuesData.temperature)")
-                DataBlock(title: "Heart Rate", description: "\(caseData.symptomValuesData.heartRate)")
-                DataBlock(title: "Respiratory Rate", description: "\(caseData.symptomValuesData.respiratoryRate)")
-                DataBlock(title: "Blood Pressure", description: "\(caseData.symptomValuesData.bloodPressure)")
+                DataBlock(title: "Temperature", description: "\(caseData.symptomValuesData.temperature)", unit: "C")
+                DataBlock(title: "Heart Rate", description: "\(caseData.symptomValuesData.heartRate)", unit: "beats per minute")
+                DataBlock(title: "Respiratory Rate", description: "\(caseData.symptomValuesData.respiratoryRate)", unit: "breaths per minute")
+                DataBlock(title: "Blood Pressure", description: "\(caseData.symptomValuesData.bloodPressure)", unit: "mm Hg")
                 DataBlock(title: "Oxygen Saturation", description: "\(caseData.symptomValuesData.oxygenSaturation)")
                 DataBlock(title: "Oxygen Received", description: "\(caseData.symptomValuesData.amountOfOxygenReceived)")
             }

@@ -199,6 +199,6 @@ struct ReviewCase: View {
 
 struct ReviewCase_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewCase(caseData: testCaseData1, firstDiagnosis: false, secondsTotal: 100).environmentObject(Steps())
+        ReviewCase(caseData: testCaseData1, firstDiagnosis: true, secondsTotal: 100).environmentObject(Steps())
     }
 }

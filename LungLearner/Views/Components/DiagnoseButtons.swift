@@ -14,9 +14,9 @@ struct DiagnoseButtons: View {
         VStack {
             HStack {
                 Button(action: {
-                    selectedCause = "CHF"
+                    selectedCause = "Heart failure"
                 }) {
-                    Text("CHF")
+                    Text("Heart Failure")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 .buttonStyle(NarrowButtonStyle())

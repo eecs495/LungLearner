@@ -54,10 +54,10 @@ struct ReviewListCell: View {
         
         if caseData.correctDiagnosis == "COPD" {
             self.diagnosisColor = Color.blue
-        } else if caseData.correctDiagnosis == "CHF" {
+        } else if caseData.correctDiagnosis == "Heart failure" {
             self.diagnosisColor = Color.orange
         } else {
-            self.diagnosisColor = Color.hotPink
+            self.diagnosisColor = Color.purple
         }
     }
     
@@ -85,10 +85,19 @@ struct ReviewListCell: View {
                     .font(.system(size: 12))
                     .fontWeight(.semibold)
                     .foregroundColor(diagnosisColor)
+                    .padding(.bottom, 1)
+                Text("Difficulty")
+                    .foregroundColor(Color.gray)
+                    .italic()
+                Text(caseData.difficulty)
+                    .foregroundColor(Color.hotPink)
+                    .font(.system(size: 12))
+                    .fontWeight(.semibold)
             }
             HStack {
                 Avatar(gender: caseData.gender, age: caseData.age, small: true)
-            } 
+                
+            }
         }
     }
 }

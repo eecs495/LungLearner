@@ -24,6 +24,8 @@ struct XRay: View {
     var secondsTotal: Int
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    @State var showHint: Bool = false
+    
     func setZoom(magnification: CGFloat) -> CGFloat {
         return max(min(self.zoomLevel * magnification, self.maxZoom), self.minZoom)
     }
@@ -42,12 +44,28 @@ struct XRay: View {
                         .font(.system(size: 35))
                         .fontWeight(.semibold)
                         .padding(.bottom, 5)
-                    Image(caseData.xRayName)
+                    Image("xRay1")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-//                        .scaleEffect(setZoom(magnification: magnificationLevel))
-//                        .gesture(MagnificationGesture().updating($magnificationLevel, body: { (value, state, _) in state = value }).onEnded({ (value) in self.zoomLevel = self.setZoom(magnification: value)})
-//                            )
+                    VStack {
+                        Button(action: {
+                            showHint = true
+                        }) {
+                            Text("Hint")
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        }
+                        .buttonStyle(NarrowButtonStyle())
+                        .padding(.horizontal, 100)
+                        Text("Revealing hint will deduct 100 points.")
+                            .font(.system(size: 15))
+                            .foregroundColor(.gray)
+                            .italic()
+                    }
+                    .padding(.vertical)
+                    if showHint {
+                        Text(caseData.cxrThoughts)
+                            .textStyle(WhiteCard())
+                    }
                 }
                 .padding(.horizontal, 30)
                 Spacer()

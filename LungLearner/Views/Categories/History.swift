@@ -24,15 +24,6 @@ struct History: View {
         VStack {
             HStack {
                 ProgressCircles(coloredIndex: 0)
-//                HStack {
-//                    Text("\((secondsHere + secondsTotal) / 60):")
-//                        .padding(.trailing, -8)
-//                    if (secondsHere + secondsTotal) % 60 < 10 {
-//                        Text("0\((secondsHere + secondsTotal) % 60)")
-//                    } else {
-//                        Text("\((secondsHere + secondsTotal) % 60)")
-//                    }
-//                }
                 DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
                 .onReceive(timer) { _ in
                     self.secondsHere += 1
@@ -98,10 +89,20 @@ struct HistoryText: View {
 struct HistoryTextBody: View {
     var caseData: CaseData
     
+    func BuildDescriptionFromCaseData() -> String {
+        var description: String = "Case ID \(caseData.id) is a \(caseData.age)-year-old \(caseData.gender) with a past medical history of "
+        if caseData.history3 == "" {
+            description += "\(caseData.history1) and \(caseData.history2)."
+        } else {
+            description += "\(caseData.history1), \(caseData.history2), and \(caseData.history3)."
+        }
+        return description + " Tobacco use is \(caseData.tobaccoUse)."
+    }
+    
     var body: some View {
         VStack {
             Avatar(gender: caseData.gender, age: caseData.age)
-            Text("Your patient is a \(caseData.age) year old \(caseData.gender) with a past medical history of \(caseData.history1), \(caseData.history2), and \(caseData.history3). Tobacco use is \(caseData.tobaccoUse).")
+            Text(BuildDescriptionFromCaseData())
                 .textStyle(WhiteCard())
         }
     }
