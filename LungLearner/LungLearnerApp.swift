@@ -8,36 +8,8 @@
 import SwiftUI
 import GoogleSignIn
 
-class LoginManager {
-    var userid: String
-    static let shared = LoginManager(id: "")
-    private init(id: String) {
-        self.userid = id
-    }
-    
-    func setId(id: String) {
-        self.userid = id
-    }
-    
-    func getId() -> String {
-        return self.userid
-    }
-}
-
-class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-          if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
-            print("The user has not signed in before or they have since signed out.")
-          } else {
-            print("\(error.localizedDescription)")
-          }
-          return
-        }
-        // Perform any operations on signed in user here.
-        LoginManager.shared.setId(id: user.profile.email)
-    }
-    
+class AppDelegate: NSObject, UIApplicationDelegate {
+    let googleDelegate = GoogleDelegate()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         
         let userDbManager = UserDatabaseManager()
@@ -54,7 +26,12 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
         }
         
         GIDSignIn.sharedInstance().clientID = "90255751140-l41hhvd6fg70dp88qhf0067066molabv.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().delegate = googleDelegate
+        
+        // Amplify stuff on startup
+        configureAmplify()
+//        saveUserPoint()
+        queryUserPoint()
         
         return true
     }
@@ -67,6 +44,42 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
               withError error: Error!) {
       // Perform any operations when the user disconnects from app here.
       // ...
+    }
+}
+
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        // Get the googleDelegate from AppDelegate
+        let googleDelegate = (UIApplication.shared.delegate as! AppDelegate).googleDelegate
+        // Add googleDelegate as an environment object
+        let contentView = Login()
+            .environmentObject(googleDelegate)
+        if let windowScene = scene as? UIWindowScene {
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = UIHostingController(rootView: contentView)
+            // Set presentingViewControll to rootViewController
+            GIDSignIn.sharedInstance().presentingViewController = window.rootViewController
+            self.window = window
+            window.makeKeyAndVisible()
+        }
+    }
+}
+
+class GoogleDelegate: NSObject, GIDSignInDelegate, ObservableObject {
+    @Published var userId: String = ""
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
+                print("The user has not signed in before or they have since signed out.")
+            } else {
+                print("\(error.localizedDescription)")
+            }
+            return
+        }
+        // If the previous `error` is null, then the sign-in was succesful
+        print("Successful sign-in!")
+        userId = user.profile.email
     }
 }
 

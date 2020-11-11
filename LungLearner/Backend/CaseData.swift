@@ -10,6 +10,7 @@ import SQLite
 
 struct CaseData: Identifiable {
     var id: Int
+    var caseId: Int
     var correctDiagnosis: String
     var age: Int
     var gender: String
@@ -21,17 +22,19 @@ struct CaseData: Identifiable {
     var symptomValuesData: SymptomValuesData
     var physicalExamData: PhysicalExamData
     var labExamData: LabExamData
+    var expertComments: String
+    var redHerrings: String
+    var cxrThoughts: String
+    var narratives: String
+    var difficulty: String
     var labValuesName: String { return "labValues\(id)" }
     var xRayName: String { return "xRay\(id)" }
 }
 
 struct SymptomData {
     var onsetSymptoms: String
-    var durationSymptoms: String
     var provocatingFactors: String
     var descriptionSymptoms: String
-    var severitySymptoms: String
-    var relievingFactors: String
 }
 
 struct SymptomValuesData {
@@ -83,6 +86,7 @@ enum CaseError: Error {
 func makeCase(caseInfo: Row) -> CaseData {
     let ID = Expression<Int64>("ID")
 //    let CorrectDiagnosis = Expression<String?>("CorrectDiagnosis")
+    let CaseId = Expression<Int64>("CASEID")
     let Age = Expression<Int64>("Age")
     let Gender = Expression<String>("Gender")
     let History1 = Expression<String>("History1")
@@ -90,11 +94,8 @@ func makeCase(caseInfo: Row) -> CaseData {
     let History3 = Expression<String>("History3")
     let TobaccoUse = Expression<String>("TobaccoUse")
     let OnsetSymptoms = Expression<String>("OnsetSymptoms")
-    let DurationSymptoms = Expression<String>("DurationSymptoms")
     let ProvocatingFactors = Expression<String>("ProvocatingFactors")
     let DescriptionSymptoms = Expression<String>("DescriptionSymptoms")
-    let SeveritySymptoms = Expression<String>("SeveritySymptoms")
-    let RelievingFactors = Expression<String>("RelievingFactors")
     let Temperature = Expression<Double>("Temperature")
     let HeartRate = Expression<Double>("HeartRate")
     let RespiratoryRate = Expression<Double>("RespiratoryRate")
@@ -125,9 +126,14 @@ func makeCase(caseInfo: Row) -> CaseData {
     let ABGpCO2 = Expression<Double>("ABG-pCO2")
     let ABGpO2 = Expression<Double>("ABG-pO2")
     let Lactate = Expression<Double>("Lactate")
+    let Diagnosis = Expression<String>("Diagnosis")
+    let ExpertComments = Expression<String>("Diagnosis")
+    let RedHerrings = Expression<String>("Diagnosis")
+    let CXRThoughts = Expression<String>("CXRThoughts")
+    let Narratives = Expression<String>("Narratives")
+    let Difficulty = Expression<String>("Difficulty")
 
-
-    let symptom = SymptomData(onsetSymptoms: caseInfo[OnsetSymptoms], durationSymptoms: caseInfo[DurationSymptoms], provocatingFactors: caseInfo[ProvocatingFactors], descriptionSymptoms: caseInfo[DescriptionSymptoms], severitySymptoms: caseInfo[SeveritySymptoms], relievingFactors: caseInfo[RelievingFactors])
+    let symptom = SymptomData(onsetSymptoms: caseInfo[OnsetSymptoms], provocatingFactors: caseInfo[ProvocatingFactors], descriptionSymptoms: caseInfo[DescriptionSymptoms])
 
     let symptomValuesData = SymptomValuesData(temperature: caseInfo[Temperature], heartRate: caseInfo[HeartRate], respiratoryRate: caseInfo[RespiratoryRate], bloodPressure: caseInfo[BloodPressure], oxygenSaturation: caseInfo[OxygenSaturation], amountOfOxygenReceived: caseInfo[AmountOfOxygenReceived])
     
@@ -135,7 +141,7 @@ func makeCase(caseInfo: Row) -> CaseData {
     
     let labExamData = LabExamData(whiteBloodCells: caseInfo[WhiteBloodCells], hemoglobin: caseInfo[Hemoglobin], hematocrit: caseInfo[Hematocrit], platelets: caseInfo[Platelets], sodium: caseInfo[Sodium], potassium: caseInfo[Potassium], chloride: caseInfo[Chloride], bicarbonate: caseInfo[Bicarbonate], bun: caseInfo[BUN], creatinine: caseInfo[Creatinine], glucose: caseInfo[Glucose], bnp: caseInfo[BNP], abgPh: caseInfo[ABGPh], abgPCo2: caseInfo[ABGpCO2], abgPO2: caseInfo[ABGpO2], lactate: caseInfo[Lactate])
 
-    let caseData = CaseData(id: Int(caseInfo[ID]), correctDiagnosis: "COPD", age: Int(caseInfo[Age]), gender: caseInfo[Gender], history1: caseInfo[History1], history2: caseInfo[History2], history3: caseInfo[History3], tobaccoUse: caseInfo[TobaccoUse], symptomData: symptom, symptomValuesData: symptomValuesData, physicalExamData: physicalExamData, labExamData: labExamData)
+    let caseData = CaseData(id: Int(caseInfo[ID]), caseId: Int(caseInfo[CaseId]), correctDiagnosis: caseInfo[Diagnosis], age: Int(caseInfo[Age]), gender: caseInfo[Gender], history1: caseInfo[History1], history2: caseInfo[History2], history3: caseInfo[History3], tobaccoUse: caseInfo[TobaccoUse], symptomData: symptom, symptomValuesData: symptomValuesData, physicalExamData: physicalExamData, labExamData: labExamData, expertComments: caseInfo[ExpertComments], redHerrings: caseInfo[RedHerrings], cxrThoughts: caseInfo[CXRThoughts], narratives: caseInfo[Narratives], difficulty: caseInfo[Difficulty])
 
     return caseData
 }
@@ -149,7 +155,7 @@ func printCase(caseInfo: Row) {
 
 // Utility method to get a dummy case in case there is an error
 func getDummyCase() -> CaseData {
-    let symptomData = SymptomData(onsetSymptoms: "onsetSymptoms", durationSymptoms: "durationSymptoms", provocatingFactors: "provocatingFactors", descriptionSymptoms: "descriptionSymptoms", severitySymptoms: "severitySymptoms", relievingFactors: "relievingFactors")
+    let symptomData = SymptomData(onsetSymptoms: "5 days", provocatingFactors: "lying flat", descriptionSymptoms: "tired and fatigued with fevers and rigors")
 
     let symptomValuesData = SymptomValuesData(temperature: 38.4, heartRate: 38.4, respiratoryRate: 24.0, bloodPressure: "104/53", oxygenSaturation: "91%", amountOfOxygenReceived: "4 liters per minute")
 
@@ -157,7 +163,7 @@ func getDummyCase() -> CaseData {
 
     let labExamData = LabExamData(whiteBloodCells: 14.2, hemoglobin: 13.6, hematocrit: 40.1, platelets: 247.0, sodium: 137.0, potassium: 4.2, chloride: 104.0, bicarbonate: 21.0, bun: 24.0, creatinine: 1.6, glucose: 137.0, bnp: 37.0, abgPh: 7.35, abgPCo2: 39.0, abgPO2: 71.0, lactate: 2.4)
 
-    let caseData = CaseData(id: 495, correctDiagnosis: "COPD", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: symptomData, symptomValuesData: symptomValuesData, physicalExamData: physicalExamData, labExamData: labExamData)
+    let caseData = CaseData(id: 1, caseId: 211, correctDiagnosis: "COPD", age: 74, gender: "male", history1: "heart failure", history2: "coronary artery disease", history3: "COPD", tobaccoUse: "current", symptomData: symptomData, symptomValuesData: symptomValuesData, physicalExamData: physicalExamData, labExamData: labExamData, expertComments: "History of severe COPD with wheezing on examination, elevated pCO2 level, and CXR without infiltrates", redHerrings: "High WBC count - could be pneumonia!", cxrThoughts: "Normal lungs", narratives: "Case ID 211 is a 53-year old female presenting severe dyspnea. She has a history of polysubstance use, tobacco use, severe chronic obstructive pulmonary disease on 3-4 liters per minute of supplemental oxygen, and heart failure s/p tricuspid valve endocarditis. She was feeling fine until this morning when she woke up short of breath. She states that her oxygen fell off overnight. When EMS found her, her oxygen saturation was in the 80s on 3 LPM. She was placed on 12 LPM with improvement. She denies any worsening cough, sputum production, fevers, or chills.", difficulty: "Medium")
 
     return caseData
 }

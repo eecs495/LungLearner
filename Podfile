@@ -7,5 +7,8 @@ target 'LungLearner' do
 
   # Pods for LungLearner
   pod 'GoogleSignIn'
+  pod 'Amplify'
+  pod 'AmplifyPlugins/AWSAPIPlugin'
+  pod 'AmplifyPlugins/AWSDataStorePlugin'
 
 end

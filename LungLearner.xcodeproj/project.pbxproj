@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		10CB38F97291986542AC6E40 /* Pods_LungLearner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC257E49D5AD184B6518522 /* Pods_LungLearner.framework */; };
+		4428D77CFB05412F8D782284 /* UserPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77D56EC24144069B55B26A1 /* UserPoint.swift */; };
 		4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */; };
 		4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */; };
+		51C450FA647A47A190ACF0F8 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4249BCB3ADC84AEFBDC7DCB0 /* awsconfiguration.json */; };
 		5EB0706F252512E3009AB694 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB0706E252512E3009AB694 /* SQLite */; };
 		760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760B536D2522555F000B129B /* LungLearnerApp.swift */; };
 		760B537225225566000B129B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 760B537125225566000B129B /* Assets.xcassets */; };
@@ -35,15 +37,23 @@
 		76857D192556DAEA00F293C5 /* PatientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76857D182556DAEA00F293C5 /* PatientItem.swift */; };
 		76C99FF325549BBB0034E6D1 /* XRayImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C99FF225549BBB0034E6D1 /* XRayImage.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
+		76F685C225587DE800C16D8E /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F685C125587DE800C16D8E /* Avatar.swift */; };
+		76F685C92558E11700C16D8E /* DiagnoseTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F685C82558E11700C16D8E /* DiagnoseTimer.swift */; };
 		8C19AB8D2531E2F100505770 /* CaseDb.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */; };
 		8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F24252DF5CD00A0C16E /* UserData.swift */; };
 		8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */; };
 		8CBB8F29252DF5CD00A0C16E /* CaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB8F26252DF5CD00A0C16E /* CaseData.swift */; };
+		8CC55E3C255892F4003F255F /* UserPointsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC55E3B255892F4003F255F /* UserPointsManager.swift */; };
+		A8252597AA664732BC54F204 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = EDDE09D4B6DC4D1E9790A0AF /* amplifyconfiguration.json */; };
+		B2A9971E3C0842CEBE69AB84 /* UserPoint+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0573D29A4443B28614ABB7 /* UserPoint+Schema.swift */; };
+		B40000C85A0C444A9E1D4C10 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6ED400EFFB4EAE8FA87F1D /* AmplifyModels.swift */; };
 		C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9327387252ABDB9003C2641 /* MainMenu.swift */; };
 		C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9327388252ABDB9003C2641 /* HomeItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A0573D29A4443B28614ABB7 /* UserPoint+Schema.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "UserPoint+Schema.swift"; path = "amplify/generated/models/UserPoint+Schema.swift"; sourceTree = "<group>"; };
+		4249BCB3ADC84AEFBDC7DCB0 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = awsconfiguration.json; sourceTree = "<group>"; };
 		4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incorr.swift; sourceTree = "<group>"; };
 		4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagProcess.swift; sourceTree = "<group>"; };
 		5A311A90CDF8F633180345E8 /* Pods-LungLearner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LungLearner.debug.xcconfig"; path = "Target Support Files/Pods-LungLearner/Pods-LungLearner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,14 +83,22 @@
 		76857D182556DAEA00F293C5 /* PatientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientItem.swift; sourceTree = "<group>"; };
 		76C99FF225549BBB0034E6D1 /* XRayImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayImage.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
+		76F685C125587DE800C16D8E /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
+		76F685C82558E11700C16D8E /* DiagnoseTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnoseTimer.swift; sourceTree = "<group>"; };
+		81EB655DF4DD401CA1E06D17 /* amplifytools.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; path = amplifytools.xcconfig; sourceTree = "<group>"; };
 		8C19AB8C2531E2F100505770 /* CaseDb.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = CaseDb.sqlite3; sourceTree = "<group>"; };
 		8CBB8F24252DF5CD00A0C16E /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseDatabaseManager.swift; sourceTree = "<group>"; };
 		8CBB8F26252DF5CD00A0C16E /* CaseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseData.swift; sourceTree = "<group>"; };
+		8CC55E3B255892F4003F255F /* UserPointsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPointsManager.swift; sourceTree = "<group>"; };
 		8FC257E49D5AD184B6518522 /* Pods_LungLearner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LungLearner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		914895D8FB954D608269EB07 /* Pods-LungLearner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LungLearner.release.xcconfig"; path = "Target Support Files/Pods-LungLearner/Pods-LungLearner.release.xcconfig"; sourceTree = "<group>"; };
+		9E6ED400EFFB4EAE8FA87F1D /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 		C9327387252ABDB9003C2641 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		C9327388252ABDB9003C2641 /* HomeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
+		D6E102838ADE46D1B8E55F47 /* schema.graphql */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text; name = schema.graphql; path = amplify/backend/api/amplifyDatasource/schema.graphql; sourceTree = "<group>"; };
+		EDDE09D4B6DC4D1E9790A0AF /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		F77D56EC24144069B55B26A1 /* UserPoint.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = UserPoint.swift; path = amplify/generated/models/UserPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +120,18 @@
 				8FC257E49D5AD184B6518522 /* Pods_LungLearner.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E24BC7C30D1424C938A5D4D /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				81EB655DF4DD401CA1E06D17 /* amplifytools.xcconfig */,
+				EDDE09D4B6DC4D1E9790A0AF /* amplifyconfiguration.json */,
+				4249BCB3ADC84AEFBDC7DCB0 /* awsconfiguration.json */,
+				D6E102838ADE46D1B8E55F47 /* schema.graphql */,
+			);
+			name = AmplifyConfig;
+			path = .;
 			sourceTree = "<group>";
 		};
 		7601200E2523995800497CD4 /* Views */ = {
@@ -134,6 +164,8 @@
 		760B53612522555F000B129B = {
 			isa = PBXGroup;
 			children = (
+				A98C11083DB04862A2DB1BEF /* AmplifyModels */,
+				3E24BC7C30D1424C938A5D4D /* AmplifyConfig */,
 				760B536C2522555F000B129B /* LungLearner */,
 				760B536B2522555F000B129B /* Products */,
 				CC5748520FAFE4610CB9B1E3 /* Pods */,
@@ -184,6 +216,8 @@
 				764DC9A22551F80B00826A9A /* DiagnoseButtons.swift */,
 				764DC9A52552051300826A9A /* ProgressCircles.swift */,
 				76C99FF225549BBB0034E6D1 /* XRayImage.swift */,
+				76F685C125587DE800C16D8E /* Avatar.swift */,
+				76F685C82558E11700C16D8E /* DiagnoseTimer.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -214,8 +248,20 @@
 				8CBB8F24252DF5CD00A0C16E /* UserData.swift */,
 				8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */,
 				8CBB8F26252DF5CD00A0C16E /* CaseData.swift */,
+				8CC55E3B255892F4003F255F /* UserPointsManager.swift */,
 			);
 			path = Backend;
+			sourceTree = "<group>";
+		};
+		A98C11083DB04862A2DB1BEF /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				9E6ED400EFFB4EAE8FA87F1D /* AmplifyModels.swift */,
+				F77D56EC24144069B55B26A1 /* UserPoint.swift */,
+				1A0573D29A4443B28614ABB7 /* UserPoint+Schema.swift */,
+			);
+			name = AmplifyModels;
+			path = .;
 			sourceTree = "<group>";
 		};
 		CC5748520FAFE4610CB9B1E3 /* Pods */ = {
@@ -296,6 +342,8 @@
 				760B537525225566000B129B /* Preview Assets.xcassets in Resources */,
 				760B537225225566000B129B /* Assets.xcassets in Resources */,
 				8C19AB8D2531E2F100505770 /* CaseDb.sqlite3 in Resources */,
+				A8252597AA664732BC54F204 /* amplifyconfiguration.json in Resources */,
+				51C450FA647A47A190ACF0F8 /* awsconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,23 +425,29 @@
 				8CBB8F27252DF5CD00A0C16E /* UserData.swift in Sources */,
 				76772350252E953E00D5521B /* PhysicalExam.swift in Sources */,
 				7675FB9D2539FA08006DE9BA /* DataBlock.swift in Sources */,
+				76F685C92558E11700C16D8E /* DiagnoseTimer.swift in Sources */,
 				765AD735253A4D980053C3CB /* DiagnoseCase.swift in Sources */,
 				767723612530D92000D5521B /* ReviewCase.swift in Sources */,
 				76857D192556DAEA00F293C5 /* PatientItem.swift in Sources */,
 				7677234D252E91C900D5521B /* Symptoms.swift in Sources */,
 				7675FB992533AAA7006DE9BA /* TestData.swift in Sources */,
 				4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */,
+				76F685C225587DE800C16D8E /* Avatar.swift in Sources */,
 				7610BF8B254F1A82007FD5C3 /* Login.swift in Sources */,
 				764DC9A32551F80B00826A9A /* DiagnoseButtons.swift in Sources */,
 				7677234A252E8E5500D5521B /* History.swift in Sources */,
 				764DC9A62552051300826A9A /* ProgressCircles.swift in Sources */,
 				760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */,
 				765AD73D253A4F6B0053C3CB /* ClosePopUpButton.swift in Sources */,
+				8CC55E3C255892F4003F255F /* UserPointsManager.swift in Sources */,
 				76772353252E95F100D5521B /* LabValues.swift in Sources */,
 				4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */,
 				76F22C6C25242A1300FB864F /* Cause.swift in Sources */,
 				765AD745253DD0190053C3CB /* CaseDetail.swift in Sources */,
 				765AD732253A4BD10053C3CB /* ReviewButton.swift in Sources */,
+				B40000C85A0C444A9E1D4C10 /* AmplifyModels.swift in Sources */,
+				4428D77CFB05412F8D782284 /* UserPoint.swift in Sources */,
+				B2A9971E3C0842CEBE69AB84 /* UserPoint+Schema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

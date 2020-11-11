@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainMenu: View {
     @EnvironmentObject var steps: Steps
+    //@EnvironmentObject var timeToDiagnose: TimeToDiagnose
     var caseDbManager = CaseDatabaseManager()
     var caseData: CaseData?
     
@@ -16,7 +17,7 @@ struct MainMenu: View {
     
     init() {
         do {
-            self.caseData = try caseDbManager.getCaseById(Id: 1)
+            self.caseData = try caseDbManager.getRandomCase()
         } catch CaseError.runtimeError(let errorMessage) {
             print(errorMessage)
         } catch {
@@ -61,6 +62,8 @@ struct MainMenu: View {
 
 struct MainMenu_Previews: PreviewProvider {
     static var previews: some View {
-        MainMenu().environmentObject(Steps())
+        MainMenu()
+            .environmentObject(Steps())
+            //.environmentObject(TimeToDiagnose())
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct DataBlock: View {
     var title: String
     var description: String
+    var unit: String = ""
     
     var body: some View {
         HStack {
@@ -18,8 +19,15 @@ struct DataBlock: View {
                     .foregroundColor(Color.hotPink)
                     .fontWeight(.semibold)
                     .padding(.bottom, 1)
-                Text(description)
-                    .font(.system(size: 20))
+                HStack(alignment: .lastTextBaseline) {
+                    Text(description)
+                        .font(.system(size: 20))
+                    if unit != "" {
+                        Text(unit)
+                            .foregroundColor(Color.gray)
+                            .font(.system(size: 15))
+                    }
+                }
             }
             Spacer()
         }
@@ -34,6 +42,6 @@ struct DataBlock: View {
 
 struct DataBlock_Previews: PreviewProvider {
     static var previews: some View {
-        DataBlock(title: "Title", description: "77")
+        DataBlock(title: "Title", description: "77", unit: "mm Hg")
     }
 }

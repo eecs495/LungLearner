@@ -39,3 +39,7 @@ let causes = ["CHF", "COPD", "Pneuomnia", "Unsure"]
 class Steps: ObservableObject {
     @Published var stepList: [String] = []
 }
+//
+//class TimeToDiagnose: ObservableObject {
+//    @Published var seconds: Int = 0
+//}
