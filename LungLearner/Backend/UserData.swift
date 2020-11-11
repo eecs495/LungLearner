@@ -96,10 +96,77 @@ class UserDatabaseManager {
     }
     
     // Implement Get Age Grouped Cases
-    func getAgeGroup()
+    func getAgeGroup()->([young:UserCaseResult],[middle:UserCaseResult],[old:UserCaseResult]){
+        
+        // Return lists
+        var younglist:[young:UserCaseResult] = []
+        var middlelist:[middle:UserCaseResult] = []
+        var oldlist:[old:UserCaseResult] = []
+        
+        // Statement of variable used
+        var id = Expression<Int64>("id")
+        var Age = Expression<Int64>("Age")
+        var CaseData = Expression<CaseData>("CaseData")
+        var diagnoses = Expression<String>("diagnoses")
+        var reason = Expression<String>("reason")
+        var correct = Expression<Bool>("correct")
+        var usercase = Expression<UserCaseResult>("usercase")
+        
+        // Iterate over all user completed cases
+        for caseEntry in try db.prepare(userInfo.select(id)) {
+            CaseData = getCaseById(caseEntry[id])
+            
+            // Create a UserCaseResult
+            let usercase = UserCaseResult(caseid: Int(caseEntry[id]), diagnoses:caseEntry[diagnoses], reason : caseEntry[reason],correct:caseEntry[correct])
+            
+            // Append UserCaseResult to the correct group
+            if Int(CaseData[Age]) < 30 {
+                younglist.append(usercase)
+            }else if Int(CaseData[Age]) < 60 {
+                middlelist.append(usercase)
+            }else{
+                oldlist.append(usercase)
+            }
+        }
+      
+        return (younglist,middelist,oldlist)
+    }
+    
     
     // Implement Get Gender Grouped Cases
-    func getGenderGoup()
+    func getGenderGoup()->([male:UserCaseResult],[female:UserCaseResult]){
+        // Return lists
+        var malelist:[male:UserCaseResult] = []
+        var femalelist:[female:UserCaseResult] = []
+       
+        // Variable for Case
+        var id = Expression<Int64>("id")
+        var CaseData = Expression<CaseData>("CaseData")
+        let gender = Expression<String>("gender")
+        
+        // Variable for usercase
+        var diagnoses = Expression<String>("diagnoses")
+        var reason = Expression<String>("reason")
+        var correct = Expression<Bool>("correct")
+        var usercase = Expression<UserCaseResult>("usercase")
+        
+        // Iterate over all user completed cases
+        for caseEntry in try db.prepare(userInfo.select(id)) {
+            CaseData = getCaseById(caseEntry[id])
+            
+            // Create a UserCaseResult
+            let usercase = UserCaseResult(caseid: Int(caseEntry[id]), diagnoses:caseEntry[diagnoses], reason : caseEntry[reason],correct:caseEntry[correct])
+            
+            // Append UserCaseResult to the correct group
+            if (CaseData[gender]) == "male"{
+                malelist.append(usercase)
+            }else{
+                femalelist.append(usercase)
+            }
+        }
+      
+        return (malelist,femalelist)
+    }
 }
 
 // Because unix time is weird(tm), I added this function so we can work with it a bit easier
