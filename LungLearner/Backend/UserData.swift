@@ -94,6 +94,12 @@ class UserDatabaseManager {
         print(results ?? ("Not valid","Not valid"))
         return results ?? ("Not valid", "Not valid")
     }
+    
+    // Implement Get Age Grouped Cases
+    func getAgeGroup()
+    
+    // Implement Get Gender Grouped Cases
+    func getGenderGoup()
 }
 
 // Because unix time is weird(tm), I added this function so we can work with it a bit easier
