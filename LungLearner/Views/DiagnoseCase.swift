@@ -82,7 +82,7 @@ struct DiagnoseCase: View {
                     }
                     .padding(.vertical)
                     DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: Incorr(caseData: caseData).environmentObject(self.steps)) {
+                    NavigationLink(destination: Incorr(caseData: caseData)) {
                         HStack {
                             Text("Check")
                                 .foregroundColor(Color.hotPink)
@@ -91,9 +91,9 @@ struct DiagnoseCase: View {
                         }
                         .padding(.vertical)
                     }
-//                    .simultaneousGesture(TapGesture().onEnded {
-//                        steps.stepList.append(selectedCause)
-//                    })
+                    .simultaneousGesture(TapGesture().onEnded {
+                        steps.stepList.append(selectedCause)
+                    })
                 }
             }
             .navigationBarBackButtonHidden(true)
