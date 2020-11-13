@@ -14,6 +14,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         let userDbManager = UserDatabaseManager()
         userDbManager.prepareUserDatabase()
+        
         // Currently here to test retrieving case info by id
         let caseDbManager = CaseDatabaseManager()
         do {

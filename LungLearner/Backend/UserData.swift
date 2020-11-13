@@ -36,16 +36,18 @@ class UserDatabaseManager {
     var userInfo = Table("userInfo")
     
     
-    //The id of the completed case
+    // The id of the completed case
     var id = Expression<Int64>("id")
-    //When the case was completed in unix time
+    // When the case was completed in unix time
     var time = Expression<Int64>("time")
-    //The diagnoses made by the user, comma separated, last diagnosis is the final diagnosis
+    // The diagnoses made by the user, comma separated, last diagnosis is the final diagnosis
     var diagnoses = Expression<String>("diagnoses")
-    //User-supplied reasoning
+    // User-supplied reasoning
     var reason = Expression<String>("reason")
-    //Whether the user got it right
+    // Whether the user got it right
     var correct = Expression<Bool>("correct")
+    // Whether the user has set this as a 'favorite' case
+    var favorite = Expression<Bool>("favorite")
     
     init() {
         let path = NSSearchPathForDirectoriesInDomains(
@@ -60,6 +62,7 @@ class UserDatabaseManager {
             t.column(diagnoses)
             t.column(reason)
             t.column(correct)
+            t.column(favorite)
         })
     }
 
@@ -79,7 +82,8 @@ class UserDatabaseManager {
             time <- Int64(Date().timeIntervalSince1970),
             diagnoses <- result.diagnoses.joined(separator: ","),
             reason <- result.reason,
-            correct <- result.correct)
+            correct <- result.correct,
+            favorite <- false)
         try! db.run(insert)
     }
 
@@ -93,6 +97,27 @@ class UserDatabaseManager {
             results.append((id: caseEntry[id], correct: caseEntry[correct]))
         }
         print(results)
+        return results
+    }
+    
+    // Allows you to 'favorite' or 'unfavorite' any case with a given id
+    func setCaseFavorite(idInput: Int64, favoriteInput: Bool) -> Bool {
+        let filteredCase = userInfo.filter(id == idInput)
+        if try! db.run(filteredCase.update(favorite <- favoriteInput)) != 1 {
+            print("Error! Case not found!")
+            return false
+        }
+        return true
+    }
+    
+    // Returns an array of 'favorited' case id sorted by case id ascending
+    func getFavoriteCases() -> [Int64] {
+        var results:[Int64] = []
+        
+        let query = userInfo.select(id).filter(favorite == true).order(id.asc)
+        for caseEntry in try! db.prepare(query) {
+            results.append(caseEntry[id])
+        }
         return results
     }
 
