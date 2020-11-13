@@ -19,9 +19,22 @@ struct UserCaseResult {
     var correct: Bool
 }
 
+// Struct of Usercase when returned by getID, getagegroup, getgendergroup
+struct returnedUserCaseResult {
+    //The id of the case that has been completed
+    var caseid: Int64
+    //Array of the various diagnoses the user made. The last diagnosis is considered the 'final' diagnosis for determining correctness
+    var diagnoses: String
+    //The user-supplied reason for their diagnosis
+    var reason: String
+    //Whether or not the user got this case right
+    var correct: Bool
+}
+
 class UserDatabaseManager {
     var db:Connection
     var userInfo = Table("userInfo")
+    
     
     //The id of the completed case
     var id = Expression<Int64>("id")
@@ -33,7 +46,7 @@ class UserDatabaseManager {
     var reason = Expression<String>("reason")
     //Whether the user got it right
     var correct = Expression<Bool>("correct")
-
+    
     init() {
         let path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
@@ -83,16 +96,114 @@ class UserDatabaseManager {
         return results
     }
 
+    // Get a Usercase by ID
+    func getUserCaseById(Id: Int64) throws -> returnedUserCaseResult {
+        let userInfo = Table("useInfo")
+        let id = Expression<Int64>("ID")
+
+        let filtered = try! self.db.prepare(userInfo.filter(id == id))
+
+        for caseEntry in filtered {
+            let diagnoses = Expression<String>("diagnoses")
+            let reason = Expression<String>("reason")
+            let correct = Expression<Bool>("correct")
+            
+            let usercase = returnedUserCaseResult(caseid: caseEntry[id], diagnoses:caseEntry[diagnoses], reason : caseEntry[reason],correct:caseEntry[correct])
+            
+            return usercase
+        }
+        throw(CaseError.runtimeError("Case with ID \(Id) not found"))
+    }
 
     // Implement user explanation/diagnosis getter
     // take in a case ID and return the diagnosis and explanation the user gave for that case
     func getUserDiagnosis(idInput: Int64) -> (diagnoses: String, reason: String){
+        
         var results:(diagnoses: String, reason: String)? = nil
         for caseEntry in try! db.prepare(userInfo.select(diagnoses, reason).filter(id==idInput)) {
             results = (diagnoses: caseEntry[diagnoses], reason: caseEntry[reason])
         }
         print(results ?? ("Not valid","Not valid"))
         return results ?? ("Not valid", "Not valid")
+    }
+    
+    // Implement Get Age Grouped Cases
+    func
+    getAgeGroup()->([returnedUserCaseResult],[returnedUserCaseResult],[returnedUserCaseResult]){
+        // Return lists
+        var younglist:[returnedUserCaseResult] = []
+        var middlelist:[returnedUserCaseResult] = []
+        var oldlist:[returnedUserCaseResult] = []
+        
+        // Statement of variable used
+        let id = Expression<Int64>("id")
+        let age = Expression<Int64>("age")
+        let diagnoses = Expression<String>("diagnoses")
+        let reason = Expression<String>("reason")
+        let correct = Expression<Bool>("correct")
+        let cases = Table("cases")
+        
+        // Iterate over all user completed cases
+        for caseEntry in try! db.prepare(userInfo) {
+        
+            // Create a UserCaseResult
+            let usercase = returnedUserCaseResult(caseid: caseEntry[id], diagnoses:caseEntry[diagnoses], reason : caseEntry[reason],correct:caseEntry[correct])
+            
+            for studiedcase in try! db.prepare(cases.filter(id==caseEntry[id])) {
+                
+                // Append UserCaseResult to the correct group
+                if studiedcase[age] < 30 {
+                    younglist.append(usercase)
+                }else if studiedcase[age] < 60 {
+                    middlelist.append(usercase)
+                }else{
+                    oldlist.append(usercase)
+                }
+                
+            }
+        }
+      
+        return (younglist,middlelist,oldlist)
+    }
+    
+    
+    // Implement Get Gender Grouped Cases
+    func getGenderGoup()->([returnedUserCaseResult],[returnedUserCaseResult]){
+        // Return lists
+        var malelist:[returnedUserCaseResult] = []
+        var femalelist:[returnedUserCaseResult] = []
+       
+        // Variable for Case
+        let id = Expression<Int64>("id")
+        let gender = Expression<String>("gender")
+        
+        // Variable for usercase
+        let diagnoses = Expression<String>("diagnoses")
+        let reason = Expression<String>("reason")
+        let correct = Expression<Bool>("correct")
+        _ = Expression<UserCaseResult>("usercase")
+        let cases = Table("cases")
+    
+        
+        // Iterate over all user completed cases
+        for caseEntry in try! db.prepare(userInfo.select(id)) {
+
+            // Create a UserCaseResult
+            let usercase = returnedUserCaseResult(caseid: caseEntry[id], diagnoses:caseEntry[diagnoses], reason : caseEntry[reason],correct:caseEntry[correct])
+            
+            for studiedcase in try! db.prepare(cases.filter(id==caseEntry[id])) {
+                
+                if studiedcase[gender] == "male" {
+                    malelist.append(usercase)
+                }else{
+                    femalelist.append(usercase)
+                }
+                
+            }
+           
+        }
+      
+        return (malelist,femalelist)
     }
 }
 
