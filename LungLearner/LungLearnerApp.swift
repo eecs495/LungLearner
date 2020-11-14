@@ -69,6 +69,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 class GoogleDelegate: NSObject, GIDSignInDelegate, ObservableObject {
     @Published var userId: String = ""
+    @Published var signedIn: Bool = false
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
@@ -87,6 +88,7 @@ class GoogleDelegate: NSObject, GIDSignInDelegate, ObservableObject {
 @main
 struct LungLearnerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             MainMenu().environmentObject(Steps())

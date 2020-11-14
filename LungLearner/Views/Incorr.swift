@@ -116,22 +116,24 @@ struct Incorr: View {
         let counts = userDbManager.getTotalUserProgress()
 //            counts = (totalCases: Int(4), correctCases: Int(1), incorrectCases: Int(2))
 //            counts = (Int(4), Int(1), Int(2))
-            
+       
         VStack {
 
-            Text("Your answer of ")
-                .font(.title)
-                .foregroundColor(.primary)
-            +
-            Text("\(steps.stepList[5]) ")
-                .font(.title)
-                .foregroundColor(.accentColor)
+            if (steps.stepList.count == 6) {
+                Text("Your answer of ")
+                    .font(.title)
+                    .foregroundColor(.primary)
+                +
+                Text("\(steps.stepList[5]) ")
+                    .font(.title)
+                    .foregroundColor(.accentColor)
+            }
 
             Text("was")
                 .font(.title)
                 .foregroundColor(.primary)
             
-            if (self.caseData.correctDiagnosis == steps.stepList[5]) {
+            if (steps.stepList.count == 6 && self.caseData.correctDiagnosis == steps.stepList[5]) {
                 Text("Correct!")
                     .font(.title)
                     .fontWeight(.bold)
@@ -192,7 +194,7 @@ struct Incorr: View {
             Spacer()
             
             HStack {
-                if (self.caseData.correctDiagnosis == steps.stepList[5]) {
+                if (steps.stepList.count == 6 && self.caseData.correctDiagnosis == steps.stepList[5]) {
                     ProgressCircle(correct: counts.correctCases + 1, total: counts.totalCases + 1)
                     PerfectStreak(correct: true)
                 }
@@ -211,7 +213,6 @@ struct Incorr: View {
                         print("I just favorited this case!")
                         isFav = !isFav
                         userDbManager.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
-                        
                     }) {
                         if isFav {
                             Image(systemName: "heart.fill")
@@ -241,19 +242,19 @@ struct Incorr: View {
                         .fontWeight(.bold)
                         .padding(.top, 5)
                 }
-                Spacer()
                 .simultaneousGesture(TapGesture().onEnded {
-                    if (self.caseData.correctDiagnosis == steps.stepList[5]) {
+                    if (steps.stepList.count == 6 && self.caseData.correctDiagnosis == steps.stepList[5]) {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: "Temp Reason", correct: true)
-                        userDbManager.storeCaseResult(result: myUser)
+                        //userDbManager.storeCaseResult(result: myUser)
                     }
                     else {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: "Temp Reason", correct: false)
-                        userDbManager.storeCaseResult(result: myUser)
+                        //userDbManager.storeCaseResult(result: myUser)
                     }
                     
                     steps.stepList.removeAll()
                 })
+                Spacer()
             }
             .offset(y: 20)
         }
