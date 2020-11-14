@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct DiagnoseRow: View {
     var process: Process
     
@@ -25,205 +26,241 @@ struct ProgressCircle: View {
     var total: Int
     
     init(correct: Int, total: Int) {
-        progress = Double(Double(correct) / Double(total))
+        if (total == 0) {
+            self.total = 1
+        }
+        else {
+            self.total = total
+        }
         self.correct = correct
-        self.total = total
+        self.progress = Double(Double(self.correct) / Double(self.total))
+        
     }
     
     var body: some View {
-        ZStack {
-            Circle()
-                .stroke(lineWidth: 20.0)
-                .opacity(0.3)
+        VStack {
+            ZStack {
+                Circle()
+                    .stroke(lineWidth: 20.0)
+                    .opacity(0.3)
+                    .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    .frame(width: 120, height: 120)
+                Circle()
+                    .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
+                    .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
+                    .foregroundColor(.green)
+                    .rotationEffect(Angle(degrees: 270.0))
+                    .animation(.linear)
+                    .frame(width: 120, height: 120)
+                Text(String(format: "%.0f %%", min(self.progress, 1.0)*100.0))
+                    .font(.title2)
+                    .bold()
+            }
+            .padding(.top, 20)
+            .padding(.bottom, 10)
+
+            Text("Overall Accuracy")
+                .font(.title3)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            Circle()
-                .trim(from: 0.0, to: CGFloat(min(self.progress, 1.0)))
-                .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-                .foregroundColor(.red)
-                .rotationEffect(Angle(degrees: 270.0))
-                .animation(.linear)
-            Text(String(format: "%.0f %%", min(self.progress, 1.0)*100.0))
-                .font(.largeTitle)
-                .bold()
         }
+        .offset(x: 25)
         
+    }
+}
+
+struct PerfectStreak: View {
+    
+    var correct: Bool = false
+    
+    init(correct: Bool) {
+        self.correct = correct
+    }
+    
+    var body: some View {
+        VStack {
+            if (self.correct) {
+                Text("1")
+                    .font(.system(size: 100))
+            }
+            else {
+                Text("0")
+                    .font(.system(size: 100))
+            }
+            Text("Perfect Streak")
+                .font(.title3)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                .offset(y: 20)
+//                .padding(.top, 30)
+        }
+        .offset(x: 40)
     }
 }
 
 struct Incorr: View {
     
     var caseData: CaseData
-    @State var correct: Bool = false
     @EnvironmentObject var steps: Steps
-//    var steps: Steps
     let userDbManager = UserDatabaseManager()
-    @State var counts: (totalCases: Int, correctCases: Int, incorrectCases: Int) = (4,1,2)
-//    @State var counts: (Int, Int, Int) = (0,0,0)
     @State var isFav: Bool = false
-    
-    func setup() {
-//        if (self.caseData.correctDiagnosis == steps.stepList[5]) {
-//            self.correct = true
-//        }
-    }
-    
+
     init(caseData: CaseData) {
         self.caseData = caseData
-        self.setup()
     }
-    
-//    init(caseData: CaseData, steps: Steps) {
-//        self.caseData = caseData
-//        self.steps = steps
-//        if (self.caseData.correctDiagnosis == self.steps.stepList[5]) {
-//            self.correct = true
-//        }
-//    }
     
     // create init function here, use example from MainMenu.swift
     
     var body: some View {
-//            let userDbManager = UserDatabaseManager()
-//            let counts = userDbManager.getTotalUserProgress()
-//            let userDbManager = UserDatabaseManager()
-//        self.counts = userDbManager.getTotalUserProgress()
+        let userDbManager = UserDatabaseManager()
+        let counts = userDbManager.getTotalUserProgress()
 //            counts = (totalCases: Int(4), correctCases: Int(1), incorrectCases: Int(2))
 //            counts = (Int(4), Int(1), Int(2))
             
-//        var progressValue: Float = 0.0
-//            if (counts.totalCases != 0) {
-//                self.progressValue = Float(counts.correctCases / counts.totalCases)
-//            }
-//            else {
-//                self.progressValue = Float(0.0)
-//            }
+        VStack {
+
+            Text("Your answer of ")
+                .font(.title)
+                .foregroundColor(.primary)
+            +
+            Text("\(steps.stepList[5]) ")
+                .font(.title)
+                .foregroundColor(.accentColor)
+
+            Text("was")
+                .font(.title)
+                .foregroundColor(.primary)
             
-            
+            if (self.caseData.correctDiagnosis == steps.stepList[5]) {
+                Text("Correct!")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                    .padding(.top, 15)
+                    .padding(.bottom, 15)
+                    .background(Rectangle().fill(Color.green).cornerRadius(20).frame(width: 150))
+                    
+            }
+            else {
+                Text("Incorrect!")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
+                    .padding(.top, 15)
+                    .padding(.bottom, 15)
+                    .background(Rectangle().fill(Color.red).cornerRadius(20).frame(width: 170))
+                    
+                Text("Actual Cause of Respiratory Failure")
+                    .bold()
+                    .padding(.bottom, 2)
+                    .font(.system(size: 20))
+                    .padding(.top, 20)
+                    
+                Text("\(caseData.correctDiagnosis)")
+//                        .font(.body)
+                    .font(.system(size: 40))
+                    .fontWeight(.heavy)
+                    .foregroundColor(.accentColor)
+            }
            
-            VStack {
-                
-                HStack {
-                    Text("Your answer of ")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(.primary)
-                    +
-                    Text("\(steps.stepList[5]) ")
-                        .font(.title)
-                        .foregroundColor(.accentColor)
-                    +
-                    Text("was")
-                        .font(.title)
-                        .foregroundColor(.primary)
+            
+            Text("Your Diagnostic Process")
+                .bold()
+                .padding(.bottom, 10)
+                .font(.system(size: 25))
+                .padding(.top)
+            VStack(alignment: .leading) {
+                if steps.stepList.count == 6 {
+                    ForEach((0 ..< 5), id: \.self) {
+                        Text("\(steps.stepList[$0]) ")
+                            .font(.system(size: 20))
+                            .foregroundColor(.accentColor)
+                        +
+                        Text("after \(causeNames[$0])")
+                            .font(.system(size: 20))
+                            .foregroundColor(.secondary)
+//                            .padding(.top, 1)
+                        }
                 }
-                .padding(.bottom, 20)
-                
-                if (correct == true) {
-//                    counts.correctCases = counts.correctCases + Int(1)
-                    Text("Correct!")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .padding(.top, 20)
-                        .padding(.bottom)
-                        .background(Rectangle().fill(Color.green).cornerRadius(20).frame(width: 150))
-                        
+            }
+            .padding()
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color.black, lineWidth: 4)
+            )
+            
+            Spacer()
+            
+            HStack {
+                if (self.caseData.correctDiagnosis == steps.stepList[5]) {
+                    ProgressCircle(correct: counts.correctCases + 1, total: counts.totalCases + 1)
+                    PerfectStreak(correct: true)
                 }
                 else {
-                    Text("Incorrect!")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.primary)
-                        .padding(.top, 20)
-                        .padding(.bottom)
-                        .background(Rectangle().fill(Color.red).cornerRadius(20).frame(width: 170))
-                        
-                        
-                    Text("Actual Cause of Respiratory Failure")
-                        .bold()
-                        .padding(.bottom, 2)
-                        .font(.system(size: 20))
-                        .padding(.top, 40)
-                        
-                    Text("\(caseData.correctDiagnosis)")
-//                        .font(.body)
-                        .font(.system(size: 40))
-                        .fontWeight(.heavy)
-                        .foregroundColor(.accentColor)
+                    ProgressCircle(correct: counts.correctCases, total: counts.totalCases)
+                    PerfectStreak(correct: false)
                 }
-               
-                
-                Text("Your Diagnostic Process")
-                    .bold()
-                    .padding(.bottom, 10)
-                    .font(.system(size: 20))
-                    .padding(.top)
-                VStack(alignment: .leading) {
-                    if steps.stepList.count == 6 {
-                        ForEach((0 ..< 5), id: \.self) {
-                            Text("\(steps.stepList[$0]) after \(causeNames[$0])")
-//                                .font(.body)
-                                .font(.system(size: 20))
-                                .foregroundColor(.secondary)
-                            }
-                    }
-                }
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.black, lineWidth: 4)
-                )
-                
-//                Text("\(counts.correctCases)")
-//                ProgressCircle(progress: self.$progressValue)
-                ProgressCircle(correct: counts.correctCases, total: counts.totalCases)
-                
                 Spacer()
-                HStack {
+            }
+            
+            Spacer()
+            HStack {
+                Spacer()
+                VStack {
                     Button(action: {
                         print("I just favorited this case!")
                         isFav = !isFav
-                        counts.correctCases = counts.correctCases + Int(1)
+                        userDbManager.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
                         
                     }) {
                         if isFav {
                             Image(systemName: "heart.fill")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.black)
-                                .padding()
+                                
                         }
                         else {
                             Image(systemName: "heart")
                                 .font(.largeTitle)
                                 .foregroundColor(Color.black)
-                                .padding()
+                                
                         }
-                        
                     }
-                    Spacer()
+                    Text("Favorite")
+                        .fontWeight(.bold)
+                        .padding(.top, 5)
+                }
+                Spacer()
+                VStack {
                     NavigationLink(destination: MainMenu()) {
                         Image(systemName: "house.fill")
                             .font(.largeTitle)
                             .foregroundColor(Color.black)
-                            .padding()
                     }
-                    Spacer()
-                    Button(action: {
-                        print("I am going to the progress page")
-                    }) {
-                        Image(systemName: "arrow.right")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.black)
-                            .padding()
-                    }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        steps.stepList.removeAll()
-                })
+                    Text("Home")
+                        .fontWeight(.bold)
+                        .padding(.top, 5)
                 }
+                Spacer()
+                .simultaneousGesture(TapGesture().onEnded {
+                    if (self.caseData.correctDiagnosis == steps.stepList[5]) {
+                        let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: "Temp Reason", correct: true)
+                        userDbManager.storeCaseResult(result: myUser)
+                    }
+                    else {
+                        let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: "Temp Reason", correct: false)
+                        userDbManager.storeCaseResult(result: myUser)
+                    }
+                    
+                    steps.stepList.removeAll()
+                })
             }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
-        
+            .offset(y: 20)
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+    
+    }
 }
 
 
