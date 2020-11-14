@@ -175,8 +175,7 @@ struct ReviewCase: View {
                     ZStack {
                         Color.lighterGray
                         VStack {
-                            Image(caseData.xRayName)
-                                .resizable()
+                            AsyncImage(url: URL(string: "https://lungxrays.s3.amazonaws.com/\(caseData.caseId).jpg")!)
                                 .aspectRatio(contentMode: .fit)
                                 .cornerRadius(10)
                             Spacer()
