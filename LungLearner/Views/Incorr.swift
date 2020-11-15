@@ -245,11 +245,11 @@ struct Incorr: View {
                 .simultaneousGesture(TapGesture().onEnded {
                     if (steps.stepList.count == 6 && self.caseData.correctDiagnosis == steps.stepList[5]) {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: "Temp Reason", correct: true)
-                        //userDbManager.storeCaseResult(result: myUser)
+                        userDbManager.storeCaseResult(result: myUser)
                     }
                     else {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: "Temp Reason", correct: false)
-                        //userDbManager.storeCaseResult(result: myUser)
+                        userDbManager.storeCaseResult(result: myUser)
                     }
                     
                     steps.stepList.removeAll()

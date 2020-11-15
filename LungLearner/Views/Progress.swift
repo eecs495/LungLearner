@@ -40,7 +40,7 @@ struct Progress: View {
             .padding()
             //Review Panel
             NavigationLink(
-                destination: ReviewList( correctCases: testCorrectCaseDataList, incorrectCases: testIncorrectCaseDataList)) {
+                destination: ReviewList()) {
                 Text("Review Cases")
                     .bold()
                     .frame(maxWidth: .infinity)

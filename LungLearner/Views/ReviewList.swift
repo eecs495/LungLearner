@@ -1,13 +1,35 @@
 import SwiftUI
 
 struct ReviewList: View {
+    let userDbManager = UserDatabaseManager()
+    let caseDbManager = CaseDatabaseManager()
+    var completedCases: [(id: Int64, correct: Bool)]
     //data_list is the array of all the case data
     
     //.correct will be the enum that used to decide the category of the Case,
     //in this case, the category would be correct and wrong cases
   
-    var correctCases: [CaseData]
-    var incorrectCases: [CaseData]
+    var correctCases: [CaseData] = []
+    var incorrectCases: [CaseData] = []
+    
+    init() {
+        completedCases = userDbManager.getListOfCompletedCases()
+        for completedCase in completedCases {
+            do {
+                if completedCase.correct {
+                    correctCases.append(try caseDbManager.getCaseById(Id: completedCase.id))
+                } else {
+                    incorrectCases.append(try caseDbManager.getCaseById(Id: completedCase.id))
+                }
+            } catch CaseError.runtimeError(let errorMessage) {
+                print(errorMessage)
+            } catch {
+                print("Other errors")
+            }
+        }
+        //correctCases = testCorrectCaseDataList
+        //incorrectCases = testIncorrectCaseDataList
+    }
     
     var body: some View {
             //the list will be sorted by the key, which is the category
@@ -39,7 +61,7 @@ struct ReviewList: View {
 
 struct ReviewList_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewList(correctCases: testCorrectCaseDataList, incorrectCases: testIncorrectCaseDataList)
+        ReviewList()
     }
 }
 
