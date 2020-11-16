@@ -215,7 +215,7 @@ class UserDatabaseManager {
     
     
     // Implement Get Gender Grouped Cases
-    func getGenderGoup()->([returnedUserCaseResult],[returnedUserCaseResult]){
+    func getGenderGroup()->([returnedUserCaseResult],[returnedUserCaseResult]){
         // Return lists
         var malelist:[returnedUserCaseResult] = []
         var femalelist:[returnedUserCaseResult] = []
