@@ -60,9 +60,9 @@ struct ReviewList: View {
         ZStack {
             Color.lighterGray
             List{
-                Toggle(isOn: $show_fav){
-                                    Text("Show Favorites Only")
-                                }
+//                Toggle(isOn: $show_fav){
+//                                    Text("Show Favorites Only")
+//                                }
                     Section(header: Text("Correct")){
                         if show_fav {
                             ForEach(0 ..< favoriteCorrectCases.count) { i in
