@@ -82,7 +82,7 @@ struct ReviewList: View {
                         ForEach(self.correctCases, id: \.id) { correctCase in
                             if correctCase.favorite || !show_fav {
                                 NavigationLink(
-                                    destination: ReviewCase(caseData: correctCase.caseData, reason: correctCase.reason, firstDiagnosis: false, secondsTotal: 0)){
+                                    destination: ReviewCase(caseData: correctCase.caseData, reason: correctCase.reason, firstDiagnosis: false, stepsList: .constant([]), secondsTotal: 0)){
                                     ReviewListCell(caseData: correctCase.caseData, correct: true, favorite: correctCase.favorite)
                                 }
                             }
@@ -92,8 +92,8 @@ struct ReviewList: View {
                         ForEach(self.incorrectCases, id: \.id) { incorrectCase in
                             if incorrectCase.favorite || !show_fav {
                                 NavigationLink(
-                                    destination: ReviewCase(caseData: incorrectCase.caseData, reason: incorrectCase.reason, firstDiagnosis: false, secondsTotal: 0)){
-                                    ReviewListCell(caseData: incorrectCase.caseData, correct: true, favorite: incorrectCase.favorite)
+                                    destination: ReviewCase(caseData: incorrectCase.caseData, reason: incorrectCase.reason, firstDiagnosis: false, stepsList: .constant([]), secondsTotal: 0)){
+                                    ReviewListCell(caseData: incorrectCase.caseData, correct: false, favorite: incorrectCase.favorite)
                                 }
                             }
                         }

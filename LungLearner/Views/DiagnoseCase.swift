@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct DiagnoseCase: View {
-    @EnvironmentObject var steps: Steps
-    @State private var selectedCause: String = "Unsure"
+    //@EnvironmentObject var steps: Steps
+    //@State private var selectedCause: String = "Unsure"
+    @Binding var stepsList: [String]
     
     var caseData: CaseData
     
@@ -20,13 +21,14 @@ struct DiagnoseCase: View {
     var secondsTotal: Int
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    init(caseData: CaseData, secondsTotal: Int) {
+    init(caseData: CaseData, secondsTotal: Int, stepsList: Binding<[String]>) {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
         UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
         UITextView.appearance().backgroundColor = .clear
         self.caseData = caseData
         self.secondsTotal = secondsTotal
+        _stepsList = stepsList
     }
     
     var body: some View {
@@ -45,16 +47,16 @@ struct DiagnoseCase: View {
                         }
                     }
                     //.padding(.horizontal, 30)
-                    if steps.stepList.count == 5 {
+                    //if steps.stepList.count == 5 {
                         Group {
-                            DataBlock(title: "After History", description: steps.stepList[0])
-                            DataBlock(title: "After Symptoms", description: steps.stepList[1])
-                            DataBlock(title: "After Physical Exam", description: steps.stepList[2])
-                            DataBlock(title: "After Lab Values", description: steps.stepList[3])
-                            DataBlock(title: "After X-Ray", description: steps.stepList[4])
+                            DataBlock(title: "After History", description: stepsList[0])
+                            DataBlock(title: "After Symptoms", description: stepsList[1])
+                            DataBlock(title: "After Physical Exam", description: stepsList[2])
+                            DataBlock(title: "After Lab Values", description: stepsList[3])
+                            DataBlock(title: "After X-Ray", description: stepsList[4])
                         }
                         .padding(.bottom, 5)
-                    }
+                    //}
                     TextEditor(text: $inputNotes)
                         .padding()
                         .foregroundColor(self.inputNotes == placeholderString ? Color.gray : Color.primary)
@@ -75,14 +77,14 @@ struct DiagnoseCase: View {
                     HStack {
                         Text("My final diagnosis is")
                             .font(.system(size: 20))
-                        Text(selectedCause)
+                        Text(stepsList[5])
                             .font(.system(size: 20))
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundColor(Color.hotPink)
                     }
                     .padding(.vertical)
-                    DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: Incorr(caseData: caseData, reason: inputNotes)) {
+                    DiagnoseButtons(stepsList: $stepsList, index: 5)
+                    NavigationLink(destination: Incorr(caseData: caseData, reason: inputNotes, stepsList: stepsList)) {
                         HStack {
                             Text("Check")
                                 .foregroundColor(Color.hotPink)
@@ -91,9 +93,9 @@ struct DiagnoseCase: View {
                         }
                         .padding(.vertical)
                     }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        steps.stepList.append(selectedCause)
-                    })
+//                    .simultaneousGesture(TapGesture().onEnded {
+//                        steps.stepList.append(selectedCause)
+//                    })
                 }
             }
             .navigationBarBackButtonHidden(true)
@@ -102,13 +104,13 @@ struct DiagnoseCase: View {
     }
 }
 
-struct DiagnoseCase_Previews: PreviewProvider {
-    static var previews: some View {
-        let testSteps = Steps()
-        testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure"]
-        return DiagnoseCase(caseData: testCaseData1, secondsTotal: 444).environmentObject(testSteps)
-    }
-}
+//struct DiagnoseCase_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let testSteps = Steps()
+//        testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure"]
+//        return DiagnoseCase(caseData: testCaseData1, secondsTotal: 444, stepsList: ["COPD", "Unsure", "CHF", "COPD", "Unsure", "Unsure"])
+//    }
+//}
 
 struct StepListText: View {
     var stepList: [String]

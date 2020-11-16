@@ -8,25 +8,30 @@
 import SwiftUI
 
 struct PhysicalExam: View {
-    @EnvironmentObject var steps: Steps
-    @State private var selectedCause: String = "Unsure"
+    //@EnvironmentObject var steps: Steps
+    //@State private var selectedCause: String = "Unsure"
     var caseData: CaseData
+    @Binding var stepsList: [String]
     
     @State var secondsHere: Int = 0
     var secondsTotal: Int
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    init(caseData: CaseData, secondsTotal: Int){
+    init(caseData: CaseData, secondsTotal: Int, stepsList: Binding<[String]>){
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
         UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
         self.caseData = caseData
         self.secondsTotal = secondsTotal
+        _stepsList = stepsList
     }
     
     var body: some View {
         ScrollView {
             VStack {
+                ForEach(stepsList, id: \.self) { step in
+                    Text(step)
+                }
                 HStack {
                     ProgressCircles(coloredIndex: 2)
                     DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
@@ -40,14 +45,14 @@ struct PhysicalExam: View {
                     HStack {
                         Text("My current diagnosis is")
                             .font(.system(size: 20))
-                        Text(selectedCause)
+                        Text(stepsList[2])
                             .font(.system(size: 20))
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundColor(Color.hotPink)
                     }
                     .padding(.vertical)
-                    DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: LabValues(caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
+                    DiagnoseButtons(stepsList: $stepsList, index: 2)
+                    NavigationLink(destination: LabValues(caseData: caseData, secondsTotal: secondsHere + secondsTotal, stepsList: $stepsList)) {
                         HStack {
                             Text("Lab Values")
                                 .foregroundColor(Color.hotPink)
@@ -56,9 +61,9 @@ struct PhysicalExam: View {
                         }
                         .padding(.vertical)
                     }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        steps.stepList.append(selectedCause)
-                    })
+//                    .simultaneousGesture(TapGesture().onEnded {
+//                        steps.stepList.append(selectedCause)
+//                    })
                 }
             }
             .navigationBarBackButtonHidden(true)
@@ -67,11 +72,11 @@ struct PhysicalExam: View {
     }
 }
 
-struct PhysicalExam_Previews: PreviewProvider {
-    static var previews: some View {
-        PhysicalExam(caseData: testCaseData, secondsTotal: 90).environmentObject(Steps())
-    }
-}
+//struct PhysicalExam_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PhysicalExam(caseData: testCaseData, secondsTotal: 90, stepsList: ["HISTORY", "SYMPTOMS", "PHYSICAL EXAM", "LAB VALUES", "X-RAY", "FINAL"])
+//    }
+//}
 
 struct PhysicalExamText: View {
     var caseData: CaseData

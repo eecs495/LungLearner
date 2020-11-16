@@ -8,20 +8,24 @@
 import SwiftUI
 
 struct MainMenu: View {
-    @EnvironmentObject var steps: Steps
-    var caseDbManager = CaseDatabaseManager()
-    var caseData: CaseData?
-    
-    @State private var isPresented = false
-    
-    init() {
+    //@EnvironmentObject var steps: Steps
+    // @StateObject var caseDbManager = CaseDatabaseManager()
+    @State var caseData: CaseData? = {
         do {
-            self.caseData = try caseDbManager.getRandomCase()
+            return try CaseDatabaseManager.shared.getRandomCase()
         } catch CaseError.runtimeError(let errorMessage) {
             print(errorMessage)
+            return nil
         } catch {
             print("Other errors")
+            return nil
         }
+    }()
+    
+    @State private var isPresented = false
+
+    
+    init() {
     }
     
     var body: some View {

@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct LabValues: View {
-    @EnvironmentObject var steps: Steps
-    @State private var selectedCause: String = "Unsure"
+    //@EnvironmentObject var steps: Steps
+    //@State private var selectedCause: String = "Unsure"
     @State var showImage: Bool = false
     var caseData: CaseData
+    @Binding var stepsList: [String]
     
     @State var secondsHere: Int = 0
     var secondsTotal: Int
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    init(caseData: CaseData, secondsTotal: Int){
+    init(caseData: CaseData, secondsTotal: Int, stepsList: Binding<[String]>){
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
         UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
         self.caseData = caseData
         self.secondsTotal = secondsTotal
+        _stepsList = stepsList
     }
     
     var body: some View {
@@ -41,14 +43,14 @@ struct LabValues: View {
                     HStack {
                         Text("My current diagnosis is")
                             .font(.system(size: 20))
-                        Text(selectedCause)
+                        Text(stepsList[3])
                             .font(.system(size: 20))
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundColor(Color.hotPink)
                     }
                     .padding(.vertical)
-                    DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: XRay(caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
+                    DiagnoseButtons(stepsList: $stepsList, index: 3)
+                    NavigationLink(destination: XRay(stepsList: $stepsList, caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
                         HStack {
                             Text("X-Ray")
                                 .foregroundColor(Color.hotPink)
@@ -57,9 +59,9 @@ struct LabValues: View {
                         }
                         .padding(.vertical)
                     }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        steps.stepList.append(selectedCause)
-                    })
+//                    .simultaneousGesture(TapGesture().onEnded {
+//                        steps.stepList.append(selectedCause)
+//                    })
                 }
             }
             .navigationBarBackButtonHidden(true)
@@ -68,11 +70,11 @@ struct LabValues: View {
     }
 }
 
-struct LabValues_Previews: PreviewProvider {
-    static var previews: some View {
-        LabValues(caseData: testCaseData1, secondsTotal: 200).environmentObject(Steps())
-    }
-}
+//struct LabValues_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LabValues(caseData: testCaseData1, secondsTotal: 200, stepsList: ["HISTORY", "SYMPTOMS", "PHYSICAL EXAM", "LAB VALUES", "X-RAY", "FINAL"])
+//    }
+//}
 
 struct BloodDataBlocks: View {
     var caseData: CaseData

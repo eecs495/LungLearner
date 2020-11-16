@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct DiagnoseButtons: View {
-    @Binding var selectedCause: String
+    @Binding var stepsList: [String]
+    var index: Int
     
     var body: some View {
         VStack {
             HStack {
                 Button(action: {
-                    selectedCause = "Heart failure"
+                    stepsList[index] = "Heart failure"
                 }) {
                     Text("Heart Failure")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -22,7 +23,7 @@ struct DiagnoseButtons: View {
                 .buttonStyle(NarrowButtonStyle())
                 .padding(.leading, 30)
                 Button(action: {
-                    selectedCause = "COPD"
+                    stepsList[index] = "COPD"
                 }) {
                     Text("COPD")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -33,7 +34,7 @@ struct DiagnoseButtons: View {
             .padding(.bottom, 5)
             HStack {
                 Button(action: {
-                    selectedCause = "Pneumonia"
+                    stepsList[index] = "Pneumonia"
                 }) {
                     Text("Pneumonia")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
@@ -41,7 +42,7 @@ struct DiagnoseButtons: View {
                 .buttonStyle(NarrowButtonStyle())
                 .padding(.leading, 30)
                 Button(action: {
-                    selectedCause = "Unsure"
+                    stepsList[index] = "Unsure"
                 }) {
                     Text("Unsure")
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)

@@ -9,6 +9,8 @@ import Foundation
 import SQLite
 
 class CaseDatabaseManager {
+    static let shared = CaseDatabaseManager()
+    
     var db:Connection
 
     // Initialize the db connection upon class creation

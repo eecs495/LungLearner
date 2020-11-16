@@ -23,6 +23,7 @@ struct ReviewCase: View {
     var caseData: CaseData
     var reason: String = ""
     var firstDiagnosis: Bool = true
+    @Binding var stepsList: [String]
     
     @State var secondsHere: Int = 0
     var secondsTotal: Int
@@ -69,7 +70,7 @@ struct ReviewCase: View {
                     .padding(.top, 10)
                     if firstDiagnosis {
                         Spacer()
-                        NavigationLink(destination: DiagnoseCase(caseData: caseData, secondsTotal: secondsTotal + secondsHere)) {
+                        NavigationLink(destination: DiagnoseCase(caseData: caseData, secondsTotal: secondsTotal + secondsHere, stepsList: $stepsList)) {
                             HStack {
                                 Text("Diagnose Case")
                                     .foregroundColor(Color.hotPink)
@@ -197,8 +198,8 @@ struct ReviewCase: View {
     }
 }
 
-struct ReviewCase_Previews: PreviewProvider {
-    static var previews: some View {
-        ReviewCase(caseData: testCaseData1, firstDiagnosis: true, secondsTotal: 100).environmentObject(Steps())
-    }
-}
+//struct ReviewCase_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReviewCase(caseData: testCaseData1, firstDiagnosis: true, stepsList: ["HISTORY", "SYMPTOMS", "PHYSICAL EXAM", "LAB VALUES", "X-RAY", "FINAL"], secondsTotal: 100).environmentObject(Steps())
+//    }
+//}

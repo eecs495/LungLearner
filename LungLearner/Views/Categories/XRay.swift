@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct XRay: View {
-    @EnvironmentObject var steps: Steps
+    //@EnvironmentObject var steps: Steps
     //@EnvironmentObject var timeToDiagnose: TimeToDiagnose
-    @State private var selectedCause: String = "Unsure"
+    //@State private var selectedCause: String = "Unsure"
+    @Binding var stepsList: [String]
     @State var showImage: Bool = false
     let url = URL(string: "https://lungxrays.s3.amazonaws.com/208.jpg")!
     
@@ -73,14 +74,14 @@ struct XRay: View {
                     HStack {
                         Text("My current diagnosis is")
                             .font(.system(size: 20))
-                        Text(selectedCause)
+                        Text(stepsList[4])
                             .font(.system(size: 20))
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundColor(Color.hotPink)
                     }
                     .padding(.bottom)
-                    DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: ReviewCase(caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
+                    DiagnoseButtons(stepsList: $stepsList, index: 4)
+                    NavigationLink(destination: ReviewCase(caseData: caseData, stepsList: $stepsList, secondsTotal: secondsHere + secondsTotal)) {
                         HStack {
                             Text("Review Case")
                                 .foregroundColor(Color.hotPink)
@@ -89,9 +90,9 @@ struct XRay: View {
                         }
                         .padding(.vertical)
                     }
-                    .simultaneousGesture(TapGesture().onEnded {
-                        steps.stepList.append(selectedCause)
-                    })
+//                    .simultaneousGesture(TapGesture().onEnded {
+//                        steps.stepList.append(selectedCause)
+//                    })
                 }
 
         }
@@ -101,8 +102,8 @@ struct XRay: View {
     }
 }
 
-struct XRay_Previews: PreviewProvider {
-    static var previews: some View {
-        XRay(caseData: testCaseData, secondsTotal: 244).environmentObject(Steps())
-    }
-}
+//struct XRay_Previews: PreviewProvider {
+//    static var previews: some View {
+//        XRay(stepsList: ["HISTORY", "SYMPTOMS", "PHYSICAL EXAM", "LAB VALUES", "X-RAY", "FINAL"], caseData: testCaseData, secondsTotal: 244)
+//    }
+//}

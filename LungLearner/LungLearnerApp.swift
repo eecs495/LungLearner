@@ -91,7 +91,7 @@ struct LungLearnerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainMenu().environmentObject(Steps())
+            MainMenu()
         }
     }
 }

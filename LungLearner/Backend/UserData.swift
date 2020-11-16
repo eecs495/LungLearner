@@ -32,6 +32,8 @@ struct returnedUserCaseResult {
 }
 
 class UserDatabaseManager {
+    static let shared = UserDatabaseManager()
+    
     var db:Connection
     var userInfo = Table("userInfo")
     

@@ -19,9 +19,14 @@ struct History: View {
     var secondsTotal: Int = 0
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    @State var stepsList: [String] = ["Unsure", "Unsure", "Unsure", "Unsure", "Unsure", "Unsure"]
+    
     var body: some View {
             
         VStack {
+//            ForEach(stepsList, id: \.self) { step in
+//                Text(step)
+//            }
             HStack {
                 ProgressCircles(coloredIndex: 0)
                 DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
@@ -36,14 +41,14 @@ struct History: View {
                 HStack {
                     Text("My current diagnosis is")
                         .font(.system(size: 20))
-                    Text(selectedCause)
+                    Text(stepsList[0])
                         .font(.system(size: 20))
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .foregroundColor(Color.hotPink)
                 }
                 .padding(.bottom)
-                DiagnoseButtons(selectedCause: $selectedCause)
-                NavigationLink(destination: Symptoms(caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
+                DiagnoseButtons(stepsList: $stepsList, index: 0)
+                NavigationLink(destination: Symptoms(caseData: caseData, secondsTotal: secondsHere + secondsTotal, stepsList: $stepsList)) {
                     HStack {
                         Text("Symptoms")
                             .foregroundColor(Color.hotPink)
@@ -52,9 +57,9 @@ struct History: View {
                     }
                     .padding(.vertical)
                 }
-                .simultaneousGesture(TapGesture().onEnded {
-                    steps.stepList.append(selectedCause)
-                })
+//                .simultaneousGesture(TapGesture().onEnded {
+//                    steps.stepList.append(selectedCause)
+//                })
             }
         }
         .background(Color.lighterGray.ignoresSafeArea())
