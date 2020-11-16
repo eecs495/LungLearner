@@ -4,7 +4,7 @@ Lung Learner is a fun, competitive application for medical students and physicia
 
 ## Setup Instructions
 
-To run Lung Learner, simply clone this repository with the command: `git clone git@github.com:eecs495/LungLearner.git`. Once cloned, open `LungLearner.xcodeproj` in Xcode and run the application by either selecting the play button in the top-left corner or navigating to *Product > Run* in the tool bar. This will launch a simulator on the default device (an iPod touch 7th generation on most laptops). After a moment, the application will open and the main menu will appear. You might see a white screen for about one minute before anything shows up. 
+First, follow [this guide](https://docs.google.com/document/d/1WOd-otluOxWlxoOzyx6x47Xws4PQp2HzoVLFk4Xn3FA/edit?usp=sharing) to setup Amplify. To then run Lung Learner, simply clone this repository with the command: `git clone git@github.com:eecs495/LungLearner.git`. Once cloned, open `LungLearner.xcworskpace` in Xcode and run the application by either selecting the play button in the top-left corner or navigating to *Product > Run* in the tool bar. This will launch a simulator on the default device (an iPod touch 7th generation on most laptops). After a moment, the application will open and the main menu will appear. You might see a white screen for about one minute before anything shows up. 
 
 ## Code Strucutre
 
