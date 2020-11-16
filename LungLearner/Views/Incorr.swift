@@ -120,6 +120,8 @@ struct Incorr: View {
 //            counts = (Int(4), Int(1), Int(2))
        
         VStack {
+            
+            Text(caseData.correctDiagnosis)
 
             if (steps.stepList.count == 6) {
                 Text("Your answer of ")
@@ -214,7 +216,7 @@ struct Incorr: View {
                     Button(action: {
                         print("I just favorited this case!")
                         isFav = !isFav
-                        userDbManager.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
+//                        userDbManager.setCaseFavorite(idInput: Int64(self.caseData.caseId), favoriteInput: isFav)
                     }) {
                         if isFav {
                             Image(systemName: "heart.fill")
@@ -253,7 +255,7 @@ struct Incorr: View {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: self.reason, correct: false)
                         userDbManager.storeCaseResult(result: myUser)
                     }
-                    
+                    userDbManager.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
                     steps.stepList.removeAll()
                 })
                 Spacer()
