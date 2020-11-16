@@ -57,13 +57,6 @@ struct ReviewList: View {
                         incorrectCase.favorite = true
                     }
                     incorrectCases.append(incorrectCase)
-//                    let caseData = try caseDbManager.getCaseById(Id: completedCase.id)
-//                    incorrectCases.append(caseData)
-//                    let userCase = try userDbManager.getUserCaseById(Id: completedCase.id)
-//                    incorrectReasons.append(userCase.reason)
-//                    if favoriteCases.contains(userCase.caseid) {
-//                        favoriteIncorrectCases.append(caseData)
-//                    }
                 }
             } catch CaseError.runtimeError(let errorMessage) {
                 print(errorMessage)

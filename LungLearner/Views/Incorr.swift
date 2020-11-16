@@ -120,6 +120,8 @@ struct Incorr: View {
 //            counts = (Int(4), Int(1), Int(2))
        
         VStack {
+            
+            Text(caseData.correctDiagnosis)
 
             if (steps.stepList.count == 6) {
                 Text("Your answer of ")
