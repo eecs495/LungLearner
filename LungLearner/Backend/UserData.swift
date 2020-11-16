@@ -31,6 +31,10 @@ struct returnedUserCaseResult {
     var correct: Bool
 }
 
+enum UserDataError: Error {
+    case caseNotFound
+}
+
 class UserDatabaseManager {
     var db:Connection
     var userInfo = Table("userInfo")
@@ -122,6 +126,19 @@ class UserDatabaseManager {
             results.append(caseEntry[id])
         }
         return results
+    }
+    
+    // Returns whether or not thr given case is 'favorited'
+    func checkCaseFavorite(idInput: Int64) throws -> Bool {
+        let filteredCase = userInfo.filter(id == idInput)
+        var fave:Bool
+        if let caseEntry = try! db.pluck(filteredCase) {
+            fave = caseEntry[favorite]
+        } else {
+            print("error: case not found")
+            throw UserDataError.caseNotFound
+        }
+        return fave
     }
 
     // Get a Usercase by ID
