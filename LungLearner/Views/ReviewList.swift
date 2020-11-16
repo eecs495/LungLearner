@@ -1,5 +1,12 @@
 import SwiftUI
 
+struct SpecialCase {
+    var id: Int
+    var caseData: CaseData
+    var reason: String
+    var favorite: Bool
+}
+
 struct ReviewList: View {
     let userDbManager = UserDatabaseManager()
     let caseDbManager = CaseDatabaseManager()
@@ -12,9 +19,9 @@ struct ReviewList: View {
     //.correct will be the enum that used to decide the category of the Case,
     //in this case, the category would be correct and wrong cases
   
-    var correctCases: [CaseData] = []
+    var correctCases: [SpecialCase] = []
     var correctReasons: [String] = []
-    var incorrectCases: [CaseData] = []
+    var incorrectCases: [SpecialCase] = []
     var incorrectReasons: [String] = []
     
     var favoriteCases: [Int64] = []
@@ -27,21 +34,36 @@ struct ReviewList: View {
         for completedCase in completedCases {
             do {
                 if completedCase.correct {
-                    let caseData = try caseDbManager.getCaseById(Id: completedCase.id)
-                    correctCases.append(caseData)
-                    let userCase = try userDbManager.getUserCaseById(Id: completedCase.id)
-                    correctReasons.append(userCase.reason)
-                    if favoriteCases.contains(userCase.caseid) {
-                        favoriteCorrectCases.append(caseData)
+                    var correctCase = SpecialCase(
+                        id: 1,
+                        caseData: try caseDbManager.getCaseById(Id: completedCase.id),
+                        reason: try userDbManager.getUserCaseById(Id: completedCase.id).reason,
+                        favorite: false
+                    )
+                    correctCase.id = correctCase.caseData.id
+                    if favoriteCases.contains(Int64(correctCase.id)) {
+                        correctCase.favorite = true
                     }
+                    correctCases.append(correctCase)
                 } else {
-                    let caseData = try caseDbManager.getCaseById(Id: completedCase.id)
-                    incorrectCases.append(caseData)
-                    let userCase = try userDbManager.getUserCaseById(Id: completedCase.id)
-                    incorrectReasons.append(userCase.reason)
-                    if favoriteCases.contains(userCase.caseid) {
-                        favoriteIncorrectCases.append(caseData)
+                    var incorrectCase = SpecialCase(
+                        id: 1,
+                        caseData: try caseDbManager.getCaseById(Id: completedCase.id),
+                        reason: try userDbManager.getUserCaseById(Id: completedCase.id).reason,
+                        favorite: false
+                    )
+                    incorrectCase.id = incorrectCase.caseData.id
+                    if favoriteCases.contains(Int64(incorrectCase.id)) {
+                        incorrectCase.favorite = true
                     }
+                    incorrectCases.append(incorrectCase)
+//                    let caseData = try caseDbManager.getCaseById(Id: completedCase.id)
+//                    incorrectCases.append(caseData)
+//                    let userCase = try userDbManager.getUserCaseById(Id: completedCase.id)
+//                    incorrectReasons.append(userCase.reason)
+//                    if favoriteCases.contains(userCase.caseid) {
+//                        favoriteIncorrectCases.append(caseData)
+//                    }
                 }
             } catch CaseError.runtimeError(let errorMessage) {
                 print(errorMessage)
@@ -60,39 +82,26 @@ struct ReviewList: View {
         ZStack {
             Color.lighterGray
             List{
-//                Toggle(isOn: $show_fav){
-//                                    Text("Show Favorites Only")
-//                                }
-                    Section(header: Text("Correct")){
-                        if show_fav {
-                            ForEach(0 ..< favoriteCorrectCases.count) { i in
-                                NavigationLink(
-                                    destination: ReviewCase(caseData: favoriteCorrectCases[i], reason: "These are my notes!", firstDiagnosis: false, secondsTotal: 0)){
-                                    ReviewListCell(caseData: favoriteCorrectCases[i], correct: true, favorite: true)
+                Toggle(isOn: $show_fav){
+                                    Text("Show Favorites Only")
                                 }
-                            }
-                        } else {
-                            ForEach(0 ..< correctCases.count) { i in
+                    Section(header: Text("Correct")){
+                        ForEach(self.correctCases, id: \.id) { correctCase in
+                            if correctCase.favorite || !show_fav {
                                 NavigationLink(
-                                    destination: ReviewCase(caseData: correctCases[i], reason: correctReasons[i], firstDiagnosis: false, secondsTotal: 0)){
-                                    ReviewListCell(caseData: correctCases[i], correct: true, favorite: favoriteCases.contains(Int64(correctCases[i].caseId)))
+                                    destination: ReviewCase(caseData: correctCase.caseData, reason: correctCase.reason, firstDiagnosis: false, secondsTotal: 0)){
+                                    ReviewListCell(caseData: correctCase.caseData, correct: true, favorite: correctCase.favorite)
                                 }
                             }
                         }
                     }
                     Section(header: Text("Incorrect")){
-                        if show_fav {
-                            ForEach(0 ..< favoriteIncorrectCases.count) { i in
+                        ForEach(self.incorrectCases, id: \.id) { incorrectCase in
+                            if incorrectCase.favorite || !show_fav {
                                 NavigationLink(
-                                    destination: ReviewCase(caseData: incorrectCases[i], reason: incorrectReasons[i], firstDiagnosis: false, secondsTotal: 0)){
-                                    ReviewListCell(caseData: incorrectCases[i], correct: false, favorite: true)
+                                    destination: ReviewCase(caseData: incorrectCase.caseData, reason: incorrectCase.reason, firstDiagnosis: false, secondsTotal: 0)){
+                                    ReviewListCell(caseData: incorrectCase.caseData, correct: true, favorite: incorrectCase.favorite)
                                 }
-                            }
-                        }
-                        ForEach(0 ..< incorrectCases.count) { i in
-                            NavigationLink(
-                                destination: ReviewCase(caseData: incorrectCases[i], reason: incorrectReasons[i], firstDiagnosis: false, secondsTotal: 0)){
-                                ReviewListCell(caseData: incorrectCases[i], correct: true, favorite: favoriteCases.contains(Int64(incorrectCases[i].caseId)))
                             }
                         }
                     }
@@ -169,6 +178,7 @@ struct ReviewListCell: View {
             if favorite {
                 HStack {
                     Image(systemName: "heart.fill")
+                        .font(.system(size: 20))
                         .foregroundColor(.yellow)
                         .padding(.trailing, 5)
                 }

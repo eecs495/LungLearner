@@ -49,8 +49,8 @@ class UserDatabaseManager {
     // Whether the user has set this as a 'favorite' case
     var favorite = Expression<Bool>("favorite")
     
-    var first_date: NSDate
-    var current_date: NSDate
+    var first_date: NSDate = NSDate()
+    var current_date: NSDate = NSDate()
     
     init() {
         let path = NSSearchPathForDirectoriesInDomains(
