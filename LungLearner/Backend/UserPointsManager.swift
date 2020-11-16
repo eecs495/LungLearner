@@ -26,9 +26,9 @@ func configureAmplify() {
     }
 }
 
-func saveUserPoint() {
-    let userPoint = UserPoint(username: "Harry Hawkins",
-                              points: 85)
+func saveUserPoint(username: String, points: Int) {
+    let userPoint = UserPoint(username: username,
+                              points: points)
     Amplify.DataStore.save(userPoint) { result in
         switch(result) {
         case .success(let savedItem):
@@ -39,8 +39,20 @@ func saveUserPoint() {
     }
 }
 
-func queryUserPoint() {
-    Amplify.DataStore.query(UserPoint.self) { result in
+//func updateUserPoints(username: String, points: Int) {
+//    // First get existing user point
+//    do {
+//        let userPoint = try queryUserPointsByUsername(username: username)
+//    } catch  {
+//        print("Some Error")
+//    }
+//
+//}
+
+func queryUserPointsByUsername(username: String) {
+    let p = UserPoint.keys
+//    let up
+    Amplify.DataStore.query(UserPoint.self, where: p.username.eq(username)) { result in
         switch(result) {
         case .success(let userPoints):
             for userPoint in userPoints {
@@ -52,4 +64,5 @@ func queryUserPoint() {
             print("Could not query DataStore: \(error)")
         }
     }
+//    return up
 }

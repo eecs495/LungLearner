@@ -32,7 +32,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // Amplify stuff on startup
         configureAmplify()
 //        saveUserPoint()
-        queryUserPoint()
+//        queryUserPoint()
         
         return true
     }

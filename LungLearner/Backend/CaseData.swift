@@ -104,7 +104,7 @@ func makeCase(caseInfo: Row) -> CaseData {
     let AmountOfOxygenReceived = Expression<String>("AmountOfOxygenReceived")
     let PhysicalExamGeneral = Expression<String>("PhysicalExamGeneral")
     let PhysicalExamHead = Expression<String>("PhysicalExamHead")
-    let PhysicalExamNeck = Expression<String>("Gender")
+    let PhysicalExamNeck = Expression<String>("PhysicalExamNeck")
     let PhysicalExamHeart = Expression<String>("PhysicalExamHeart")
     let PhysicalExamLungs = Expression<String>("PhysicalExamLungs")
     let PhysicalExamAbdomen = Expression<String>("PhysicalExamAbdomen")
