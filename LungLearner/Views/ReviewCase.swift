@@ -21,6 +21,7 @@ struct ReviewCase: View {
     @State var showXRay: Bool = false
     
     var caseData: CaseData
+    var reason: String = ""
     var firstDiagnosis: Bool = true
     
     @State var secondsHere: Int = 0
@@ -50,7 +51,7 @@ struct ReviewCase: View {
                                 DataBlock(title: "Correct Diagnosis", description: caseData.correctDiagnosis)
                                     .padding(.bottom, 5)
                                     .padding(.horizontal, 30)
-                                DataBlock(title: "Your Notes", description: "Insert test notes from user here.")
+                                DataBlock(title: "Your Notes", description: reason)
                                     .padding(.bottom, 5)
                                     .padding(.horizontal, 30)
                             }
@@ -175,8 +176,7 @@ struct ReviewCase: View {
                     ZStack {
                         Color.lighterGray
                         VStack {
-                            Image(caseData.xRayName)
-                                .resizable()
+                            AsyncImage(url: URL(string: "https://lungxrays.s3.amazonaws.com/\(caseData.caseId).jpg")!)
                                 .aspectRatio(contentMode: .fit)
                                 .cornerRadius(10)
                             Spacer()
@@ -191,7 +191,7 @@ struct ReviewCase: View {
                 }
         }
         .background(Color.lighterGray.ignoresSafeArea())
-        .navigationBarTitle("Case \(caseData.id)")
+        .navigationBarTitle("Case \(caseData.caseId)")
         .navigationBarBackButtonHidden(firstDiagnosis)
         .navigationBarHidden(firstDiagnosis)
     }

@@ -12,6 +12,7 @@ struct XRay: View {
     //@EnvironmentObject var timeToDiagnose: TimeToDiagnose
     @State private var selectedCause: String = "Unsure"
     @State var showImage: Bool = false
+    let url = URL(string: "https://lungxrays.s3.amazonaws.com/208.jpg")!
     
     private let minZoom: CGFloat = 0.75
     private let maxZoom: CGFloat = 3.0
@@ -44,8 +45,7 @@ struct XRay: View {
                         .font(.system(size: 35))
                         .fontWeight(.semibold)
                         .padding(.bottom, 5)
-                    Image("xRay1")
-                        .resizable()
+                    AsyncImage(url: URL(string: "https://lungxrays.s3.amazonaws.com/\(caseData.caseId).jpg")!)
                         .aspectRatio(contentMode: .fit)
                     VStack {
                         Button(action: {

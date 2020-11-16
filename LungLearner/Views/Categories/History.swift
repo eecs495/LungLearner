@@ -90,7 +90,7 @@ struct HistoryTextBody: View {
     var caseData: CaseData
     
     func BuildDescriptionFromCaseData() -> String {
-        var description: String = "Case ID \(caseData.id) is a \(caseData.age)-year-old \(caseData.gender) with a past medical history of "
+        var description: String = "Case ID \(caseData.caseId) is a \(caseData.age)-year-old \(caseData.gender) with a past medical history of "
         if caseData.history3 == "" {
             description += "\(caseData.history1) and \(caseData.history2)."
         } else {

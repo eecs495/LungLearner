@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		10CB38F97291986542AC6E40 /* Pods_LungLearner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FC257E49D5AD184B6518522 /* Pods_LungLearner.framework */; };
 		4428D77CFB05412F8D782284 /* UserPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77D56EC24144069B55B26A1 /* UserPoint.swift */; };
-		4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */; };
+		4A130589255B80A800956510 /* Incorr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A130588255B80A800956510 /* Incorr.swift */; };
 		4A6B59F1252A708C00E9DA63 /* DiagProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */; };
 		51C450FA647A47A190ACF0F8 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 4249BCB3ADC84AEFBDC7DCB0 /* awsconfiguration.json */; };
 		5EB0706F252512E3009AB694 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 5EB0706E252512E3009AB694 /* SQLite */; };
@@ -54,7 +54,7 @@
 /* Begin PBXFileReference section */
 		1A0573D29A4443B28614ABB7 /* UserPoint+Schema.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "UserPoint+Schema.swift"; path = "amplify/generated/models/UserPoint+Schema.swift"; sourceTree = "<group>"; };
 		4249BCB3ADC84AEFBDC7DCB0 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = awsconfiguration.json; sourceTree = "<group>"; };
-		4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incorr.swift; sourceTree = "<group>"; };
+		4A130588255B80A800956510 /* Incorr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incorr.swift; sourceTree = "<group>"; };
 		4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagProcess.swift; sourceTree = "<group>"; };
 		5A311A90CDF8F633180345E8 /* Pods-LungLearner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LungLearner.debug.xcconfig"; path = "Target Support Files/Pods-LungLearner/Pods-LungLearner.debug.xcconfig"; sourceTree = "<group>"; };
 		760B536A2522555F000B129B /* LungLearner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LungLearner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,7 +142,7 @@
 				7677235C252F6D4A00D5521B /* Categories */,
 				767723602530D92000D5521B /* ReviewCase.swift */,
 				765AD734253A4D980053C3CB /* DiagnoseCase.swift */,
-				4A6B59E9252A6F5A00E9DA63 /* Incorr.swift */,
+				4A130588255B80A800956510 /* Incorr.swift */,
 				765AD74A253E67390053C3CB /* Progress.swift */,
 				765AD741253DCFAD0053C3CB /* ReviewList.swift */,
 				765AD744253DD0190053C3CB /* CaseDetail.swift */,
@@ -437,11 +437,11 @@
 				764DC9A32551F80B00826A9A /* DiagnoseButtons.swift in Sources */,
 				7677234A252E8E5500D5521B /* History.swift in Sources */,
 				764DC9A62552051300826A9A /* ProgressCircles.swift in Sources */,
+				4A130589255B80A800956510 /* Incorr.swift in Sources */,
 				760B536E2522555F000B129B /* LungLearnerApp.swift in Sources */,
 				765AD73D253A4F6B0053C3CB /* ClosePopUpButton.swift in Sources */,
 				8CC55E3C255892F4003F255F /* UserPointsManager.swift in Sources */,
 				76772353252E95F100D5521B /* LabValues.swift in Sources */,
-				4A6B59EA252A6F5A00E9DA63 /* Incorr.swift in Sources */,
 				76F22C6C25242A1300FB864F /* Cause.swift in Sources */,
 				765AD745253DD0190053C3CB /* CaseDetail.swift in Sources */,
 				765AD732253A4BD10053C3CB /* ReviewButton.swift in Sources */,

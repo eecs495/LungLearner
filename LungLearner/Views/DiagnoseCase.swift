@@ -82,7 +82,7 @@ struct DiagnoseCase: View {
                     }
                     .padding(.vertical)
                     DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: Incorr(caseData: caseData)) {
+                    NavigationLink(destination: Incorr(caseData: caseData, reason: inputNotes)) {
                         HStack {
                             Text("Check")
                                 .foregroundColor(Color.hotPink)
@@ -104,7 +104,9 @@ struct DiagnoseCase: View {
 
 struct DiagnoseCase_Previews: PreviewProvider {
     static var previews: some View {
-        DiagnoseCase(caseData: testCaseData1, secondsTotal: 444)
+        let testSteps = Steps()
+        testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure"]
+        return DiagnoseCase(caseData: testCaseData1, secondsTotal: 444).environmentObject(testSteps)
     }
 }
 
