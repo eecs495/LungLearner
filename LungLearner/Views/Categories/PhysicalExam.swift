@@ -29,9 +29,9 @@ struct PhysicalExam: View {
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(stepsList, id: \.self) { step in
-                    Text(step)
-                }
+//                ForEach(stepsList, id: \.self) { step in
+//                    Text(step)
+//                }
                 HStack {
                     ProgressCircles(coloredIndex: 2)
                     DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)

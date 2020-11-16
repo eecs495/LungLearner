@@ -34,7 +34,7 @@ struct History: View {
                     self.secondsHere += 1
                 }
             }
-            Text(caseData.correctDiagnosis)
+            //Text(caseData.correctDiagnosis)
             HistoryText(caseData: caseData)
             Spacer()
             VStack {
