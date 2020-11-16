@@ -82,7 +82,7 @@ struct DiagnoseCase: View {
                     }
                     .padding(.vertical)
                     DiagnoseButtons(selectedCause: $selectedCause)
-                    NavigationLink(destination: Incorr(caseData: caseData)) {
+                    NavigationLink(destination: Incorr(caseData: caseData, reason: inputNotes)) {
                         HStack {
                             Text("Check")
                                 .foregroundColor(Color.hotPink)

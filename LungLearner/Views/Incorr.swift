@@ -101,12 +101,14 @@ struct PerfectStreak: View {
 struct Incorr: View {
     
     var caseData: CaseData
+    var reason: String
     @EnvironmentObject var steps: Steps
     let userDbManager = UserDatabaseManager()
     @State var isFav: Bool = false
 
-    init(caseData: CaseData) {
+    init(caseData: CaseData, reason: String) {
         self.caseData = caseData
+        self.reason = reason
     }
     
     // create init function here, use example from MainMenu.swift
@@ -244,11 +246,11 @@ struct Incorr: View {
                 }
                 .simultaneousGesture(TapGesture().onEnded {
                     if (steps.stepList.count == 6 && self.caseData.correctDiagnosis == steps.stepList[5]) {
-                        let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: "Temp Reason", correct: true)
+                        let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: self.reason, correct: true)
                         userDbManager.storeCaseResult(result: myUser)
                     }
                     else {
-                        let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: "Temp Reason", correct: false)
+                        let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: steps.stepList, reason: self.reason, correct: false)
                         userDbManager.storeCaseResult(result: myUser)
                     }
                     
@@ -286,7 +288,7 @@ struct Incorr_Previews: PreviewProvider {
     static var previews: some View {
         let testSteps = Steps()
         testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure", "COPD"]
-        return Incorr(caseData: testCaseData1)
+        return Incorr(caseData: testCaseData1, reason: "TEMP")
             .environmentObject(testSteps)
         //        return Incorr(caseData: testCaseData1, steps: testSteps)
 //            .environmentObject(testSteps)

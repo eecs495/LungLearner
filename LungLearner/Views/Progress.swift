@@ -107,16 +107,16 @@ struct Progress: View {
                     .padding(.horizontal, 50)
             }
             Spacer()
-            VStack {
-                NavigationLink(destination: MainMenu()) {
-                    Image(systemName: "house.fill")
-                        .font(.largeTitle)
-                        .foregroundColor(Color.black)
-                }
-                Text("Home")
-                    .fontWeight(.bold)
-                    .padding(.top, 5)
-            }
+//            VStack {
+//                NavigationLink(destination: MainMenu()) {
+//                    Image(systemName: "house.fill")
+//                        .font(.largeTitle)
+//                        .foregroundColor(Color.black)
+//                }
+//                Text("Home")
+//                    .fontWeight(.bold)
+//                    .padding(.top, 5)
+//            }
         }
         .navigationBarTitle("Progress")
     }

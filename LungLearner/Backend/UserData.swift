@@ -123,8 +123,8 @@ class UserDatabaseManager {
 
     // Get a Usercase by ID
     func getUserCaseById(Id: Int64) throws -> returnedUserCaseResult {
-        let userInfo = Table("useInfo")
-        let id = Expression<Int64>("ID")
+        let userInfo = Table("userInfo")
+        let id = Expression<Int64>("id")
 
         let filtered = try! self.db.prepare(userInfo.filter(id == id))
 
