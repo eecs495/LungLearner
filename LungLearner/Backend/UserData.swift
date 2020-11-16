@@ -49,6 +49,9 @@ class UserDatabaseManager {
     // Whether the user has set this as a 'favorite' case
     var favorite = Expression<Bool>("favorite")
     
+    var first_date: NSDate
+    var current_date: NSDate
+    
     init() {
         let path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
@@ -230,6 +233,23 @@ class UserDatabaseManager {
       
         return (malelist,femalelist)
     }
+    
+    func getStreak() -> Int{
+        let time_sec = current_date.timeIntervalSince(first_date as Date)
+        return (Int(time_sec / 86400))
+
+    }
+
+    func updateStreak(){
+        let now = NSDate()
+        if now.timeIntervalSince(current_date as Date) < 86400 {
+            current_date = now
+        }else{
+            first_date = now
+            current_date = now
+        }
+    }
+
 }
 
 // Because unix time is weird(tm), I added this function so we can work with it a bit easier
@@ -239,3 +259,5 @@ func convertUnixTime(unixtime: Int64) -> (year: Int, month: Int, day: Int) {
     let calendar = Calendar.current
     return (calendar.component(.year, from: date), calendar.component(.month, from: date), calendar.component(.day, from: date))
 }
+
+
