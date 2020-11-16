@@ -8,20 +8,16 @@
 import SwiftUI
 
 struct XRay: View {
-    //@EnvironmentObject var steps: Steps
-    //@EnvironmentObject var timeToDiagnose: TimeToDiagnose
-    //@State private var selectedCause: String = "Unsure"
+    var caseData: CaseData
     @Binding var stepsList: [String]
+    
     @State var showImage: Bool = false
     let url = URL(string: "https://lungxrays.s3.amazonaws.com/208.jpg")!
-    
     private let minZoom: CGFloat = 0.75
     private let maxZoom: CGFloat = 3.0
     @GestureState private var magnificationLevel: CGFloat = 1.0
     @State private var zoomLevel: CGFloat = 1.0
 
-    var caseData: CaseData
-    
     @State var secondsHere: Int = 0
     var secondsTotal: Int
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -46,9 +42,9 @@ struct XRay: View {
                         .font(.system(size: 35))
                         .fontWeight(.semibold)
                         .padding(.bottom, 5)
-                    AsyncImage(url: URL(string: "https://lungxrays.s3.amazonaws.com/\(caseData.caseId).jpg")!)
-                        .aspectRatio(contentMode: .fit)
                     VStack {
+                        AsyncImage(url: URL(string: "https://lungxrays.s3.amazonaws.com/\(caseData.caseId).jpg")!)
+                            .aspectRatio(contentMode: .fit)
                         Button(action: {
                             showHint = true
                         }) {
@@ -90,9 +86,6 @@ struct XRay: View {
                         }
                         .padding(.vertical)
                     }
-//                    .simultaneousGesture(TapGesture().onEnded {
-//                        steps.stepList.append(selectedCause)
-//                    })
                 }
 
         }
@@ -102,8 +95,8 @@ struct XRay: View {
     }
 }
 
-//struct XRay_Previews: PreviewProvider {
-//    static var previews: some View {
-//        XRay(stepsList: ["HISTORY", "SYMPTOMS", "PHYSICAL EXAM", "LAB VALUES", "X-RAY", "FINAL"], caseData: testCaseData, secondsTotal: 244)
-//    }
-//}
+struct XRay_Previews: PreviewProvider {
+    static var previews: some View {
+        XRay(caseData: testCaseData, stepsList: .constant(testStepsList), secondsTotal: 244)
+    }
+}

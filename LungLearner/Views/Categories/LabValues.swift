@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct LabValues: View {
-    //@EnvironmentObject var steps: Steps
-    //@State private var selectedCause: String = "Unsure"
-    @State var showImage: Bool = false
     var caseData: CaseData
     @Binding var stepsList: [String]
     
@@ -50,7 +47,7 @@ struct LabValues: View {
                     }
                     .padding(.vertical)
                     DiagnoseButtons(stepsList: $stepsList, index: 3)
-                    NavigationLink(destination: XRay(stepsList: $stepsList, caseData: caseData, secondsTotal: secondsHere + secondsTotal)) {
+                    NavigationLink(destination: XRay(caseData: caseData, stepsList: $stepsList, secondsTotal: secondsHere + secondsTotal)) {
                         HStack {
                             Text("X-Ray")
                                 .foregroundColor(Color.hotPink)
@@ -59,9 +56,6 @@ struct LabValues: View {
                         }
                         .padding(.vertical)
                     }
-//                    .simultaneousGesture(TapGesture().onEnded {
-//                        steps.stepList.append(selectedCause)
-//                    })
                 }
             }
             .navigationBarBackButtonHidden(true)
@@ -70,11 +64,11 @@ struct LabValues: View {
     }
 }
 
-//struct LabValues_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LabValues(caseData: testCaseData1, secondsTotal: 200, stepsList: ["HISTORY", "SYMPTOMS", "PHYSICAL EXAM", "LAB VALUES", "X-RAY", "FINAL"])
-//    }
-//}
+struct LabValues_Previews: PreviewProvider {
+    static var previews: some View {
+        LabValues(caseData: testCaseData1, secondsTotal: 200, stepsList: .constant(testStepsList))
+    }
+}
 
 struct BloodDataBlocks: View {
     var caseData: CaseData

@@ -10,23 +10,16 @@ import SwiftUI
 
 
 struct History: View {
-    @EnvironmentObject var steps: Steps
-    @State private var selectedCause: String = "Unsure"
     var caseData: CaseData
+    @State var stepsList: [String] = ["Unsure", "Unsure", "Unsure", "Unsure", "Unsure", "Unsure"]
     
-    //@EnvironmentObject var timeToDiagnose: TimeToDiagnose
     @State var secondsHere: Int = 0
     var secondsTotal: Int = 0
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    @State var stepsList: [String] = ["Unsure", "Unsure", "Unsure", "Unsure", "Unsure", "Unsure"]
-    
     var body: some View {
             
         VStack {
-//            ForEach(stepsList, id: \.self) { step in
-//                Text(step)
-//            }
             HStack {
                 ProgressCircles(coloredIndex: 0)
                 DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
@@ -34,7 +27,6 @@ struct History: View {
                     self.secondsHere += 1
                 }
             }
-            //Text(caseData.correctDiagnosis)
             HistoryText(caseData: caseData)
             Spacer()
             VStack {
@@ -57,9 +49,6 @@ struct History: View {
                     }
                     .padding(.vertical)
                 }
-//                .simultaneousGesture(TapGesture().onEnded {
-//                    steps.stepList.append(selectedCause)
-//                })
             }
         }
         .background(Color.lighterGray.ignoresSafeArea())
@@ -72,8 +61,6 @@ struct History: View {
 struct History_Previews: PreviewProvider {
     static var previews: some View {
         History(caseData: testCaseData)
-            .environmentObject(Steps())
-            //.environmentObject(TimeToDiagnose())
     }
 }
 

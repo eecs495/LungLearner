@@ -10,8 +10,10 @@ import SwiftUI
 let causeNames: [String] = ["History", "Symptoms", "Physical Exam", "Lab Values", "X-Ray"]
 
 struct ReviewCase: View {
-    @EnvironmentObject var steps: Steps
-    @State private var selectedCause = 0
+    var caseData: CaseData
+    var reason: String = ""
+    var firstDiagnosis: Bool = true
+    @Binding var stepsList: [String]
     
     @State var blurBackground: Bool = false
     @State var showHistory: Bool = false
@@ -19,11 +21,6 @@ struct ReviewCase: View {
     @State var showPhysicalExam: Bool = false
     @State var showLabValues: Bool = false
     @State var showXRay: Bool = false
-    
-    var caseData: CaseData
-    var reason: String = ""
-    var firstDiagnosis: Bool = true
-    @Binding var stepsList: [String]
     
     @State var secondsHere: Int = 0
     var secondsTotal: Int
@@ -198,8 +195,8 @@ struct ReviewCase: View {
     }
 }
 
-//struct ReviewCase_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ReviewCase(caseData: testCaseData1, firstDiagnosis: true, stepsList: ["HISTORY", "SYMPTOMS", "PHYSICAL EXAM", "LAB VALUES", "X-RAY", "FINAL"], secondsTotal: 100).environmentObject(Steps())
-//    }
-//}
+struct ReviewCase_Previews: PreviewProvider {
+    static var previews: some View {
+        ReviewCase(caseData: testCaseData1, firstDiagnosis: true, stepsList: .constant(testStepsList), secondsTotal: 100)
+    }
+}

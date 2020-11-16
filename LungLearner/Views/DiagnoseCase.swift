@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct DiagnoseCase: View {
-    //@EnvironmentObject var steps: Steps
-    //@State private var selectedCause: String = "Unsure"
-    @Binding var stepsList: [String]
-    
     var caseData: CaseData
+    @Binding var stepsList: [String]
     
     @State private var inputNotes: String = "Enter notes here"
     let placeholderString: String = "Enter notes here"
@@ -46,17 +43,14 @@ struct DiagnoseCase: View {
                             self.secondsHere += 1
                         }
                     }
-                    //.padding(.horizontal, 30)
-                    //if steps.stepList.count == 5 {
-                        Group {
-                            DataBlock(title: "After History", description: stepsList[0])
-                            DataBlock(title: "After Symptoms", description: stepsList[1])
-                            DataBlock(title: "After Physical Exam", description: stepsList[2])
-                            DataBlock(title: "After Lab Values", description: stepsList[3])
-                            DataBlock(title: "After X-Ray", description: stepsList[4])
-                        }
-                        .padding(.bottom, 5)
-                    //}
+                    Group {
+                        DataBlock(title: "After History", description: stepsList[0])
+                        DataBlock(title: "After Symptoms", description: stepsList[1])
+                        DataBlock(title: "After Physical Exam", description: stepsList[2])
+                        DataBlock(title: "After Lab Values", description: stepsList[3])
+                        DataBlock(title: "After X-Ray", description: stepsList[4])
+                    }
+                    .padding(.bottom, 5)
                     TextEditor(text: $inputNotes)
                         .padding()
                         .foregroundColor(self.inputNotes == placeholderString ? Color.gray : Color.primary)
@@ -93,9 +87,6 @@ struct DiagnoseCase: View {
                         }
                         .padding(.vertical)
                     }
-//                    .simultaneousGesture(TapGesture().onEnded {
-//                        steps.stepList.append(selectedCause)
-//                    })
                 }
             }
             .navigationBarBackButtonHidden(true)
@@ -104,13 +95,13 @@ struct DiagnoseCase: View {
     }
 }
 
-//struct DiagnoseCase_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let testSteps = Steps()
-//        testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure"]
-//        return DiagnoseCase(caseData: testCaseData1, secondsTotal: 444, stepsList: ["COPD", "Unsure", "CHF", "COPD", "Unsure", "Unsure"])
-//    }
-//}
+struct DiagnoseCase_Previews: PreviewProvider {
+    static var previews: some View {
+        let testSteps = Steps()
+        testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure"]
+        return DiagnoseCase(caseData: testCaseData1, secondsTotal: 444, stepsList: .constant(testStepsList))
+    }
+}
 
 struct StepListText: View {
     var stepList: [String]

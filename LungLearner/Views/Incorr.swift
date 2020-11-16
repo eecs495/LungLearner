@@ -99,11 +99,8 @@ struct PerfectStreak: View {
 }
 
 struct Incorr: View {
-    
     var caseData: CaseData
     var reason: String
-    //@EnvironmentObject var steps: Steps
-    //let userDbManager = UserDatabaseManager()
     @State var isFav: Bool = false
     var stepsList: [String]
 
@@ -113,33 +110,26 @@ struct Incorr: View {
         self.stepsList = stepsList
     }
     
-    // create init function here, use example from MainMenu.swift
-    
     var body: some View {
-        //let userDbManager = UserDatabaseManager()
         let counts = UserDatabaseManager.shared.getTotalUserProgress()
-//            counts = (totalCases: Int(4), correctCases: Int(1), incorrectCases: Int(2))
-//            counts = (Int(4), Int(1), Int(2))
        
         VStack {
             
             Text(caseData.correctDiagnosis)
 
-            //if (steps.stepList.count == 6) {
-                Text("Your answer of ")
-                    .font(.title)
-                    .foregroundColor(.primary)
-                +
-                Text("\(stepsList[5]) ")
-                    .font(.title)
-                    .foregroundColor(.accentColor)
-            //}
+            Text("Your answer of ")
+                .font(.title)
+                .foregroundColor(.primary)
+            +
+            Text("\(stepsList[5]) ")
+                .font(.title)
+                .foregroundColor(.accentColor)
 
             Text("was")
                 .font(.title)
                 .foregroundColor(.primary)
             
-            if (/*steps.stepList.count == 6 &&*/ self.caseData.correctDiagnosis == stepsList[5]) {
+            if (self.caseData.correctDiagnosis == stepsList[5]) {
                 Text("Correct!")
                     .font(.title)
                     .fontWeight(.bold)
@@ -178,18 +168,15 @@ struct Incorr: View {
                 .font(.system(size: 25))
                 .padding(.top)
             VStack(alignment: .leading) {
-                //if steps.stepList.count == 6 {
-                    ForEach((0 ..< 5), id: \.self) {
-                        Text("\(stepsList[$0]) ")
-                            .font(.system(size: 20))
-                            .foregroundColor(.accentColor)
-                        +
-                        Text("after \(causeNames[$0])")
-                            .font(.system(size: 20))
-                            .foregroundColor(.secondary)
-//                            .padding(.top, 1)
-                        }
-                //}
+                ForEach((0 ..< 5), id: \.self) {
+                    Text("\(stepsList[$0]) ")
+                        .font(.system(size: 20))
+                        .foregroundColor(.accentColor)
+                    +
+                    Text("after \(causeNames[$0])")
+                        .font(.system(size: 20))
+                        .foregroundColor(.secondary)
+                    }
             }
             .padding()
             .overlay(
@@ -200,7 +187,7 @@ struct Incorr: View {
             Spacer()
             
             HStack {
-                if (/*steps.stepList.count == 6 &&*/ self.caseData.correctDiagnosis == stepsList[5]) {
+                if (self.caseData.correctDiagnosis == stepsList[5]) {
                     ProgressCircle(correct: counts.correctCases + 1, total: counts.totalCases + 1)
                     PerfectStreak(correct: true)
                 }
@@ -218,7 +205,6 @@ struct Incorr: View {
                     Button(action: {
                         print("I just favorited this case!")
                         isFav = !isFav
-//                        userDbManager.setCaseFavorite(idInput: Int64(self.caseData.caseId), favoriteInput: isFav)
                     }) {
                         if isFav {
                             Image(systemName: "heart.fill")
@@ -249,7 +235,7 @@ struct Incorr: View {
                         .padding(.top, 5)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
-                    if (/*steps.stepList.count == 6 &&*/ self.caseData.correctDiagnosis == stepsList[5]) {
+                    if (self.caseData.correctDiagnosis == stepsList[5]) {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: stepsList, reason: self.reason, correct: true)
                         UserDatabaseManager.shared.storeCaseResult(result: myUser)
                     }
@@ -258,7 +244,6 @@ struct Incorr: View {
                         UserDatabaseManager.shared.storeCaseResult(result: myUser)
                     }
                     UserDatabaseManager.shared.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
-                    //steps.stepList.removeAll()
                 })
                 Spacer()
             }
@@ -292,8 +277,6 @@ struct Incorr_Previews: PreviewProvider {
     static var previews: some View {
         let testSteps = Steps()
         testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure", "COPD"]
-        return Incorr(caseData: testCaseData1, reason: "TEMP", stepsList: ["COPD", "Unsure", "CHF", "COPD", "Unsure", "COPD"])
-        //        return Incorr(caseData: testCaseData1, steps: testSteps)
-//            .environmentObject(testSteps)
+        return Incorr(caseData: testCaseData1, reason: "TEMP", stepsList: testStepsList)
     }
 }

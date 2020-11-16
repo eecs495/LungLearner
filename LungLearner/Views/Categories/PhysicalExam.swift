@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct PhysicalExam: View {
-    //@EnvironmentObject var steps: Steps
-    //@State private var selectedCause: String = "Unsure"
     var caseData: CaseData
     @Binding var stepsList: [String]
     
@@ -29,9 +27,6 @@ struct PhysicalExam: View {
     var body: some View {
         ScrollView {
             VStack {
-//                ForEach(stepsList, id: \.self) { step in
-//                    Text(step)
-//                }
                 HStack {
                     ProgressCircles(coloredIndex: 2)
                     DiagnoseTimer(secondsHere: secondsHere, secondsTotal: secondsTotal)
@@ -61,9 +56,6 @@ struct PhysicalExam: View {
                         }
                         .padding(.vertical)
                     }
-//                    .simultaneousGesture(TapGesture().onEnded {
-//                        steps.stepList.append(selectedCause)
-//                    })
                 }
             }
             .navigationBarBackButtonHidden(true)
@@ -72,11 +64,11 @@ struct PhysicalExam: View {
     }
 }
 
-//struct PhysicalExam_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PhysicalExam(caseData: testCaseData, secondsTotal: 90, stepsList: ["HISTORY", "SYMPTOMS", "PHYSICAL EXAM", "LAB VALUES", "X-RAY", "FINAL"])
-//    }
-//}
+struct PhysicalExam_Previews: PreviewProvider {
+    static var previews: some View {
+        PhysicalExam(caseData: testCaseData, secondsTotal: 90, stepsList: .constant(testStepsList))
+    }
+}
 
 struct PhysicalExamText: View {
     var caseData: CaseData

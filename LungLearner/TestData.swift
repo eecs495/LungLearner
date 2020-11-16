@@ -64,3 +64,5 @@ struct FranksCaseData: Hashable,Codable, Identifiable{
         
     }
 }
+
+let testStepsList: [String] = ["HISTORY", "SYMPTOMS", "PHYSICAL EXAM", "LAB VALUES", "X-RAY", "FINAL"]
