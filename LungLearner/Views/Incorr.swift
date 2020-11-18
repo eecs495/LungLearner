@@ -114,8 +114,6 @@ struct Incorr: View {
         let counts = UserDatabaseManager.shared.getTotalUserProgress()
        
         VStack {
-            
-            Text(caseData.correctDiagnosis)
 
             Text("Your answer of ")
                 .font(.title)
