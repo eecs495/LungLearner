@@ -14,18 +14,20 @@ struct ReviewCase: View {
     var reason: String = ""
     var firstDiagnosis: Bool = true
     @Binding var stepsList: [String]
-    
+
     @State var blurBackground: Bool = false
     @State var showHistory: Bool = false
     @State var showSymptoms: Bool = false
     @State var showPhysicalExam: Bool = false
     @State var showLabValues: Bool = false
     @State var showXRay: Bool = false
-    
+
     @State var secondsHere: Int = 0
     var secondsTotal: Int
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    @State var isFav: Bool = false
+
     var body: some View {
             ZStack {
                 VStack(alignment: .center) {
@@ -46,12 +48,40 @@ struct ReviewCase: View {
                         }
                         if !firstDiagnosis {
                             VStack {
-                                DataBlock(title: "Correct Diagnosis", description: caseData.correctDiagnosis)
-                                    .padding(.bottom, 5)
-                                    .padding(.horizontal, 30)
-                                DataBlock(title: "Your Notes", description: reason)
-                                    .padding(.bottom, 5)
-                                    .padding(.horizontal, 30)
+                                HStack {
+                                    DataBlock(title: "Correct Diagnosis", description: caseData.correctDiagnosis)
+                                        .padding(.bottom, 5)
+                                        .padding(.leading, 30)
+                                        .padding(.trailing)
+                                    Button(action: {
+                                        print("I just favorited this case!")
+                                        isFav = !isFav
+                                        UserDatabaseManager.shared.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
+                                    }) {
+                                        if isFav {
+                                            Image(systemName: "heart.fill")
+                                                .font(.system(size: 50))
+                                                .foregroundColor(.yellow)
+                                                
+                                        }
+                                        else {
+                                            Image(systemName: "heart")
+                                                .font(.system(size: 50))
+                                                .foregroundColor(.yellow)
+                                                
+                                        }
+                                    }
+                                    .padding(.trailing, 30)
+                                    .onAppear {
+                                        do {
+                                            isFav = try UserDatabaseManager.shared.checkCaseFavorite(idInput: Int64(caseData.id))
+                                        } catch CaseError.runtimeError(let errorMessage) {
+                                            print(errorMessage)
+                                        } catch {
+                                            print("Other errors")
+                                        }
+                                    }
+                                }
                             }
                         }
                         Group {
@@ -63,7 +93,7 @@ struct ReviewCase: View {
                         }
                         .padding(.bottom, 5)
                         .padding(.horizontal, 30)
-                    
+
                     .padding(.top, 10)
                     if firstDiagnosis {
                         Spacer()
@@ -78,6 +108,9 @@ struct ReviewCase: View {
                         }
                     }
                     if !firstDiagnosis {
+                        DataBlock(title: "Your Notes", description: reason)
+                            .padding(.vertical)
+                            .padding(.horizontal, 30)
                         Spacer()
                     }
                 }
@@ -102,7 +135,7 @@ struct ReviewCase: View {
                     .cornerRadius(20).shadow(radius: 20)
                     .padding(.horizontal)
                 }
-                
+
                 if self.showSymptoms {
                     ZStack {
                         Color.lighterGray
@@ -123,7 +156,7 @@ struct ReviewCase: View {
                     .cornerRadius(20).shadow(radius: 20)
                     .padding(.horizontal)
                 }
-                
+
                 if self.showPhysicalExam {
                     ZStack {
                         Color.lighterGray
@@ -144,7 +177,7 @@ struct ReviewCase: View {
                     .cornerRadius(20).shadow(radius: 20)
                     .padding(.horizontal)
                 }
-                
+
                 if self.showLabValues {
                     ZStack {
                         Color.lighterGray
@@ -169,7 +202,7 @@ struct ReviewCase: View {
                     .cornerRadius(20).shadow(radius: 20)
                     .padding(.horizontal)
                 }
-                
+
                 if self.showXRay {
                     ZStack {
                         Color.lighterGray
@@ -197,6 +230,6 @@ struct ReviewCase: View {
 
 struct ReviewCase_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewCase(caseData: testCaseData1, firstDiagnosis: true, stepsList: .constant(testStepsList), secondsTotal: 100)
+        ReviewCase(caseData: testCaseData1, firstDiagnosis: false, stepsList: .constant(testStepsList), secondsTotal: 100)
     }
 }

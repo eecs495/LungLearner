@@ -8,55 +8,29 @@ struct SpecialCase {
 }
 
 struct ReviewList: View {
-    let userDbManager = UserDatabaseManager()
-    let caseDbManager = CaseDatabaseManager()
-    var completedCases: [(id: Int64, correct: Bool)]
-    //data_list is the array of all the case data
-    
+    @State var completedCases: [(id: Int64, correct: Bool)] = []
+    @State var correctCases: [SpecialCase] = []
+    @State var incorrectCases: [SpecialCase] = []
+
     @State var show_fav = false
-        //this determines whether to show the favorites only
-    
-    //.correct will be the enum that used to decide the category of the Case,
-    //in this case, the category would be correct and wrong cases
-  
-    var correctCases: [SpecialCase] = []
-    var correctReasons: [String] = []
-    var incorrectCases: [SpecialCase] = []
-    var incorrectReasons: [String] = []
-    
-    var favoriteCases: [Int64] = []
-    var favoriteCorrectCases: [CaseData] = []
-    var favoriteIncorrectCases: [CaseData] = []
-    
-    init() {
-        completedCases = userDbManager.getListOfCompletedCases()
-        favoriteCases = userDbManager.getFavoriteCases()
+
+    func updateCases() {
+        completedCases = UserDatabaseManager.shared.getListOfCompletedCases()
+        correctCases.removeAll()
+        incorrectCases.removeAll()
         for completedCase in completedCases {
             do {
+                let caseData: CaseData = try CaseDatabaseManager.shared.getCaseById(Id: completedCase.id)
+                let specialCase = SpecialCase(
+                    id: caseData.id,
+                    caseData:caseData,
+                    reason: try UserDatabaseManager.shared.getUserCaseById(Id: completedCase.id).reason,
+                    favorite: try UserDatabaseManager.shared.checkCaseFavorite(idInput: completedCase.id)
+                )
                 if completedCase.correct {
-                    var correctCase = SpecialCase(
-                        id: 1,
-                        caseData: try caseDbManager.getCaseById(Id: completedCase.id),
-                        reason: try userDbManager.getUserCaseById(Id: completedCase.id).reason,
-                        favorite: false
-                    )
-                    correctCase.id = correctCase.caseData.id
-                    if favoriteCases.contains(Int64(correctCase.id)) {
-                        correctCase.favorite = true
-                    }
-                    correctCases.append(correctCase)
+                    correctCases.append(specialCase)
                 } else {
-                    var incorrectCase = SpecialCase(
-                        id: 1,
-                        caseData: try caseDbManager.getCaseById(Id: completedCase.id),
-                        reason: try userDbManager.getUserCaseById(Id: completedCase.id).reason,
-                        favorite: false
-                    )
-                    incorrectCase.id = incorrectCase.caseData.id
-                    if favoriteCases.contains(Int64(incorrectCase.id)) {
-                        incorrectCase.favorite = true
-                    }
-                    incorrectCases.append(incorrectCase)
+                    incorrectCases.append(specialCase)
                 }
             } catch CaseError.runtimeError(let errorMessage) {
                 print(errorMessage)
@@ -64,14 +38,11 @@ struct ReviewList: View {
                 print("Other errors")
             }
         }
-        
-        //correctCases = testCorrectCaseDataList
-        //incorrectCases = testIncorrectCaseDataList
     }
-    
+
     var body: some View {
-            //the list will be sorted by the key, which is the category
-            
+        //the list will be sorted by the key, which is the category
+
         ZStack {
             Color.lighterGray
             List{
@@ -101,6 +72,9 @@ struct ReviewList: View {
                 }
             .navigationBarTitle("Review Cases")
         }
+        .onAppear {
+            updateCases()
+        }
     }
 }
 
@@ -115,12 +89,12 @@ struct ReviewListCell: View {
     var correct: Bool
     var favorite: Bool
     private var diagnosisColor: Color
-    
+
     init(caseData: CaseData, correct: Bool, favorite: Bool) {
         self.caseData = caseData
         self.correct = correct
         self.favorite = favorite
-        
+
         if caseData.correctDiagnosis == "COPD" {
             self.diagnosisColor = Color.blue
         } else if caseData.correctDiagnosis == "Heart failure" {
@@ -129,9 +103,9 @@ struct ReviewListCell: View {
             self.diagnosisColor = Color.purple
         }
     }
-    
+
     var body: some View {
-        
+
         HStack {
             VStack(alignment: .leading) {
                 HStack {
@@ -165,13 +139,13 @@ struct ReviewListCell: View {
             }
             HStack {
                 Avatar(gender: caseData.gender, age: caseData.age, small: true)
-                
+
             }
             Spacer()
             if favorite {
                 HStack {
                     Image(systemName: "heart.fill")
-                        .font(.system(size: 20))
+                        .font(.system(size: 30))
                         .foregroundColor(.yellow)
                         .padding(.trailing, 5)
                 }
