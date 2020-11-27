@@ -7,21 +7,29 @@
 
 import SwiftUI
 import GoogleSignIn
-
-struct SignInButton: UIViewRepresentable {
-    func makeUIView(context: Context) -> GIDSignInButton {
-        let button = GIDSignInButton()
-        // Customize button here
-        button.colorScheme = .light
-        return button
-    }
-    func updateUIView(_ uiView: UIViewType, context: Context) {}
-}
+//
+//struct SignInButton: UIViewRepresentable {
+//    func makeUIView(context: Context) -> GIDSignInButton {
+//        let button = GIDSignInButton()
+//        // Customize button here
+//        button.colorScheme = .light
+//        return button
+//    }
+//    func updateUIView(_ uiView: UIViewType, context: Context) {}
+//}
 
 struct Login: View {
     @EnvironmentObject var googleDelegate: GoogleDelegate
     
+//    var viewControllers: [UIHostingController<Page>]
+//
+//        init(_ views: [Page]) {
+//            self.viewControllers = views.map { UIHostingController(rootView: $0) }
+//        }
+
+    
     var body: some View {
+        //LoginViewController()
         Group {
             if googleDelegate.signedIn {
                 VStack {
@@ -45,6 +53,7 @@ struct Login: View {
         .onAppear {
                 GIDSignIn.sharedInstance().restorePreviousSignIn()
             }
+        .background(LoginViewController())
 //        VStack {
 //            SignInButton()
 //            Spacer()
@@ -67,8 +76,8 @@ struct Login: View {
     }
 }
 
-struct Login_Previews: PreviewProvider {
-    static var previews: some View {
-        Login()
-    }
-}
+//struct Login_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Login()
+//    }
+//}

@@ -82,6 +82,7 @@ class GoogleDelegate: NSObject, GIDSignInDelegate, ObservableObject {
         // If the previous `error` is null, then the sign-in was succesful
         print("Successful sign-in!")
         userId = user.profile.email
+        signedIn = true
     }
 }
 
@@ -92,6 +93,7 @@ struct LungLearnerApp: App {
     var body: some Scene {
         WindowGroup {
             MainMenu()
+                .environmentObject(appDelegate.googleDelegate)
         }
     }
 }

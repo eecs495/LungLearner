@@ -35,6 +35,7 @@
 		7677235A252F645700D5521B /* XRay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76772359252F645700D5521B /* XRay.swift */; };
 		767723612530D92000D5521B /* ReviewCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767723602530D92000D5521B /* ReviewCase.swift */; };
 		76857D192556DAEA00F293C5 /* PatientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76857D182556DAEA00F293C5 /* PatientItem.swift */; };
+		76882D7725706641005B67AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76882D7625706641005B67AC /* LoginViewController.swift */; };
 		76C99FF325549BBB0034E6D1 /* XRayImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C99FF225549BBB0034E6D1 /* XRayImage.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
 		76F685C225587DE800C16D8E /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F685C125587DE800C16D8E /* Avatar.swift */; };
@@ -81,6 +82,7 @@
 		76772359252F645700D5521B /* XRay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRay.swift; sourceTree = "<group>"; };
 		767723602530D92000D5521B /* ReviewCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCase.swift; sourceTree = "<group>"; };
 		76857D182556DAEA00F293C5 /* PatientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientItem.swift; sourceTree = "<group>"; };
+		76882D7625706641005B67AC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		76C99FF225549BBB0034E6D1 /* XRayImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayImage.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		76F685C125587DE800C16D8E /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				765AD744253DD0190053C3CB /* CaseDetail.swift */,
 				7610BF8A254F1A82007FD5C3 /* Login.swift */,
 				76857D182556DAEA00F293C5 /* PatientItem.swift */,
+				76882D7625706641005B67AC /* LoginViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76882D7725706641005B67AC /* LoginViewController.swift in Sources */,
 				7610BF8E254F3177007FD5C3 /* CutomStyles.swift in Sources */,
 				76C99FF325549BBB0034E6D1 /* XRayImage.swift in Sources */,
 				7677235A252F645700D5521B /* XRay.swift in Sources */,
