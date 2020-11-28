@@ -77,7 +77,7 @@ struct DiagnoseCase: View {
                             .foregroundColor(Color.hotPink)
                     }
                     .padding(.vertical)
-                    DiagnoseButtons(stepsList: $stepsList, index: 5)
+                    DiagnoseButtons(stepsList: $stepsList, index: 5, noUnsure: true)
                     NavigationLink(destination: Incorr(caseData: caseData, reason: inputNotes, stepsList: stepsList)) {
                         HStack {
                             Text("Check")

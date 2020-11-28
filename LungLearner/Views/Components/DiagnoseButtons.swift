@@ -10,10 +10,12 @@ import SwiftUI
 struct DiagnoseButtons: View {
     @Binding var stepsList: [String]
     var index: Int
+    var noUnsure: Bool = false
     
     var body: some View {
-        VStack {
-            HStack {
+        if noUnsure {
+            VStack {
+                Group {
                 Button(action: {
                     stepsList[index] = "Heart failure"
                 }) {
@@ -21,7 +23,6 @@ struct DiagnoseButtons: View {
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 .buttonStyle(NarrowButtonStyle())
-                .padding(.leading, 30)
                 Button(action: {
                     stepsList[index] = "COPD"
                 }) {
@@ -29,10 +30,6 @@ struct DiagnoseButtons: View {
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 .buttonStyle(NarrowButtonStyle())
-                .padding(.trailing, 30)
-            }
-            .padding(.bottom, 5)
-            HStack {
                 Button(action: {
                     stepsList[index] = "Pneumonia"
                 }) {
@@ -40,15 +37,50 @@ struct DiagnoseButtons: View {
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
                 .buttonStyle(NarrowButtonStyle())
-                .padding(.leading, 30)
-                Button(action: {
-                    stepsList[index] = "Unsure"
-                }) {
-                    Text("Unsure")
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 }
-                .buttonStyle(NarrowButtonStyle())
-                .padding(.trailing, 30)
+                .padding(.vertical, 5)
+            }
+            .padding(.horizontal, 100)
+        }
+        else {
+            VStack {
+                HStack {
+                    Button(action: {
+                        stepsList[index] = "Heart failure"
+                    }) {
+                        Text("Heart Failure")
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    }
+                    .buttonStyle(NarrowButtonStyle())
+                    .padding(.leading, 30)
+                    Button(action: {
+                        stepsList[index] = "COPD"
+                    }) {
+                        Text("COPD")
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    }
+                    .buttonStyle(NarrowButtonStyle())
+                    .padding(.trailing, 30)
+                }
+                .padding(.bottom, 5)
+                HStack {
+                    Button(action: {
+                        stepsList[index] = "Pneumonia"
+                    }) {
+                        Text("Pneumonia")
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    }
+                    .buttonStyle(NarrowButtonStyle())
+                    .padding(.leading, 30)
+                    Button(action: {
+                        stepsList[index] = "Unsure"
+                    }) {
+                        Text("Unsure")
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    }
+                    .buttonStyle(NarrowButtonStyle())
+                    .padding(.trailing, 30)
+                }
             }
         }
     }
