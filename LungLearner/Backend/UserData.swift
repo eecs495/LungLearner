@@ -148,7 +148,7 @@ class UserDatabaseManager {
         let userInfo = Table("userInfo")
         let id = Expression<Int64>("id")
 
-        let filtered = try! self.db.prepare(userInfo.filter(id == id))
+        let filtered = try! self.db.prepare(userInfo.filter(Id == id))
 
         for caseEntry in filtered {
             let diagnoses = Expression<String>("diagnoses")

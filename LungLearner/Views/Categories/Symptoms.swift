@@ -99,7 +99,7 @@ struct SymptomsTextBody: View {
     
     var body: some View {
             Group {
-                Text("Your patient has had symptoms of \(caseData.symptomData.descriptionSymptoms) for \(caseData.symptomData.onsetSymptoms). The provocating factor is \(caseData.symptomData.provocatingFactors).")
+                Text(BuildDescriptionFromCaseData())
                     .textStyle(WhiteCard())
                 DataBlock(title: "Temperature", description: "\(caseData.symptomValuesData.temperature)", unit: "C")
                 DataBlock(title: "Heart Rate", description: "\(caseData.symptomValuesData.heartRate)", unit: "beats per minute")

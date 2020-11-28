@@ -36,6 +36,7 @@
 		767723612530D92000D5521B /* ReviewCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767723602530D92000D5521B /* ReviewCase.swift */; };
 		76857D192556DAEA00F293C5 /* PatientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76857D182556DAEA00F293C5 /* PatientItem.swift */; };
 		76882D7725706641005B67AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76882D7625706641005B67AC /* LoginViewController.swift */; };
+		76882D7A25716075005B67AC /* InstructionTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76882D7925716075005B67AC /* InstructionTab.swift */; };
 		76C99FF325549BBB0034E6D1 /* XRayImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C99FF225549BBB0034E6D1 /* XRayImage.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
 		76F685C225587DE800C16D8E /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F685C125587DE800C16D8E /* Avatar.swift */; };
@@ -83,6 +84,7 @@
 		767723602530D92000D5521B /* ReviewCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCase.swift; sourceTree = "<group>"; };
 		76857D182556DAEA00F293C5 /* PatientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientItem.swift; sourceTree = "<group>"; };
 		76882D7625706641005B67AC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		76882D7925716075005B67AC /* InstructionTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionTab.swift; sourceTree = "<group>"; };
 		76C99FF225549BBB0034E6D1 /* XRayImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayImage.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		76F685C125587DE800C16D8E /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				76C99FF225549BBB0034E6D1 /* XRayImage.swift */,
 				76F685C125587DE800C16D8E /* Avatar.swift */,
 				76F685C82558E11700C16D8E /* DiagnoseTimer.swift */,
+				76882D7925716075005B67AC /* InstructionTab.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				8CBB8F28252DF5CD00A0C16E /* CaseDatabaseManager.swift in Sources */,
 				765AD742253DCFAD0053C3CB /* ReviewList.swift in Sources */,
 				8CBB8F29252DF5CD00A0C16E /* CaseData.swift in Sources */,
+				76882D7A25716075005B67AC /* InstructionTab.swift in Sources */,
 				C9327389252ABDB9003C2641 /* MainMenu.swift in Sources */,
 				C932738A252ABDB9003C2641 /* HomeItem.swift in Sources */,
 				765AD74B253E67390053C3CB /* Progress.swift in Sources */,

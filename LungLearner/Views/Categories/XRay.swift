@@ -45,18 +45,20 @@ struct XRay: View {
                     VStack {
                         AsyncImage(url: URL(string: "https://lungxrays.s3.amazonaws.com/\(caseData.caseId).jpg")!)
                             .aspectRatio(contentMode: .fit)
-                        Button(action: {
-                            showHint = true
-                        }) {
-                            Text("Hint")
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                        if !showHint {
+                            Button(action: {
+                                showHint = true
+                            }) {
+                                Text("Hint")
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            }
+                            .buttonStyle(NarrowButtonStyle())
+                            .padding(.horizontal, 100)
+                            Text("Revealing hint will deduct 100 points.")
+                                .font(.system(size: 15))
+                                .foregroundColor(.gray)
+                                .italic()
                         }
-                        .buttonStyle(NarrowButtonStyle())
-                        .padding(.horizontal, 100)
-                        Text("Revealing hint will deduct 100 points.")
-                            .font(.system(size: 15))
-                            .foregroundColor(.gray)
-                            .italic()
                     }
                     .padding(.vertical)
                     if showHint {
