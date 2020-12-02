@@ -19,7 +19,7 @@ struct DiagnoseRow: View {
     }
 }
 
-struct ProgressCircle: View {
+struct AccuracyCircle: View {
 //    @Binding var progress: Double
     var progress: Double
     var correct: Int
@@ -186,11 +186,11 @@ struct Incorr: View {
             
             HStack {
                 if (self.caseData.correctDiagnosis == stepsList[5]) {
-                    ProgressCircle(correct: counts.correctCases + 1, total: counts.totalCases + 1)
+                    AccuracyCircle(correct: counts.correctCases + 1, total: counts.totalCases + 1)
                     PerfectStreak(correct: true)
                 }
                 else {
-                    ProgressCircle(correct: counts.correctCases, total: counts.totalCases)
+                    AccuracyCircle(correct: counts.correctCases, total: counts.totalCases + 1)
                     PerfectStreak(correct: false)
                 }
                 Spacer()
