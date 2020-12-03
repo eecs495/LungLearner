@@ -114,6 +114,15 @@ class UserDatabaseManager {
         return results
     }
     
+    func getListOfCompletedCaseIds() -> [Int64] {
+        var results:[Int64] = []
+
+        for caseEntry in try! db.prepare(userInfo.select(id, correct).order(id.asc)) {
+            results.append(caseEntry[id])
+        }
+        return results
+    }
+    
     // Allows you to 'favorite' or 'unfavorite' any case with a given id
     func setCaseFavorite(idInput: Int64, favoriteInput: Bool) -> Bool {
         let filteredCase = userInfo.filter(id == idInput)
