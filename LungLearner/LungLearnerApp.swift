@@ -94,6 +94,8 @@ struct LungLearnerApp: App {
         WindowGroup {
             MainMenu()
                 .environmentObject(appDelegate.googleDelegate)
+                .background(LoginViewController())
+            
         }
     }
 }

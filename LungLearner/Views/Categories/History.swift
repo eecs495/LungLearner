@@ -10,8 +10,9 @@ import SwiftUI
 
 
 struct History: View {
-    var caseData: CaseData
-    @State var stepsList: [String] = ["Unsure", "Unsure", "Unsure", "Unsure", "Unsure", "Unsure"]
+    @State var caseData: CaseData?
+    var difficulty: Difficulty?
+    @State var stepsList: [String] = ["Unsure", "Unsure", "Unsure", "Unsure", "Unsure", "Heart failure"]
     
     @State var secondsHere: Int = 0
     var secondsTotal: Int = 0
@@ -27,7 +28,9 @@ struct History: View {
                     self.secondsHere += 1
                 }
             }
-            HistoryText(caseData: caseData)
+            if caseData != nil {
+                HistoryText(caseData: caseData!)
+            }
             Spacer()
             VStack {
                 HStack {
@@ -40,14 +43,37 @@ struct History: View {
                 }
                 .padding(.bottom)
                 DiagnoseButtons(stepsList: $stepsList, index: 0)
-                NavigationLink(destination: Symptoms(caseData: caseData, secondsTotal: secondsHere + secondsTotal, stepsList: $stepsList)) {
-                    HStack {
-                        Text("Symptoms")
-                            .foregroundColor(Color.hotPink)
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(Color.hotPink)
+                if self.caseData != nil {
+                    NavigationLink(destination: Symptoms(caseData: caseData!, secondsTotal: secondsHere + secondsTotal, stepsList: $stepsList)) {
+                        HStack {
+                            Text("Symptoms")
+                                .foregroundColor(Color.hotPink)
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(Color.hotPink)
+                        }
+                        .padding(.vertical)
                     }
-                    .padding(.vertical)
+                }
+            }
+        }
+        .onAppear {
+            if (self.difficulty == nil) {
+                do {
+                    caseData = try CaseDatabaseManager.shared.getRandomCase()
+                } catch CaseError.runtimeError(let errorMessage) {
+                    print(errorMessage)
+                } catch {
+                    print("Other errors")
+                }
+            }
+            
+            else {
+                do {
+                    caseData = try CaseDatabaseManager.shared.getRandomCaseByDifficulty(difficulty: self.difficulty!)
+                } catch CaseError.runtimeError(let errorMessage) {
+                    print(errorMessage)
+                } catch {
+                    print("Other errors")
                 }
             }
         }
