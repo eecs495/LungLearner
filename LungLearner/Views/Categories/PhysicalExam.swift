@@ -94,7 +94,9 @@ struct PhysicalExamTextBody: View {
             if caseData.physicalExamData.head != "" {
                 DataBlock(title: "Head", description: "\(caseData.physicalExamData.head)")
             }
-            DataBlock(title: "Neck", description: "\(caseData.physicalExamData.neck)")
+            if caseData.physicalExamData.neck != "" {
+                DataBlock(title: "Neck", description: "\(caseData.physicalExamData.neck)")
+            }
             DataBlock(title: "Heart", description: "\(caseData.physicalExamData.heart)")
             DataBlock(title: "Lungs", description: "\(caseData.physicalExamData.lungs)")
             DataBlock(title: "Abdomen", description: "\(caseData.physicalExamData.abdomen)")

@@ -75,6 +75,11 @@ class UserDatabaseManager {
         })
     }
 
+    // deletes every row from the user database
+    func clearData() throws {
+        try db.run(userInfo.delete())
+    }
+
     //Returns how many cases the user completed, how many they got right, and how many they got wrong
     func getTotalUserProgress() -> (totalCases: Int, correctCases: Int, incorrectCases: Int) {
         
@@ -106,6 +111,15 @@ class UserDatabaseManager {
             results.append((id: caseEntry[id], correct: caseEntry[correct]))
         }
         print(results)
+        return results
+    }
+    
+    func getListOfCompletedCaseIds() -> [Int64] {
+        var results:[Int64] = []
+
+        for caseEntry in try! db.prepare(userInfo.select(id, correct).order(id.asc)) {
+            results.append(caseEntry[id])
+        }
         return results
     }
     

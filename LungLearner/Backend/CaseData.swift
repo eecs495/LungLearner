@@ -81,6 +81,11 @@ enum CaseError: Error {
     case runtimeError(String)
 }
 
+// Enum for Difficulty of Case
+enum Difficulty: String {
+    case Easy, Medium, Hard
+}
+
 
 // Utility method used to convert to CaseData type
 func makeCase(caseInfo: Row) -> CaseData {

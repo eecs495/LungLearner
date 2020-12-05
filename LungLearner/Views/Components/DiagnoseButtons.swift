@@ -41,6 +41,7 @@ struct DiagnoseButtons: View {
                 .padding(.vertical, 5)
             }
             .padding(.horizontal, 100)
+            .padding(.bottom)
         }
         else {
             VStack {
