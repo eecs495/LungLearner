@@ -58,6 +58,8 @@ class UserDatabaseManager {
     var first_date: NSDate = NSDate()
     var current_date: NSDate = NSDate()
     
+    var current_correct_cases = 0
+    
     init() {
         let path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
@@ -280,6 +282,19 @@ class UserDatabaseManager {
         }else{
             first_date = now
             current_date = now
+        }
+    }
+    
+    func getCorrectScoreStreak() -> Int{
+        return (current_correct_cases)
+
+    }
+
+    func updateCorrectScoreStreak(Bool:correct){
+        if  correct {
+            current_correct_cases = current_correct_case + 1
+        }else{
+            current_correct_cases = 0
         }
     }
 
