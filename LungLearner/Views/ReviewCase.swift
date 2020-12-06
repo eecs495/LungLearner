@@ -13,6 +13,7 @@ struct ReviewCase: View {
     var caseData: CaseData
     var reason: String = ""
     var firstDiagnosis: Bool = true
+    var receivedHint: Bool
     @Binding var stepsList: [String]
 
     @State var blurBackground: Bool = false
@@ -99,7 +100,7 @@ struct ReviewCase: View {
                         .padding(.top, 10)
                         if firstDiagnosis {
                             Spacer()
-                            NavigationLink(destination: DiagnoseCase(caseData: caseData, secondsTotal: secondsTotal + secondsHere, stepsList: $stepsList)) {
+                            NavigationLink(destination: DiagnoseCase(caseData: caseData, receivedHint: receivedHint, stepsList: $stepsList, secondsTotal: secondsTotal + secondsHere)) {
                                 HStack {
                                     Text("Diagnose Case")
                                         .foregroundColor(Color.hotPink)
@@ -228,11 +229,16 @@ struct ReviewCase: View {
             .navigationBarBackButtonHidden(firstDiagnosis)
             .navigationBarHidden(firstDiagnosis)
         }
+        .onAppear {
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
+            UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
+        }
     }
 }
 
-struct ReviewCase_Previews: PreviewProvider {
-    static var previews: some View {
-        ReviewCase(caseData: testCaseData1, firstDiagnosis: false, stepsList: .constant(testStepsList), secondsTotal: 100)
-    }
-}
+//struct ReviewCase_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReviewCase(caseData: testCaseData1, firstDiagnosis: false, stepsList: .constant(testStepsList), secondsTotal: 100)
+//    }
+//}

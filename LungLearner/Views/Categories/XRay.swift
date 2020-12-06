@@ -79,7 +79,7 @@ struct XRay: View {
                     }
                     .padding(.bottom)
                     DiagnoseButtons(stepsList: $stepsList, index: 4)
-                    NavigationLink(destination: ReviewCase(caseData: caseData, stepsList: $stepsList, secondsTotal: secondsHere + secondsTotal)) {
+                    NavigationLink(destination: ReviewCase(caseData: caseData, receivedHint: showHint, stepsList: $stepsList, secondsTotal: secondsHere + secondsTotal)) {
                         HStack {
                             Text("Review Case")
                                 .foregroundColor(Color.hotPink)

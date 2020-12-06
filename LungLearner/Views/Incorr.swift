@@ -104,11 +104,15 @@ struct Incorr: View {
     var reason: String
     @State var isFav: Bool = false
     var stepsList: [String]
+    var receivedHint: Bool
+    var secondsTotal: Int
 
-    init(caseData: CaseData, reason: String, stepsList: [String]) {
+    init(caseData: CaseData, reason: String, stepsList: [String], receivedHint: Bool, secondsTotal: Int) {
         self.caseData = caseData
         self.reason = reason
         self.stepsList = stepsList
+        self.receivedHint = receivedHint
+        self.secondsTotal = secondsTotal
     }
     
     var body: some View {
@@ -281,6 +285,6 @@ struct Incorr_Previews: PreviewProvider {
     static var previews: some View {
         let testSteps = Steps()
         testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure", "COPD"]
-        return Incorr(caseData: testCaseData1, reason: "TEMP", stepsList: testStepsList)
+        return Incorr(caseData: testCaseData1, reason: "Something", stepsList: testStepsList, receivedHint: true, secondsTotal: 200)
     }
 }

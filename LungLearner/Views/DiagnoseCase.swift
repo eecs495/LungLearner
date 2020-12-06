@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DiagnoseCase: View {
     var caseData: CaseData
+    var receivedHint: Bool = false
     @Binding var stepsList: [String]
     
     @State private var inputNotes: String = "Enter notes here"
@@ -18,15 +19,15 @@ struct DiagnoseCase: View {
     var secondsTotal: Int
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    init(caseData: CaseData, secondsTotal: Int, stepsList: Binding<[String]>) {
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
-        UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
-        UITextView.appearance().backgroundColor = .clear
-        self.caseData = caseData
-        self.secondsTotal = secondsTotal
-        _stepsList = stepsList
-    }
+//    init(caseData: CaseData, secondsTotal: Int, stepsList: Binding<[String]>) {
+//        let navigationBarAppearance = UINavigationBarAppearance()
+//        navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
+//        UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
+//        UITextView.appearance().backgroundColor = .clear
+//        self.caseData = caseData
+//        self.secondsTotal = secondsTotal
+//        _stepsList = stepsList
+//    }
     
     var body: some View {
         ScrollView {
@@ -52,17 +53,19 @@ struct DiagnoseCase: View {
                     }
                     .padding(.bottom, 5)
                     TextEditor(text: $inputNotes)
+                        .font(.system(size: 20))
                         .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.white)
+                        )
                         .foregroundColor(self.inputNotes == placeholderString ? Color.gray : Color.primary)
                         .onTapGesture {
                                     if self.inputNotes == placeholderString {
                                       self.inputNotes = ""
                                     }
                         }
-                        .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.white)
-                        )
                         .padding(.top, 30)
                 }
                 .padding(.horizontal, 30)
@@ -78,7 +81,7 @@ struct DiagnoseCase: View {
                     }
                     .padding(.vertical)
                     DiagnoseButtons(stepsList: $stepsList, index: 5, noUnsure: true)
-                    NavigationLink(destination: Incorr(caseData: caseData, reason: inputNotes, stepsList: stepsList)) {
+                    NavigationLink(destination: Incorr(caseData: caseData, reason: inputNotes, stepsList: stepsList, receivedHint: receivedHint, secondsTotal: secondsTotal + secondsHere)) {
                         HStack {
                             Text("Check")
                                 .foregroundColor(Color.hotPink)
@@ -91,6 +94,13 @@ struct DiagnoseCase: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
+
+        }
+        .onAppear {
+            let navigationBarAppearance = UINavigationBarAppearance()
+            navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
+            UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
+            UITextView.appearance().backgroundColor = .clear
         }
     }
 }
@@ -99,7 +109,7 @@ struct DiagnoseCase_Previews: PreviewProvider {
     static var previews: some View {
         let testSteps = Steps()
         testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure"]
-        return DiagnoseCase(caseData: testCaseData1, secondsTotal: 444, stepsList: .constant(testStepsList))
+        return DiagnoseCase(caseData: testCaseData1, stepsList: .constant(testStepsList), secondsTotal: 444)
     }
 }
 
