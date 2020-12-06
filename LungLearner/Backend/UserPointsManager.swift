@@ -66,3 +66,66 @@ func queryUserPointsByUsername(username: String) {
     }
 //    return up
 }
+
+// query User position
+func queryUserPositionByUsername(username: String) -> (Int) {
+    let p = UserPoint.keys
+    var UserPointList:[UserPoint] = []
+//    let up
+    Amplify.DataStore.query(UserPoint.self) { result in
+        switch(result) {
+        case .success(let userPoints):
+            for userPoint in userPoints {
+                UserPointList.append(userPoint)
+                print("Name: \(userPoint.username)")
+                print("Points: \(userPoint.points)")
+            }
+        case .failure(let error):
+            print("Could not query DataStore: \(error)")
+        }
+    }
+    
+    let newArr = UserPointList.sorted { (lhs: UserPoint, rhs: UserPoint) -> Bool in
+        // you can have additional code here
+        return lhs.points > rhs.points
+    }
+    
+    var index = 1
+    for element in newArr{
+        if element.username == p.username.rawValue{
+            return index
+        }else{
+            index = index + 1
+        }
+    }
+    // return 0 means not find that person
+    return 0
+//    return up
+}
+
+// query first several lines
+
+func queryToplines(linenum: Int) -> [UserPoint] {
+  
+    var UserPointList:[UserPoint] = []
+    Amplify.DataStore.query(UserPoint.self) { result in
+        switch(result) {
+        case .success(let userPoints):
+            for userPoint in userPoints {
+                UserPointList.append(userPoint)
+                print("Name: \(userPoint.username)")
+                print("Points: \(userPoint.points)")
+            }
+        case .failure(let error):
+            print("Could not query DataStore: \(error)")
+        }
+    }
+    
+    let newArr = UserPointList.sorted { (lhs: UserPoint, rhs: UserPoint) -> Bool in
+        // you can have additional code here
+        return lhs.points > rhs.points
+    }
+    let firstn = Array(newArr.prefix(linenum))
+    return firstn
+}
+
