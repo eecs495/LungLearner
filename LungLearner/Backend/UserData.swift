@@ -4,7 +4,6 @@
 //
 //  Created by Nick Ceccio on 10/5/20.
 //
-
 import Foundation
 import SQLite
 
@@ -80,6 +79,12 @@ class UserDatabaseManager {
     // deletes every row from the user database
     func clearData() throws {
         try db.run(userInfo.delete())
+    }
+    
+    // Get total usercase count
+    func getTotalUserCaseCount() throws -> Int {
+        let userInfo = Table("userInfo")
+        return try db.scalar(userInfo.count)
     }
 
     //Returns how many cases the user completed, how many they got right, and how many they got wrong
@@ -306,5 +311,3 @@ func convertUnixTime(unixtime: Int64) -> (year: Int, month: Int, day: Int) {
     let calendar = Calendar.current
     return (calendar.component(.year, from: date), calendar.component(.month, from: date), calendar.component(.day, from: date))
 }
-
-
