@@ -150,7 +150,6 @@ func queryToplines(linenum: Int) -> [UserPoint] {
     }
     
     let newArr = UserPointList.sorted { (lhs: UserPoint, rhs: UserPoint) -> Bool in
-        // you can have additional code here
         return lhs.points > rhs.points
     }
     let firstn = Array(newArr.prefix(linenum))

@@ -113,6 +113,8 @@ struct Incorr: View {
     
     var body: some View {
         let counts = UserDatabaseManager.shared.getTotalUserProgress()
+        let email = "pnymm22@gmail.com"+"?body="+reason
+        let url = "mailto:\(email)"
        
         VStack {
 
@@ -158,6 +160,8 @@ struct Incorr: View {
                     .font(.system(size: 40))
                     .fontWeight(.heavy)
                     .foregroundColor(.accentColor)
+                
+            //    Link("Send Email to Professor", destination: URL(string: url)!)
             }
            
             
