@@ -31,9 +31,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         // Amplify stuff on startup
         configureAmplify()
+//        UserPointsManager.shared.addUserPointsForUsername(username: "Robert", points: 200)
+//        UserPointsManager.shared.clearUserPointsForUsername(username: "HelloWorld")
+//        print("Points: ", UserPointsManager.shared.queryUserPointsByUsername(username: "HelloWorld"))
         return true
     }
-    
+
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
       return GIDSignIn.sharedInstance().handle(url)
     }
