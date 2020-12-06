@@ -161,7 +161,7 @@ struct Incorr: View {
                     .fontWeight(.heavy)
                     .foregroundColor(.accentColor)
                 
-                Link("Send Email to Professor", destination: URL(string: url)!)
+            //    Link("Send Email to Professor", destination: URL(string: url)!)
             }
            
             
