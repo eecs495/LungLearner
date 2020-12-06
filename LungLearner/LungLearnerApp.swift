@@ -25,18 +25,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         } catch {
             print("Other errors")
         }
-        
+
         GIDSignIn.sharedInstance().clientID = "90255751140-l41hhvd6fg70dp88qhf0067066molabv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = googleDelegate
-        
+
         // Amplify stuff on startup
-//        configureAmplify()
-//        saveUserPoint()
-//        queryUserPoint()
-        
+        configureAmplify()
+//        UserPointsManager.shared.addUserPointsForUsername(username: "Robert", points: 200)
+//        UserPointsManager.shared.clearUserPointsForUsername(username: "HelloWorld")
+//        print("Points: ", UserPointsManager.shared.queryUserPointsByUsername(username: "HelloWorld"))
         return true
     }
-    
+
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
       return GIDSignIn.sharedInstance().handle(url)
     }

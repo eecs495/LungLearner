@@ -26,43 +26,174 @@ func configureAmplify() {
     }
 }
 
-func saveUserPoint(username: String, points: Int) {
-    let userPoint = UserPoint(username: username,
-                              points: points)
-    Amplify.DataStore.save(userPoint) { result in
-        switch(result) {
-        case .success(let savedItem):
-            print("Saved item: \(savedItem.username)")
-        case .failure(let error):
-            print("Could not save item to datastore: \(error)")
-        }
-    }
-}
+class UserPointsManager {
+    static let shared = UserPointsManager()
 
-//func updateUserPoints(username: String, points: Int) {
-//    // First get existing user point
-//    do {
-//        let userPoint = try queryUserPointsByUsername(username: username)
-//    } catch  {
-//        print("Some Error")
-//    }
-//
-//}
+    // Add specified points for the username
+    // Case: If username does not exist, create entry for username with specified points
+    func addUserPointsForUsername(username: String, points: Int) {
+        let p = UserPoint.keys
+        // Find UserPoint object for username if it exists
+        Amplify.DataStore.query(UserPoint.self, where: p.username.eq(username)) {
+            switch $0 {
+            case .success(let result):
+                if (result.isEmpty) {
+                    print("Username does not exist, so Save a new UserPoint entry")
+                    saveUserPoint(username: username, points: points)
+                    return
+                }
+                print("UserPoint: \(result)")
+                var userPoint = result[0]
 
-func queryUserPointsByUsername(username: String) {
-    let p = UserPoint.keys
-//    let up
-    Amplify.DataStore.query(UserPoint.self, where: p.username.eq(username)) { result in
-        switch(result) {
-        case .success(let userPoints):
-            for userPoint in userPoints {
-                print("==== UserPoints ====")
-                print("Name: \(userPoint.username)")
-                print("Points: \(userPoint.points)")
+                // If UserPoint with specified username exists, add points
+                userPoint.points += points
+                print("New UserPoint: \(userPoint)")
+                Amplify.DataStore.save(userPoint) {
+                    switch $0 {
+                        case .success:
+                            print("Updated the existing userPoint")
+                        case .failure(let error):
+                            print("Error updating userPoint - \(error.localizedDescription)")
+                        }
+                }
+
+            case .failure(let error):
+                // If UserPoint with specified username does not exist,
+                // Save a new UserPoints with the given points
+                print("userPoint doesn't exist - \(error.localizedDescription)")
+                return
             }
-        case .failure(let error):
-            print("Could not query DataStore: \(error)")
         }
     }
-//    return up
+
+    // Get Points by Username
+    // Case: If username does not exist, return zero by default
+    func queryUserPointsByUsername(username: String) -> Int {
+        let p = UserPoint.keys
+        var up = 0
+        Amplify.DataStore.query(UserPoint.self, where: p.username.eq(username)) {
+            switch $0 {
+            case .success(let result):
+                print("UserPoint: \(result)")
+                if (!result.isEmpty) {
+                    up = result[0].points
+                }
+            case .failure(let error):
+                print("Error listing posts - \(error.localizedDescription)")
+            }
+        }
+        return up
+    }
+
+    // query User position
+    func queryUserPositionByUsername(username: String) -> (Int) {
+        let p = UserPoint.keys
+        var UserPointList:[UserPoint] = []
+    //    let up
+        Amplify.DataStore.query(UserPoint.self) { result in
+            switch(result) {
+            case .success(let userPoints):
+                for userPoint in userPoints {
+                    UserPointList.append(userPoint)
+                    print("Name: \(userPoint.username)")
+                    print("Points: \(userPoint.points)")
+                }
+            case .failure(let error):
+                print("Could not query DataStore: \(error)")
+            }
+        }
+        
+        let newArr = UserPointList.sorted { (lhs: UserPoint, rhs: UserPoint) -> Bool in
+            // you can have additional code here
+            return lhs.points > rhs.points
+        }
+        
+        var index = 1
+        for element in newArr{
+            if element.username == p.username.rawValue{
+                return index
+            }else{
+                index = index + 1
+            }
+        }
+        // return 0 means not find that person
+        return 0
+    //    return up
+    }
+
+    // query first several lines
+
+    func queryToplines(linenum: Int) -> [UserPoint] {
+      
+        var UserPointList:[UserPoint] = []
+        Amplify.DataStore.query(UserPoint.self) { result in
+            switch(result) {
+            case .success(let userPoints):
+                for userPoint in userPoints {
+                    UserPointList.append(userPoint)
+                    print("Name: \(userPoint.username)")
+                    print("Points: \(userPoint.points)")
+                }
+            case .failure(let error):
+                print("Could not query DataStore: \(error)")
+            }
+        }
+        
+        let newArr = UserPointList.sorted { (lhs: UserPoint, rhs: UserPoint) -> Bool in
+            return lhs.points > rhs.points
+        }
+        let firstn = Array(newArr.prefix(linenum))
+        return firstn
+    }
+
+    // Clear/Delete points for the username
+    // Case: If username doesn't exist, do nothing
+    func clearUserPointsForUsername(username: String) {
+        let p = UserPoint.keys
+        // Find UserPoint object for username if it exists
+        Amplify.DataStore.query(UserPoint.self, where: p.username.eq(username)) {
+            switch $0 {
+            case .success(let result):
+                if (result.isEmpty) {
+                    print("Username does not exist, so no need to clear")
+                    return
+                }
+                print("UserPoint: \(result)")
+                for userPoint in result {
+                    // Delete the userPoint from database
+                    Amplify.DataStore.delete(userPoint) {
+                        switch $0 {
+                        case .success:
+                            print("UserPoint cleared/deleted!")
+                        case .failure(let error):
+                            print("Error deleting userPoint - \(error.localizedDescription)")
+                        }
+                    }
+                }
+
+            case .failure(let error):
+                // If UserPoint with specified username does not exist,
+                // Save a new UserPoints with the given points
+                print("Error clearning userPoint - \(error.localizedDescription)")
+            }
+        }
+    }
+
+    // Save points for specified username with specified points
+    // Used for cases when username doesn't already exist in database yet
+    private func saveUserPoint(username: String, points: Int) {
+        let userPoint = UserPoint(username: username,
+                                  points: points)
+        Amplify.DataStore.save(userPoint) { result in
+            switch(result) {
+            case .success(let savedItem):
+                print("Saved item: \(savedItem.username)")
+            case .failure(let error):
+                print("Could not save item to datastore: \(error)")
+            }
+        }
+    }
 }
+
+
+

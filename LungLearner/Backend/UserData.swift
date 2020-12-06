@@ -301,6 +301,22 @@ class UserDatabaseManager {
             current_correct_cases = 0
         }
     }
+    /*
+     func emailProfessor(emailofProfessor: String, caseInfo: String) -> () {
+             if MFMailComposeViewController.canSendMail() {
+             let mail = MFMailComposeViewController()
+             mail.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate
+             mail.setToRecipients([emailofProfessor])
+             mail.setMessageBody("<h1>"+caseInfo+"<h1>", isHTML: true)
+             present(mail, animated: true)
+             } else {
+             print("Cannot send email")
+             }
+             func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+             controller.dismiss(animated: true)
+             }
+         }
+*/
 
 }
 
@@ -311,3 +327,12 @@ func convertUnixTime(unixtime: Int64) -> (year: Int, month: Int, day: Int) {
     let calendar = Calendar.current
     return (calendar.component(.year, from: date), calendar.component(.month, from: date), calendar.component(.day, from: date))
 }
+
+// email professor
+//func emailProfessor(emailofProfessor: String, caseInfo: String) -> () {
+//    let email = emailofProfessor+"?body="+caseInfo
+//    if let url = URL(string: "mailto:\(email)") {
+//        Link("Send Email to Professor", destination: URL(string: url)!)
+//    }
+//}
+

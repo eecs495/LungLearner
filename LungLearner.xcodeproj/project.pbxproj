@@ -59,7 +59,6 @@
 		4249BCB3ADC84AEFBDC7DCB0 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; path = awsconfiguration.json; sourceTree = "<group>"; };
 		4A130588255B80A800956510 /* Incorr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Incorr.swift; sourceTree = "<group>"; };
 		4A6B59F0252A708C00E9DA63 /* DiagProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagProcess.swift; sourceTree = "<group>"; };
-		56CFB7682575637400EC6428 /* emailProfesslr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = emailProfesslr.swift; sourceTree = "<group>"; };
 		5A311A90CDF8F633180345E8 /* Pods-LungLearner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LungLearner.debug.xcconfig"; path = "Target Support Files/Pods-LungLearner/Pods-LungLearner.debug.xcconfig"; sourceTree = "<group>"; };
 		760B536A2522555F000B129B /* LungLearner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LungLearner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		760B536D2522555F000B129B /* LungLearnerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungLearnerApp.swift; sourceTree = "<group>"; };
@@ -259,7 +258,6 @@
 				8CBB8F25252DF5CD00A0C16E /* CaseDatabaseManager.swift */,
 				8CBB8F26252DF5CD00A0C16E /* CaseData.swift */,
 				8CC55E3B255892F4003F255F /* UserPointsManager.swift */,
-				56CFB7682575637400EC6428 /* emailProfesslr.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
