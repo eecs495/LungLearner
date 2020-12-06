@@ -72,6 +72,7 @@ struct AccuracyCircle: View {
 struct PerfectStreak: View {
     
     var correct: Bool = false
+    var perfectStreak = UserDatabaseManager.shared.getCorrectScoreStreak()
     
     init(correct: Bool) {
         self.correct = correct
@@ -80,7 +81,7 @@ struct PerfectStreak: View {
     var body: some View {
         VStack {
             if (self.correct) {
-                Text("1")
+                Text(String(perfectStreak + 1))
                     .font(.system(size: 100))
             }
             else {
@@ -195,6 +196,7 @@ struct Incorr: View {
                 }
                 Spacer()
             }
+            .offset(x: 15)
             
             Spacer()
             HStack {
@@ -233,13 +235,17 @@ struct Incorr: View {
                         .padding(.top, 5)
                 }
                 .simultaneousGesture(TapGesture().onEnded {
+                    // if the user was right
                     if (self.caseData.correctDiagnosis == stepsList[5]) {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: stepsList, reason: self.reason, correct: true)
                         UserDatabaseManager.shared.storeCaseResult(result: myUser)
+                        UserDatabaseManager.shared.updateCorrectScoreStreak(correct: true)
                     }
+                    // else if the user was wrong
                     else {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: stepsList, reason: self.reason, correct: false)
                         UserDatabaseManager.shared.storeCaseResult(result: myUser)
+                        UserDatabaseManager.shared.updateCorrectScoreStreak(correct: false)
                     }
                     UserDatabaseManager.shared.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
                 })

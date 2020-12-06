@@ -279,7 +279,7 @@ class UserDatabaseManager {
         let now = NSDate()
         if now.timeIntervalSince(current_date as Date) < 86400 {
             current_date = now
-        }else{
+        } else {
             first_date = now
             current_date = now
         }
@@ -287,13 +287,12 @@ class UserDatabaseManager {
     
     func getCorrectScoreStreak() -> Int{
         return (current_correct_cases)
-
     }
 
-    func updateCorrectScoreStreak(Bool:correct){
-        if  correct {
-            current_correct_cases = current_correct_case + 1
-        }else{
+    func updateCorrectScoreStreak(correct: Bool){
+        if correct {
+            current_correct_cases += 1
+        } else {
             current_correct_cases = 0
         }
     }
