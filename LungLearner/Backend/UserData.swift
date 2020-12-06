@@ -329,10 +329,10 @@ func convertUnixTime(unixtime: Int64) -> (year: Int, month: Int, day: Int) {
 }
 
 // email professor
-/*func emailProfessor(emailofProfessor: String, caseInfo: String) -> () {
-    let email = emailofProfessor+"?body="+caseInfo
-    if let url = URL(string: "mailto:\(email)") {
-        Link("Send Email to Professor", destination: URL(string: url)!)
-    }
-}*/
+//func emailProfessor(emailofProfessor: String, caseInfo: String) -> () {
+//    let email = emailofProfessor+"?body="+caseInfo
+//    if let url = URL(string: "mailto:\(email)") {
+//        Link("Send Email to Professor", destination: URL(string: url)!)
+//    }
+//}
 
