@@ -10,5 +10,6 @@ target 'LungLearner' do
   pod 'Amplify'
   pod 'AmplifyPlugins/AWSAPIPlugin'
   pod 'AmplifyPlugins/AWSDataStorePlugin'
+  pod 'SQLite.swift', '~> 0.12.0'
 
 end

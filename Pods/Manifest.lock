@@ -57,6 +57,7 @@ DEPENDENCIES:
   - AmplifyPlugins/AWSAPIPlugin
   - AmplifyPlugins/AWSDataStorePlugin
   - GoogleSignIn
+  - SQLite.swift (~> 0.12.0)
 
 SPEC REPOS:
   trunk:
@@ -95,6 +96,6 @@ SPEC CHECKSUMS:
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 73350cb9caec69d82d62095bedfc8c058e5ccdb8
+PODFILE CHECKSUM: af7dd823ca9ba5677663feaac653f222f40401ec
 
 COCOAPODS: 1.10.0
