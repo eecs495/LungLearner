@@ -38,6 +38,7 @@
 		76857D192556DAEA00F293C5 /* PatientItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76857D182556DAEA00F293C5 /* PatientItem.swift */; };
 		76882D7725706641005B67AC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76882D7625706641005B67AC /* LoginViewController.swift */; };
 		76882D7A25716075005B67AC /* InstructionTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76882D7925716075005B67AC /* InstructionTab.swift */; };
+		76882D7D25798841005B67AC /* DifficultyButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76882D7C25798841005B67AC /* DifficultyButtons.swift */; };
 		76C99FF325549BBB0034E6D1 /* XRayImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C99FF225549BBB0034E6D1 /* XRayImage.swift */; };
 		76F22C6C25242A1300FB864F /* Cause.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F22C6B25242A1300FB864F /* Cause.swift */; };
 		76F685C225587DE800C16D8E /* Avatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F685C125587DE800C16D8E /* Avatar.swift */; };
@@ -87,6 +88,7 @@
 		76857D182556DAEA00F293C5 /* PatientItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientItem.swift; sourceTree = "<group>"; };
 		76882D7625706641005B67AC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		76882D7925716075005B67AC /* InstructionTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionTab.swift; sourceTree = "<group>"; };
+		76882D7C25798841005B67AC /* DifficultyButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyButtons.swift; sourceTree = "<group>"; };
 		76C99FF225549BBB0034E6D1 /* XRayImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayImage.swift; sourceTree = "<group>"; };
 		76F22C6B25242A1300FB864F /* Cause.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cause.swift; sourceTree = "<group>"; };
 		76F685C125587DE800C16D8E /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				76F685C125587DE800C16D8E /* Avatar.swift */,
 				76F685C82558E11700C16D8E /* DiagnoseTimer.swift */,
 				76882D7925716075005B67AC /* InstructionTab.swift */,
+				76882D7C25798841005B67AC /* DifficultyButtons.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				76F685C92558E11700C16D8E /* DiagnoseTimer.swift in Sources */,
 				56CFB7692575637400EC6428 /* emailProfesslr.swift in Sources */,
 				765AD735253A4D980053C3CB /* DiagnoseCase.swift in Sources */,
+				76882D7D25798841005B67AC /* DifficultyButtons.swift in Sources */,
 				767723612530D92000D5521B /* ReviewCase.swift in Sources */,
 				76857D192556DAEA00F293C5 /* PatientItem.swift in Sources */,
 				7677234D252E91C900D5521B /* Symptoms.swift in Sources */,

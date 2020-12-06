@@ -84,6 +84,7 @@ struct ReviewCase: View {
                                         }
                                     }
                                 }
+                                .offset(y: 10)
                             }
                             Group {
                                 ReviewButton(showCategory: $showHistory, blurBackground: $blurBackground, title: "History")

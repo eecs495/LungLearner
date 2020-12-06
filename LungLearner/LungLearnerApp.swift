@@ -14,11 +14,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         let userDbManager = UserDatabaseManager()
         userDbManager.prepareUserDatabase()
-        
-        // Currently here to test retrieving case info by id
-        let caseDbManager = CaseDatabaseManager()
+
+        // Currently here to test retrieving random case by difficulty
         do {
-            let caseInfo = try caseDbManager.getRandomCase()
+            print("Getting random")
+            let caseInfo = try CaseDatabaseManager.shared.getRandomCaseByDifficulty(difficulty: Difficulty.Hard)
             print(caseInfo)
         } catch CaseError.runtimeError(let errorMessage) {
             print(errorMessage)
@@ -30,7 +30,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         GIDSignIn.sharedInstance().delegate = googleDelegate
         
         // Amplify stuff on startup
-        configureAmplify()
+//        configureAmplify()
 //        saveUserPoint()
 //        queryUserPoint()
         
@@ -94,6 +94,8 @@ struct LungLearnerApp: App {
         WindowGroup {
             MainMenu()
                 .environmentObject(appDelegate.googleDelegate)
+                .background(LoginViewController())
+            
         }
     }
 }

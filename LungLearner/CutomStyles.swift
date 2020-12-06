@@ -35,6 +35,26 @@ struct WideButtonStyle: ButtonStyle {
     }
 }
 
+struct GreenButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(Color.white)
+            .padding(20)
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .background(
+                Group {
+                    if configuration.isPressed {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.green)
+                    } else {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.green)
+                    }
+                }
+            )
+    }
+}
+
 struct NarrowGrayButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label

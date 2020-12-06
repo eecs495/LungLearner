@@ -58,6 +58,8 @@ class UserDatabaseManager {
     var first_date: NSDate = NSDate()
     var current_date: NSDate = NSDate()
     
+    var current_correct_cases = 0
+    
     init() {
         let path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
@@ -73,6 +75,11 @@ class UserDatabaseManager {
             t.column(correct)
             t.column(favorite)
         })
+    }
+
+    // deletes every row from the user database
+    func clearData() throws {
+        try db.run(userInfo.delete())
     }
 
     //Returns how many cases the user completed, how many they got right, and how many they got wrong
@@ -106,6 +113,15 @@ class UserDatabaseManager {
             results.append((id: caseEntry[id], correct: caseEntry[correct]))
         }
         print(results)
+        return results
+    }
+    
+    func getListOfCompletedCaseIds() -> [Int64] {
+        var results:[Int64] = []
+
+        for caseEntry in try! db.prepare(userInfo.select(id, correct).order(id.asc)) {
+            results.append(caseEntry[id])
+        }
         return results
     }
     
@@ -263,9 +279,21 @@ class UserDatabaseManager {
         let now = NSDate()
         if now.timeIntervalSince(current_date as Date) < 86400 {
             current_date = now
-        }else{
+        } else {
             first_date = now
             current_date = now
+        }
+    }
+    
+    func getCorrectScoreStreak() -> Int{
+        return (current_correct_cases)
+    }
+
+    func updateCorrectScoreStreak(correct: Bool){
+        if correct {
+            current_correct_cases += 1
+        } else {
+            current_correct_cases = 0
         }
     }
 
