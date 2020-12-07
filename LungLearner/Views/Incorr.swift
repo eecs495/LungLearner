@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 
 struct DiagnoseRow: View {
@@ -106,6 +107,10 @@ struct Incorr: View {
     var stepsList: [String]
     var receivedHint: Bool
     var secondsTotal: Int
+    var my_email = URL(string: "mailto:pnymm22@gmail.com")
+    @State var userPoints: Int = 1
+//    @EnvironmentObject var googleDelegate: GoogleDelegate
+//    @State lazy var userPoints: Int
 
     init(caseData: CaseData, reason: String, stepsList: [String], receivedHint: Bool, secondsTotal: Int) {
         self.caseData = caseData
@@ -117,8 +122,9 @@ struct Incorr: View {
     
     var body: some View {
         let counts = UserDatabaseManager.shared.getTotalUserProgress()
-        let email = "pnymm22@gmail.com"+"?body="+reason
-        let url = "mailto:\(email)"
+        let pointManager = UserPointsManager()
+        let email = "pnymm22@gmail.com"//"+"?body="+self.reason
+        let url = URL(string: "mailto:\(email)")
        
         VStack {
 
@@ -134,7 +140,8 @@ struct Incorr: View {
                 .font(.title)
                 .foregroundColor(.primary)
             
-            if (self.caseData.correctDiagnosis == stepsList[5]) {
+            
+            if (self.caseData.correctDiagnosis == self.stepsList[5]) {
                 Text("Correct!")
                     .font(.title)
                     .fontWeight(.bold)
@@ -165,9 +172,22 @@ struct Incorr: View {
                     .fontWeight(.heavy)
                     .foregroundColor(.accentColor)
                 
-            //    Link("Send Email to Professor", destination: URL(string: url)!)
+//                Link("Send Email to Professor", destination: URL(string: url)!)
+                Button(action: {
+                    if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(self.my_email!, options: [:], completionHandler: nil)
+                    } else {
+                        UIApplication.shared.openURL(self.my_email!)
+                    }
+                }) {
+                        Text("Need help? Click here to email the medical staff")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.black)
+                            
+                    }
+                .buttonStyle(WideButtonStyle())
+                
             }
-           
             
             Text("Your Diagnostic Process")
                 .bold()
@@ -192,6 +212,23 @@ struct Incorr: View {
             )
             
             Spacer()
+            HStack{
+                // if the user got the answer right, +200 points
+                if (self.caseData.correctDiagnosis == self.stepsList[5]) {
+                    // if the user used a hint -100
+                    if (self.receivedHint == true) {
+                        Text("Points awarded: \(500 - self.secondsTotal + 200 - 100)")
+                    }
+                    else {
+                        Text("Points awarded: \(500 - self.secondsTotal + 200)")
+                    }
+                }
+                // else they get 0 points
+                else {
+                    Text("Points awarded: 0")
+                }
+                
+            }
             
             HStack {
                 if (self.caseData.correctDiagnosis == stepsList[5]) {
@@ -208,6 +245,7 @@ struct Incorr: View {
             
             Spacer()
             HStack {
+                Text(String(GIDSignIn.sharedInstance().currentUser!.profile.name))
                 Spacer()
                 VStack {
                     Button(action: {
@@ -248,12 +286,20 @@ struct Incorr: View {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: stepsList, reason: self.reason, correct: true)
                         UserDatabaseManager.shared.storeCaseResult(result: myUser)
                         UserDatabaseManager.shared.updateCorrectScoreStreak(correct: true)
+                        if (self.receivedHint == true) {
+                            pointManager.addUserPointsForUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name, points: max(0, 500 - self.secondsTotal + 200 - 100))
+                        }
+                        else {
+                            pointManager.addUserPointsForUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name, points: max(0, 500 - self.secondsTotal + 200))
+                        }
                     }
                     // else if the user was wrong
                     else {
                         let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: stepsList, reason: self.reason, correct: false)
                         UserDatabaseManager.shared.storeCaseResult(result: myUser)
                         UserDatabaseManager.shared.updateCorrectScoreStreak(correct: false)
+                        pointManager.addUserPointsForUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name, points: 0)
+                        
                     }
                     UserDatabaseManager.shared.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
                 })
@@ -289,6 +335,6 @@ struct Incorr_Previews: PreviewProvider {
     static var previews: some View {
         let testSteps = Steps()
         testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure", "COPD"]
-        return Incorr(caseData: testCaseData1, reason: "Something", stepsList: testStepsList, receivedHint: true, secondsTotal: 200)
+        return Incorr(caseData: testCaseData1, reason: "Something", stepsList: testSteps.stepList, receivedHint: true, secondsTotal: 200)
     }
 }
