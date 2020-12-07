@@ -1,3 +1,5 @@
+
+// FRANK V1
 import SwiftUI
 
 struct SpecialCase: Identifiable {
@@ -12,7 +14,7 @@ struct ReviewList: View {
 //    @State var completedCases: [(id: Int64, correct: Bool)] = []
 //    @State var correctCases: [SpecialCase] = []
 //    @State var incorrectCases: [SpecialCase] = []
-    
+
     @State var completedCaseIds: [(id: Int64, correct: Bool)] = []
     @State var completedCases: [SpecialCase] = []
 
@@ -20,9 +22,9 @@ struct ReviewList: View {
 
 //    @State var isEditing = false
 //    @State var selection: Set<Int64> = Set()
-    
+
     @State private var editMode = EditMode.inactive
-    
+
     func updateCases() {
         completedCaseIds = UserDatabaseManager.shared.getListOfCompletedCases()
         completedCases.removeAll()
@@ -49,10 +51,10 @@ struct ReviewList: View {
         //the list will be sorted by the key, which is the category
 
         ZStack {
-            
+
             Color.lighterGray
             VStack {
-                
+
                 Toggle(isOn: $show_fav){
                     Text("Show Favorites Only")
                         .fontWeight(.semibold)
@@ -70,8 +72,8 @@ struct ReviewList: View {
                     }
                     .onMove(perform: moveCase)
                 }
-                
-                
+
+
             }
 
         }
@@ -81,13 +83,13 @@ struct ReviewList: View {
         .onAppear {
             updateCases()
         }
-        
+
     }
-    
+
     private func moveCase(source: IndexSet, destination: Int) {
             completedCases.move(fromOffsets: source, toOffset: destination)
     }
-    
+
     private var editButton: some View {
         if editMode == .inactive {
             return Button(action: {
@@ -104,7 +106,7 @@ struct ReviewList: View {
             }
         }
     }
-    
+
 }
 
 struct ReviewListCell: View {
@@ -177,6 +179,20 @@ struct ReviewListCell: View {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ORIGINAL
 //
 //import SwiftUI
 //

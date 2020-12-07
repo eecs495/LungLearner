@@ -31,7 +31,13 @@ struct CaseData: Identifiable {
     var xRayName: String { return "xRay\(id)" }
 }
 
-struct SymptomData {
+struct SymptomData: Hashable {
+    static func == (lhs: SymptomData, rhs: SymptomData) -> Bool {
+        return lhs.onsetSymptoms == rhs.onsetSymptoms &&
+          lhs.provocatingFactors == rhs.provocatingFactors &&
+          lhs.descriptionSymptoms == rhs.descriptionSymptoms
+    }
+    
     var onsetSymptoms: String
     var provocatingFactors: String
     var descriptionSymptoms: String
@@ -57,7 +63,7 @@ struct PhysicalExamData {
     var skin: String
 }
 
-struct LabExamData {
+struct LabExamData: Hashable {    
     var whiteBloodCells: Double
     var hemoglobin: Double
     var hematocrit: Double
