@@ -82,9 +82,10 @@ class UserDatabaseManager {
     }
     
     // Get total usercase count
-    func getTotalUserCaseCount() throws -> Int {
+    func getTotalUserCaseCount() -> Int {
         let userInfo = Table("userInfo")
-        return try db.scalar(userInfo.count)
+        let numCases = try! db.scalar(userInfo.count)
+        return numCases
     }
 
     //Returns how many cases the user completed, how many they got right, and how many they got wrong
@@ -276,7 +277,7 @@ class UserDatabaseManager {
     
     func getStreak() -> Int{
         let time_sec = current_date.timeIntervalSince(first_date as Date)
-        return (Int(time_sec / 86400))
+        return (Int(time_sec / 86400) + 1)
 
     }
 

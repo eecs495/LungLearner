@@ -29,9 +29,9 @@ class CaseDatabaseManager {
     }
 
     // Get total case count
-    func getTotalCaseCount() throws -> Int {
+    func getTotalCaseCount() -> Int {
         let cases = Table("cases")
-        return try db.scalar(cases.count)
+        return try! db.scalar(cases.count)
     }
 
     // Getting a case by ID

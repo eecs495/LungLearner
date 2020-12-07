@@ -11,15 +11,10 @@ struct Progress: View {
     var body: some View {
         let userDbManager = UserDatabaseManager()
         let counts = userDbManager.getTotalUserProgress()
-        //hardcoded for beta release, will be connected for omega
-        let streak = 3
+        let streak = userDbManager.getStreak()
         let incomplete = counts.totalCases - counts.correctCases - counts.incorrectCases
         let pctCor = Float(counts.correctCases)/Float(counts.totalCases)
         let pctInc = Float(counts.incorrectCases)/Float(counts.totalCases)
-        
-        //hardcoded values just in case for demo
-//        let pctCor = 0.25
-//        let pctInc = 0.5
             
         
         //overall container
