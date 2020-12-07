@@ -6,15 +6,22 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 struct Progress: View {
     var body: some View {
         let userDbManager = UserDatabaseManager()
+        let caseDbManager = CaseDatabaseManager()
+        let pointManager = UserPointsManager()
         let counts = userDbManager.getTotalUserProgress()
         let streak = userDbManager.getStreak()
-        let incomplete = counts.totalCases - counts.correctCases - counts.incorrectCases
-        let pctCor = Float(counts.correctCases)/Float(counts.totalCases)
-        let pctInc = Float(counts.incorrectCases)/Float(counts.totalCases)
+        let numPoints = pointManager.queryUserPointsByUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name)
+        
+        let totalCases = caseDbManager.getTotalCaseCount()
+        
+        let incomplete = totalCases - counts.correctCases - counts.incorrectCases
+        let pctCor = Float(counts.correctCases)/Float(totalCases)
+        let pctInc = Float(counts.incorrectCases)/Float(totalCases)
             
         
         //overall container
@@ -79,10 +86,18 @@ struct Progress: View {
                 }
                 .padding(.vertical, 10)
                 HStack(alignment: .lastTextBaseline) {
-                    Text("\(counts.correctCases + counts.incorrectCases)/\(counts.totalCases)")
+                    Text("\(counts.correctCases + counts.incorrectCases)/\(totalCases)")
                         .foregroundColor(Color.blue)
                         .font(.system(size: 35))
                     Text("Cases Attempted!")
+                        .foregroundColor(Color.blue)
+                }
+                .padding(.vertical, 10)
+                HStack(alignment: .lastTextBaseline) {
+                    Text("\(numPoints)")
+                        .foregroundColor(Color.blue)
+                        .font(.system(size: 35))
+                    Text("Total Points!")
                         .foregroundColor(Color.blue)
                 }
             }
