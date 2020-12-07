@@ -65,7 +65,7 @@ struct AccuracyCircle: View {
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                 .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
         }
-        .offset(x: 25)
+//        .offset(x: 25)
         
     }
 }
@@ -106,11 +106,8 @@ struct Incorr: View {
     @State var isFav: Bool = false
     var stepsList: [String]
     var receivedHint: Bool
-    var secondsTotal: Int
+    let secondsTotal: Int
     var my_email = URL(string: "mailto:pnymm22@gmail.com")
-    @State var userPoints: Int = 1
-//    @EnvironmentObject var googleDelegate: GoogleDelegate
-//    @State lazy var userPoints: Int
 
     init(caseData: CaseData, reason: String, stepsList: [String], receivedHint: Bool, secondsTotal: Int) {
         self.caseData = caseData
@@ -126,189 +123,208 @@ struct Incorr: View {
         let email = "pnymm22@gmail.com"//"+"?body="+self.reason
         let url = URL(string: "mailto:\(email)")
        
-        VStack {
+        ZStack(alignment: .bottom) {
+            ScrollView {
+                VStack {
 
-            Text("Your answer of ")
-                .font(.title)
-                .foregroundColor(.primary)
-            +
-            Text("\(stepsList[5]) ")
-                .font(.title)
-                .foregroundColor(.accentColor)
+                    Text("Your answer of ")
+                        .font(.title)
+                        .foregroundColor(.primary)
+                    +
+                    Text("\(stepsList[5]) ")
+                        .font(.title)
+                        .foregroundColor(.accentColor)
 
-            Text("was")
-                .font(.title)
-                .foregroundColor(.primary)
-            
-            
-            if (self.caseData.correctDiagnosis == self.stepsList[5]) {
-                Text("Correct!")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .padding(.top, 15)
-                    .padding(.bottom, 15)
-                    .background(Rectangle().fill(Color.green).cornerRadius(20).frame(width: 150))
+                    Text("was")
+                        .font(.title)
+                        .foregroundColor(.primary)
                     
-            }
-            else {
-                Text("Incorrect!")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.primary)
-                    .padding(.top, 15)
-                    .padding(.bottom, 15)
-                    .background(Rectangle().fill(Color.red).cornerRadius(20).frame(width: 170))
                     
-                Text("Actual Cause of Respiratory Failure")
-                    .bold()
-                    .padding(.bottom, 2)
-                    .font(.system(size: 20))
-                    .padding(.top, 20)
-                    
-                Text("\(caseData.correctDiagnosis)")
-//                        .font(.body)
-                    .font(.system(size: 40))
-                    .fontWeight(.heavy)
-                    .foregroundColor(.accentColor)
-                
-//                Link("Send Email to Professor", destination: URL(string: url)!)
-                Button(action: {
-                    if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(self.my_email!, options: [:], completionHandler: nil)
-                    } else {
-                        UIApplication.shared.openURL(self.my_email!)
-                    }
-                }) {
-                        Text("Need help? Click here to email the medical staff")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.black)
+                    if (self.caseData.correctDiagnosis == self.stepsList[5]) {
+                        Text("Correct!")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .padding(.top, 15)
+                            .padding(.bottom, 15)
+                            .background(Rectangle().fill(Color.green).cornerRadius(20).frame(width: 150))
                             
                     }
-                .buttonStyle(WideButtonStyle())
-                
-            }
-            
-            Text("Your Diagnostic Process")
-                .bold()
-                .padding(.bottom, 10)
-                .font(.system(size: 25))
-                .padding(.top)
-            VStack(alignment: .leading) {
-                ForEach((0 ..< 5), id: \.self) {
-                    Text("\(stepsList[$0]) ")
-                        .font(.system(size: 20))
-                        .foregroundColor(.accentColor)
-                    +
-                    Text("after \(causeNames[$0])")
-                        .font(.system(size: 20))
-                        .foregroundColor(.secondary)
-                    }
-            }
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.black, lineWidth: 4)
-            )
-            
-            Spacer()
-            HStack{
-                // if the user got the answer right, +200 points
-                if (self.caseData.correctDiagnosis == self.stepsList[5]) {
-                    // if the user used a hint -100
-                    if (self.receivedHint == true) {
-                        Text("Points awarded: \(500 - self.secondsTotal + 200 - 100)")
-                    }
                     else {
-                        Text("Points awarded: \(500 - self.secondsTotal + 200)")
-                    }
-                }
-                // else they get 0 points
-                else {
-                    Text("Points awarded: 0")
-                }
-                
-            }
-            
-            HStack {
-                if (self.caseData.correctDiagnosis == stepsList[5]) {
-                    AccuracyCircle(correct: counts.correctCases + 1, total: counts.totalCases + 1)
-                    PerfectStreak(correct: true)
-                }
-                else {
-                    AccuracyCircle(correct: counts.correctCases, total: counts.totalCases + 1)
-                    PerfectStreak(correct: false)
-                }
-                Spacer()
-            }
-            .offset(x: 15)
-            
-            Spacer()
-            HStack {
-                Text(String(GIDSignIn.sharedInstance().currentUser!.profile.name))
-                Spacer()
-                VStack {
-                    Button(action: {
-                        print("I just favorited this case!")
-                        isFav = !isFav
-                    }) {
-                        if isFav {
-                            Image(systemName: "heart.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.black)
-                                
-                        }
-                        else {
-                            Image(systemName: "heart")
-                                .font(.largeTitle)
-                                .foregroundColor(Color.black)
-                                
-                        }
-                    }
-                    Text("Favorite")
-                        .fontWeight(.bold)
-                        .padding(.top, 5)
-                }
-                Spacer()
-                VStack {
-                    NavigationLink(destination: MainMenu()) {
-                        Image(systemName: "house.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(Color.black)
-                    }
-                    Text("Home")
-                        .fontWeight(.bold)
-                        .padding(.top, 5)
-                }
-                .simultaneousGesture(TapGesture().onEnded {
-                    // if the user was right
-                    if (self.caseData.correctDiagnosis == stepsList[5]) {
-                        let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: stepsList, reason: self.reason, correct: true)
-                        UserDatabaseManager.shared.storeCaseResult(result: myUser)
-                        UserDatabaseManager.shared.updateCorrectScoreStreak(correct: true)
-                        if (self.receivedHint == true) {
-                            pointManager.addUserPointsForUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name, points: max(0, 500 - self.secondsTotal + 200 - 100))
-                        }
-                        else {
-                            pointManager.addUserPointsForUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name, points: max(0, 500 - self.secondsTotal + 200))
-                        }
-                    }
-                    // else if the user was wrong
-                    else {
-                        let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: stepsList, reason: self.reason, correct: false)
-                        UserDatabaseManager.shared.storeCaseResult(result: myUser)
-                        UserDatabaseManager.shared.updateCorrectScoreStreak(correct: false)
-                        pointManager.addUserPointsForUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name, points: 0)
+                        Text("Incorrect!")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.primary)
+                            .padding(.top, 15)
+                            .padding(.bottom, 15)
+                            .background(Rectangle().fill(Color.red).cornerRadius(20).frame(width: 170))
+                            
+                        Text("Actual Cause of Respiratory Failure")
+                            .bold()
+                            .padding(.bottom, 2)
+                            .font(.system(size: 20))
+                            .padding(.top, 20)
+                            
+                        Text("\(caseData.correctDiagnosis)")
+        //                        .font(.body)
+                            .font(.system(size: 40))
+                            .fontWeight(.heavy)
+                            .foregroundColor(.accentColor)
+                        
+        //                Link("Send Email to Professor", destination: URL(string: url)!)
+                        Button(action: {
+                            if #available(iOS 10.0, *) {
+                                UIApplication.shared.open(self.my_email!, options: [:], completionHandler: nil)
+                            } else {
+                                UIApplication.shared.openURL(self.my_email!)
+                            }
+                        }) {
+                            VStack {
+                                Text("Need help? Click here ")
+                                    .font(.system(size: 25))
+                                    .foregroundColor(Color.black)
+                                Text("to email the medical staff")
+                                    .font(.system(size: 25))
+                                    .foregroundColor(Color.black)
+                            }
+                            .padding()
+                            }
+                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray))
+                        .frame(width: 500, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         
                     }
-                    UserDatabaseManager.shared.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
-                })
-                Spacer()
+                    
+                    HStack{
+                        // if the user got the answer right, +200 points
+                        if (self.caseData.correctDiagnosis == self.stepsList[5]) {
+                            // if the user used a hint -100
+                            if (self.receivedHint == true) {
+                                Text("Points awarded: 400")
+                                    .font(.title)
+                            }
+                            else {
+                                Text("Points awarded: 500")
+                                    .font(.title)
+                            }
+                        }
+                        // else they get 0 points
+                        else {
+                            Text("Points awarded: 0")
+                                .font(.title)
+                        }
+                    }
+                    .padding(.top, 20)
+                    .padding(.bottom, 10)
+                    
+                    HStack {
+                        if (self.caseData.correctDiagnosis == stepsList[5]) {
+                            AccuracyCircle(correct: counts.correctCases + 1, total: counts.totalCases + 1)
+                                .offset(x: 30)
+                            Spacer()
+                            PerfectStreak(correct: true)
+                                .offset(x: -30)
+                        }
+                        else {
+                            AccuracyCircle(correct: counts.correctCases, total: counts.totalCases + 1)
+                                .offset(x: 60)
+                            Spacer()
+                            PerfectStreak(correct: false)
+                                .offset(x: -30)
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                    
+                    Text("Your Diagnostic Process")
+                        .bold()
+                        .padding(.bottom, 10)
+                        .font(.system(size: 25))
+                        .padding(.top)
+                    VStack(alignment: .leading) {
+                        ForEach((0 ..< 5), id: \.self) {
+                            Text("\(stepsList[$0]) ")
+                                .font(.system(size: 20))
+                                .foregroundColor(.accentColor)
+                            +
+                            Text("after \(causeNames[$0])")
+                                .font(.system(size: 20))
+                                .foregroundColor(.secondary)
+                            }
+                    }
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.black, lineWidth: 4)
+                    )
+                    
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Button(action: {
+                                print("I just favorited this case!")
+                                isFav = !isFav
+                            }) {
+                                if isFav {
+                                    Image(systemName: "heart.fill")
+                                        .font(.largeTitle)
+                                        .foregroundColor(Color.black)
+                                        
+                                }
+                                else {
+                                    Image(systemName: "heart")
+                                        .font(.largeTitle)
+                                        .foregroundColor(Color.black)
+                                        
+                                }
+                            }
+                            Text("Favorite")
+                                .fontWeight(.bold)
+                                .padding(.top, 5)
+                        }
+                        Spacer()
+
+                        VStack {
+                            NavigationLink(destination: MainMenu()) {
+                                Image(systemName: "house.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(Color.black)
+                            }
+                            Text("Home")
+                                .fontWeight(.bold)
+                                .padding(.top, 5)
+                        }
+                        .simultaneousGesture(TapGesture().onEnded {
+                            // if the user was right
+                            if (self.caseData.correctDiagnosis == stepsList[5]) {
+                                let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: stepsList, reason: self.reason, correct: true)
+                                UserDatabaseManager.shared.storeCaseResult(result: myUser)
+                                UserDatabaseManager.shared.updateCorrectScoreStreak(correct: true)
+                                if (self.receivedHint == true) {
+                                    pointManager.addUserPointsForUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name, points: max(0, 400))
+                                }
+                                else {
+                                    pointManager.addUserPointsForUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name, points: max(0, 500))
+                                }
+                            }
+                            // else if the user was wrong
+                            else {
+                                let myUser = UserCaseResult(caseid: Int64(self.caseData.id), diagnoses: stepsList, reason: self.reason, correct: false)
+                                UserDatabaseManager.shared.storeCaseResult(result: myUser)
+                                UserDatabaseManager.shared.updateCorrectScoreStreak(correct: false)
+                                pointManager.addUserPointsForUsername(username: GIDSignIn.sharedInstance().currentUser!.profile.name, points: 0)
+                                
+                            }
+                            UserDatabaseManager.shared.setCaseFavorite(idInput: Int64(self.caseData.id), favoriteInput: isFav)
+                        })
+                        Spacer()
+                    }
+                    .offset(y: 20)
+                    .padding(.top, 30)
+                }
+                .navigationBarBackButtonHidden(true)
+                .navigationBarHidden(true)
             }
-            .offset(y: 20)
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
     
     }
 }
@@ -334,7 +350,7 @@ struct IncorrText: View {
 struct Incorr_Previews: PreviewProvider {
     static var previews: some View {
         let testSteps = Steps()
-        testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure", "COPD"]
+        testSteps.stepList = ["COPD", "Unsure", "CHF", "COPD", "Unsure", "Heart Failure"]
         return Incorr(caseData: testCaseData1, reason: "Something", stepsList: testSteps.stepList, receivedHint: true, secondsTotal: 200)
     }
 }
