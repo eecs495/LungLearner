@@ -7,25 +7,10 @@
 
 import SwiftUI
 import GoogleSignIn
-//
-//struct SignInButton: UIViewRepresentable {
-//    func makeUIView(context: Context) -> GIDSignInButton {
-//        let button = GIDSignInButton()
-//        // Customize button here
-//        button.colorScheme = .light
-//        return button
-//    }
-//    func updateUIView(_ uiView: UIViewType, context: Context) {}
-//}
+
 
 struct Login: View {
     @EnvironmentObject var googleDelegate: GoogleDelegate
-    
-//    var viewControllers: [UIHostingController<Page>]
-//
-//        init(_ views: [Page]) {
-//            self.viewControllers = views.map { UIHostingController(rootView: $0) }
-//        }
 
     
     var body: some View {
@@ -54,30 +39,5 @@ struct Login: View {
                 GIDSignIn.sharedInstance().restorePreviousSignIn()
             }
         .background(LoginViewController())
-//        VStack {
-//            SignInButton()
-//            Spacer()
-//            Image("Logo")
-//                .resizable()
-//                .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                .padding(.bottom)
-//            Button(action: {
-//                GIDSignIn.sharedInstance().signIn()
-//            }) {
-//                Text("Login")
-//                    .font(.system(size: 20))
-//                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-//            }
-//            .buttonStyle(WideButtonStyle())
-//            .padding(.horizontal, 30)
-//            Spacer()
-//        }
-//        .background(Color.lighterGray.ignoresSafeArea())
     }
 }
-
-//struct Login_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Login()
-//    }
-//}

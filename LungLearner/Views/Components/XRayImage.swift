@@ -41,7 +41,6 @@ struct AsyncImage: View {
     @StateObject private var loader: ImageLoader
 
     init(url: URL) {
-        //self.placeholder = placeholder()
         _loader = StateObject(wrappedValue: ImageLoader(url: url))
     }
 

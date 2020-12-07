@@ -19,16 +19,6 @@ struct DiagnoseCase: View {
     var secondsTotal: Int
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-//    init(caseData: CaseData, secondsTotal: Int, stepsList: Binding<[String]>) {
-//        let navigationBarAppearance = UINavigationBarAppearance()
-//        navigationBarAppearance.backgroundColor = UIColor(Color.lighterGray)
-//        UIScrollView.appearance().backgroundColor = UIColor(Color.lighterGray)
-//        UITextView.appearance().backgroundColor = .clear
-//        self.caseData = caseData
-//        self.secondsTotal = secondsTotal
-//        _stepsList = stepsList
-//    }
-    
     var body: some View {
         ScrollView {
             VStack {

@@ -42,7 +42,7 @@ struct XRay: View {
                         .font(.system(size: 35))
                         .fontWeight(.semibold)
                         .padding(.bottom, 5)
-                    VStack {
+                    VStack(alignment: .center) {
                         AsyncImage(url: URL(string: "https://lungxrays.s3.amazonaws.com/\(caseData.caseId).jpg")!)
                             .aspectRatio(contentMode: .fit)
                         if !showHint {

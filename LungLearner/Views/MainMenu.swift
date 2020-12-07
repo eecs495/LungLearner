@@ -12,7 +12,6 @@ import GoogleSignIn
 struct SignInButton: UIViewRepresentable {
     func makeUIView(context: Context) -> GIDSignInButton {
         let button = GIDSignInButton()
-        // Customize button here
         button.colorScheme = .light
         return button
     }
@@ -150,7 +149,6 @@ struct MainMenu: View {
             .onAppear {
                 GIDSignIn.sharedInstance().restorePreviousSignIn()
             }
-            //.background(LoginViewController())
     }
 }
 
@@ -158,6 +156,5 @@ struct MainMenu_Previews: PreviewProvider {
     static var previews: some View {
         MainMenu()
             .environmentObject(Steps())
-            //.environmentObject(TimeToDiagnose())
     }
 }
