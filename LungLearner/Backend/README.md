@@ -34,4 +34,5 @@ given to us raw, we had to compress the images using the compression technique
 found [here](https://sempioneer.com/python-for-seo/how-to-compress-images-in-python/).
 In brief, we used the python Image library to open the images then resave them
 with the parametersoptimize=true and quality=30. The S3 instance is public, so
-to access an X-Ray all you have to do is download from "https://lungxrays.s3.amazonaws.com/<caseId>.jpg".
+to access an X-Ray all you have to do is download from "https://lungxrays.s3.amazonaws.com/caseId.jpg",
+where caseId is replaced with the caseId of the appropriate case.
